@@ -1,0 +1,155 @@
+<div class='body-container'>
+	<div class='header-title text-center'>Beer Friends</div>
+	<div class='description text-center'>For friends and beers</div>
+</div>
+<div class='panel panel-default add-beer-panel'>
+	<div class='panel-body'>
+		<div class='add-beer-form-header'>Basic Information</div>
+		<div class='row add-beer-first-row'>
+			<div class='col-md-6'>
+				<div class="form-group">
+					<label for="usr">Beer Name</label>
+					<input type="text" class="form-control" id="beerName">
+				</div>
+			</div>
+			<div class='col-md-6'>
+				<div class="form-group">
+					<label for="usr">Beer Style</label>
+					<input type="text" class="form-control" id="beerStyle">
+				</div>
+			</div>
+			<div class='col-md-12'>
+				<div class="form-group">
+					<label for="usr">Location</label>
+					<input type="text" class="form-control" id="beerLocation">
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class='add-beer-form-header'>Ingredients</div>
+			<div class='row add-beer-first-row'>
+				<div class='col-md-6'>
+					<div class="form-group">
+						<label for="usr">Ingredient Name</label>
+						<input type="text" class="form-control" id="ingredientName">
+					</div>
+				</div>
+				<div class='col-md-4'>
+					<div class="form-group">
+						<label for="sel1">Select list:</label>
+						<select class="form-control" id="ingredientType">
+							<option>Grains/Malt</option>
+							<option>Hops</option>
+							<option>Yeast</option>
+							<option>Adjuncts</option>
+						</select>
+					</div>
+				</div>
+				<div class='col-md-2'>
+					<button id='addIngredient' class='btn btn-primary'>Add Ingredient</button>
+				</div>
+			</div>
+			<div class='row'>
+				<div class='col-md-3'>
+					<div class='ingredient-header text-center'>Grains/Malt</div>
+					<ul class='list-group' id='grains-list'>
+						<li class='list-group-item'>asdfasf</li>
+					</ul>
+				</div>
+				<div class='col-md-3 ingredient-header text-center'>
+					<div>Hops</div>
+					<ul class='list-group'>
+						<li class='list-group-item'>asdfasf</li>
+					</ul>
+				</div>
+				<div class='col-md-3 ingredient-header text-center'>
+					<div>Yeast</div>
+					<ul class='list-group'>
+						<li class='list-group-item'>asdfasf</li>
+					</ul>
+				</div>
+				<div class='col-md-3 ingredient-header text-center'>
+					<div>Adjuncts</div>
+					<ul class='list-group'>
+						<li class='list-group-item'>asdfasf</li>
+					</ul>
+				</div>
+			</div>
+		<hr>
+		<div class='add-beer-form-header'>Detailed Information</div>
+		<div class='row add-beer-first-row'>
+			
+			<div class='col-md-3'>
+				<div class="form-group">
+					<label for="usr">Specific Gravity</label>
+					<input type="text" class="form-control" id="beerStyle">
+				</div>
+			</div>
+			<div class='col-md-3'>
+				<div class="form-group">
+					<label for="usr">Original Gravity</label>
+					<input type="text" class="form-control" id="beerStyle">
+				</div>
+			</div>
+			<div class='col-md-3'>
+				<div class="form-group">
+					<label for="usr">Beer Style</label>
+					<input type="text" class="form-control" id="beerStyle">
+				</div>
+			</div>
+			<div class='col-md-3'>
+				<div class="form-group">
+					<label for="usr">Beer Style</label>
+					<input type="text" class="form-control" id="beerStyle">
+				</div>
+			</div>
+			<div class='col-md-12'>
+				<div class="form-group add-beer-description">
+					<label for="comment">Directions:</label>
+					<textarea class="form-control" rows="5" id="description"></textarea>
+				</div>
+			</div>
+			<div class='col-md-12'>
+				<div class="form-group add-beer-description">
+					<label for="comment">Description:</label>
+					<textarea class="form-control" rows="5" id="description">Add a beer</textarea>
+				</div>
+			</div>
+		</div>
+		<button class='center-block' id='submit'>Button</button>
+	</div>
+</div>
+<script>
+$(document).ready(() => {
+	$('#addIngredient').on('click', function() {
+		var ingredientName = $('#ingredientName').val();
+		var ingredientType = $("#ingredientType").val();
+	
+		console.log(ingredientType)
+
+		switch (ingredientType) {
+			case 'Grains/Malt':
+				console.log('Oranges are $0.59 a pound.');
+				break;
+			case 'Hops':
+				console.log('hops')
+				break;
+			case 'Yeast':
+				console.log('yeast')
+				break;
+			case 'Adjuncts':
+				console.log('adjs');
+				break;
+		}
+		
+	})
+
+	$("#submit").on('click', function() {
+		console.log($('#name').val())
+		console.log($('#style').val())
+	})
+})
+	
+</script>
+</body>
+</html>
