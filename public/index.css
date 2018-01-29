@@ -47,6 +47,8 @@ body {
 	margin-top: 24px;
 }
 
+/* Single Beer Style */
+
 .single-beer-image {
 	width: 100px;
 	
@@ -78,5 +80,36 @@ body {
 }
 
 .ingredient-container {
-	margin: 20px
+	margin: 20px;
+}
+
+.description-container {
+	margin-top: 10px;
+}
+
+/* User Profile Style */
+
+.userprofile {
+	margin: 0 100px;
+}
+
+.single-beer-user-name {
+	text-align: center;
+}
+
+.user-comments-header {
+	font-size: 24px;
+}
+
+.username-header {
+	text-align: center;
+	font-size: 48px;
+}
+
+#upvoteArrow {
+	cursor: pointer;
+}
+
+.red {
+	color: red
 }
