@@ -1,9 +1,28 @@
 const express = require('express');
+const passport = require('passport'), 
+    LocalStrategy = require('passport-local').Strategy;
 
-const router = express.Router();
-
+const router = express.Router(); 
 
 router.get('/', function(req, res) {
+    res.render('greeting');
+})
+
+router.get('/login', function(req, res) {
+    res.render('login');
+})
+
+router.post('/login',
+  passport.authenticate('local', { successRedirect: '/index',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+);
+
+router.get('/signup', function(req, res) {
+    res.render('signup');
+})
+
+router.get('/index', function(req, res) {
     res.render('index');
 })
 
