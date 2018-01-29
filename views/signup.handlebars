@@ -62,7 +62,7 @@
     $("#submit").on('click', function(event) {
       event.preventDefault();
 
-      var username = $('#username-input').val();
+      var userName = $('#username-input').val();
       var email = $('#email-input').val();
       var password= $('#password-input').val();
       var firstName = $('#firstName-input').val();
@@ -74,11 +74,10 @@
 
 
       var newUser = {
-        username, email, password, firstName, city, state, zipCode, address
+        userName, email, password, firstName, lastName, city, state, zipCode, address
       }
-      $.ajax({
+      $.ajax('/api/user/create', {
         type: "POST",
-        url: '/createUser',
         data: newUser
       }).then(function(data) {
         console.log('new user created', data);
