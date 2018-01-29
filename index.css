@@ -51,3 +51,12 @@ a {
 #addIngredient {
 	margin-top: 24px;
 }
+
+.singlebeer {
+	padding: 100px;
+	margin: 100px;
+}
+
+.hashtags {
+	color: red
+}
