@@ -18,12 +18,6 @@
 						<input type="text" class="form-control" id="beerStyle">
 					</div>
 				</div>
-				<div class='col-md-12'>
-					<div class="form-group">
-						<label for="usr">Location</label>
-						<input type="text" class="form-control" id="beerLocation">
-					</div>
-				</div>
 			</div>
 			<hr>
 			<div class='add-beer-form-header'>Ingredients</div>
@@ -82,37 +76,41 @@
 				<div class='col-md-3'>
 					<div class="form-group">
 						<label for="usr">Specific Gravity</label>
-						<input type="text" class="form-control" id="beerStyle">
+						<input type="text" class="form-control" id="sg">
 					</div>
 				</div>
 				<div class='col-md-3'>
 					<div class="form-group">
 						<label for="usr">Original Gravity</label>
-						<input type="text" class="form-control" id="beerStyle">
+						<input type="text" class="form-control" id="og">
 					</div>
 				</div>
 				<div class='col-md-3'>
 					<div class="form-group">
-						<label for="usr">Beer Style</label>
-						<input type="text" class="form-control" id="beerStyle">
+						<label for="usr">ABV</label>
+						<input type="text" class="form-control" id="abv">
 					</div>
 				</div>
 				<div class='col-md-3'>
 					<div class="form-group">
-						<label for="usr">Beer Style</label>
-						<input type="text" class="form-control" id="beerStyle">
+						<label for="usr">FBU</label>
+						<input type="text" class="form-control" id="fbu">
 					</div>
 				</div>
-				<div class='col-md-12'>
-					<div class="form-group add-beer-description">
-						<label for="comment">Directions:</label>
-						<textarea class="form-control" rows="5" id="description"></textarea>
+				<div class='row'>
+					<div class='col-md-12'>
+						<div class="form-group add-beer-description">
+							<label for="comment">Directions:</label>
+							<textarea class="form-control" rows="5" id="description"></textarea>
+						</div>
 					</div>
 				</div>
-				<div class='col-md-12'>
-					<div class="form-group add-beer-description">
-						<label for="comment">Description:</label>
-						<textarea class="form-control" rows="5" id="description">Add a beer</textarea>
+				<div class='row'>
+					<div class='col-md-12'>
+						<div class="form-group add-beer-description">
+							<label for="comment">Description:</label>
+							<textarea class="form-control" rows="5" id="description">Add a beer</textarea>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -156,8 +154,20 @@ $(document).ready(() => {
 	})
 
 	$("#submit").on('click', function() {
-		console.log($('#name').val())
-		console.log($('#style').val())
+		
+		var name = $("#beerName").val();
+		var style = $("#beerStyle").val();
+		var sg = $('#sg').val();
+		var eg = $('#eg').val();
+		var abv = $('#abv').val();
+		var fbu = $('#fbu').val();
+
+		var newBeer = {
+			name, style, sg, eg, abv, fbu, grains, hops, yeasts, adjuncts		
+		}
+
+		
+
 	})
 })
 	
