@@ -1,0 +1,146 @@
+<div class='userprofile'>
+    <div class='username-header'>
+        <span id='username'></span>
+    </div> 
+    <div class='row'>
+        <div class='col-md-3'>
+            <img src='' class='user-image'>
+            <div class='user-info-container'>
+                <div class='panel panel-default'>
+                    <div class='user-info-container-name'>Name: Guy</div>
+                </div>
+            </div>
+        </div>
+        <div class='col-md-6'>
+            <div class='user-beer-list'>
+                <ul class='list-group' id='user-beer-list'>
+                                                 
+                </ul>
+            </div>
+        </div>
+        <div class='col-md-3'>
+            <div class='user-stats panel panel-default'>
+                <div class='panel-heading user-stats-heading'>User Stats</div>
+                <div class='panel-body user-stats-body'>
+                    <div class='user-stats-beers-made'>
+                    Beers Submitted: <span id='beersSubmitted'></span>
+                    </div>
+                    <div class='user-stats-total-upvotes'>
+                        Upvotes: <span id='upvotes'></span>
+                    </div>
+                    <div class='user-stats-favorite-beers-container'>
+                        <div class='user-stats-favorite-beers'>
+                            <div class='user-stats-favorite-beers-header'>Favorites</div>
+                            <ul class='list group user-stats-favorite-beers-list' id='favoriteBeersList'>
+                                                                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    
+    // demonstration user object retrieved from get request
+    var user = {
+        username: 'username',
+        favorites: [
+            {
+                name: 'favorite beer 1',
+                route: '/beers/favoritebeer1'
+            },
+            {
+                name: 'favorite beer 2',
+                route: '/beers/favoritebeer2'
+            }
+        ]
+    }
+
+    // demonstration beers retrieved from get request
+    var beer1 = {
+        name: 'Beer1',
+        route: 'beer 1',
+        username: 'username',
+        description: 'a beer',
+        type: 'IPA',
+        ingredients: {
+            yeasts: ['yeast'],
+            hops: ['hops'],
+            grains: ['grain'],
+            adjuncts: ['adjunct']
+        },
+        directions: "some directions",
+        sg: '5%',
+        eg: '4%',
+        abv: '3%',
+        fbu: '2%',
+        upvotes: 10,
+        hashtags: ['hashtag1', 'hashtag2', 'hashtag3']
+    }
+
+    var beer2 = {
+        name: 'Beer2',
+        route: 'beer 2',
+        username: 'username',
+        description: 'a beer',
+        type: 'IPA2',
+        ingredients: {
+            yeasts: ['yeast'],
+            hops: ['hops'],
+            grains: ['grain'],
+            adjuncts: ['adjunct']
+        },
+        directions: "some directions",
+        sg: '5%',
+        eg: '4%',
+        abv: '3%',
+        fbu: '2%',
+        upvotes: 10,
+        hashtags: ['hashtag1', 'hashtag2', 'hashtag3']
+    }
+
+    var beers = [beer1, beer2];
+
+    
+     var totalUpvotes = beers.reduce((upvotes, beer) => {
+            console.log(upvotes, beer.upvotes)
+            return upvotes + beer.upvotes
+            }, 0)
+    
+
+    function renderBeers(array) {
+
+        array.map(beer => {
+
+            let name = beer.name
+            let type = beer.type
+            let upvotes = beer.upvotes
+            let description = beer.description
+
+            var beerli = `<li class='list-group-item'><div class='row'><div class='col-md-4 beer-list-name'>${name}</div><div class='col-md-4 beer-list-type text-center'>${type}</div><div class='col-md-4 beer-list-upvotes text-right'>${upvotes}</div></div><hr><div class='list-beer-description'>${description}</div></li>`
+
+            $('#user-beer-list').append(beerli);
+        })
+    }
+
+    function renderFavorites(array) {
+        array.map(beer => {
+            var beerli = `<li class='list-group-item'><a href=${beer.route}>${beer.name}</a></li>`
+
+            $('#favoriteBeersList').append(beerli);
+        })
+    }
+
+    $("#username").text(user.username);
+    $("#beersSubmitted").text(beers.length);
+    $("#upvotes").text(totalUpvotes);
+
+    renderBeers(beers);
+    renderFavorites(user.favorites);
+
+})   
+</script>

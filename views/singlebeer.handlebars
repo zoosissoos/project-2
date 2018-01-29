@@ -1,0 +1,197 @@
+<div class='singlebeer'>
+    <div class='row'>
+        <div class='col-xs-2'>
+            <div class='panel panel-default beer-image-panel'>
+                <img class='single-beer-image center-block thumbnail' src='https://dydza6t6xitx6.cloudfront.net/ci_2822.jpg' />
+                <div class='hashtags-container'>
+                    <div class='hashtags' id='hashtags'>
+                        
+                    </div>
+                    <hr>
+                </div>
+                <div class='beer-detailed-stats-container'>
+                    <div>
+                        <div><strong>Starting Gravity: </strong><span id='sg'>5%</span></div>
+                    </div>
+                    <div>
+                        <div><strong>Ending Gravity: </strong><span id='eg'>5%</span></div>
+                    </div>
+                    <div>
+                        <div><strong>ABV: </strong><span id='abv'>5%</span></div>
+                    </div>
+                    <div>
+                        <div><strong>IBU: </strong><span id='ibu'>5%</span></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class='col-xs-9'>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <div class='row'>
+                        <div class='col-xs-12'>
+                            <div class='beer-name text-center' id='beerName'>
+                                Beer Name 
+                            </div>
+                            <div class='single-beer-user-name' id='usernameLink'>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class='panel-body ingredients-panel'>
+                        <div class='text-right'>
+                                <span class="glyphicon glyphicon glyphicon-arrow-up" aria-hidden="true" id='upvoteArrow'></span>
+                                <span class='upvotes'>10</span>
+                        </div>
+                    <div class='description-container'>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quisquam eveniet fuga, sapiente, nisi porro eos facere nulla praesentium aspernatur dolores quidem pariatur dicta consequuntur repellat odio labore natus alias.
+                    </div>
+                    <hr>
+                    <div class='ingredients-container'>
+                            <div class='ingredients-header'>Ingredients</div>
+                        </div>
+                    <div>
+                        <div class='ingredient-container'>
+                            <strong>Yeasts: </strong>
+                            <span class='ingredients' id='yeasts'>Morning Sunrise</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='ingredient-container'>
+                            <strong>Hops: </strong>
+                            <span class='ingredients' id='hops'>Morning Sunrise</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='ingredient-container'>
+                            <strong>Yeasts: </strong>
+                            <span class='ingredients' id='grains'>Morning Sunrise</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='ingredient-container'>
+                            <strong>Adjuncts: </strong>
+                            <span class='ingredients' id='adjuncts'>Morning Sunrise</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <div class='directions-container'>
+                            <div class='directions-header'>Directions</div>
+                            <div class='directions' id='directions'>
+                                Are directions a single block of text or a list of steps?
+                            </div>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+            <div class='panel panel-default'>
+                <div class='panel-heading user-comments-header'>
+                    User Comments - for each comment, need user comment and user name
+                </div>
+                <div class='panel-body'>
+                    <div class='comments-container'>
+                        <ul class='list-group comments' id='comments'>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- To render this page, get request needs to return the following
+
+    Beer name
+    Description
+    Hashtags
+    Username
+    Ingredients
+    Directions
+    Starting Gravity
+    Ending Gravity
+    ABU
+    FBU
+    Beer picture URL
+    Upvotes
+    Beer type
+    User comments object with username/username route
+
+    Also, brew conditions? (Brewtime?)
+
+ --}}
+<script>
+
+$(document).ready(function() {
+
+    var isUpvoted = true;
+
+    var username = 'username';
+    var beerName = 'beername';
+
+    var grain = 'a grain';
+    var yeast = 'a yeast';
+    var hop = 'a hop';
+    var adjunct = 'an adjunct';
+    var somenumber = '3.2'
+
+    var hashtags = '#beer #ipa #whatever #another #more #hash #tags #summer';
+
+    var comment1 = {
+        body: 'This beer is good',
+        username: 'Guy1'
+    }
+
+    var comment2 = {
+        body: 'This beer is bad',
+        username: 'Guy2'
+    }
+
+    var comments = [comment1, comment2]
+
+    function changeUpvoteColor(id) {
+        if (isUpvoted) {
+            $(id).addClass('red');
+            isUpvoted = false;
+            return;
+        } 
+        
+        if (!isUpvoted) {
+            $(id).removeClass('red');
+            isUpvoted = true;
+            return;
+        }
+    }
+
+    function renderComments(commentArrayOfObjects) {
+        commentArrayOfObjects.map(comment => {
+            $("#comments").append(`<li class='list-group-item'><div>${comment.username}</div><hr><div>${comment.body}</div></li>`);
+        })
+    }
+
+    $("#upvoteArrow").on('click', function() {
+        changeUpvoteColor('#upvoteArrow');
+    })
+
+    $('#usernameLink').append(`<a href='/user/${username}'>${username}</a>`);
+    $("#beerName").text(beerName);
+    $('#grains').text(grain);
+    $('#yeasts').text(yeast);
+    $('#hops').text(hop);
+    $('#adjuncts').text(adjunct);
+    $('#hashtags').text(hashtags);
+
+    $('#eg').text(somenumber)
+    $('#sg').text(somenumber)
+    $('#abv').text(somenumber)
+    $('#ibu').text(somenumber)
+
+    renderComments(comments)
+})
+
+
+    
+</script>
