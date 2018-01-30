@@ -12,6 +12,7 @@ var beer = {
       cb(res);
     });
   },
+  
   updateOne: function(objColVals, condition, cb) {
     orm.update("beers", objColVals, condition, function(res) {
       cb(res);

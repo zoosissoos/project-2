@@ -3,6 +3,7 @@ DROP FUNCTION IF EXISTS f_GetRecipeHashtags //
 CREATE FUNCTION f_GetRecipeHashtags(p_recipeId INT) RETURNS TEXT
 BEGIN
 
+
 	DECLARE v_hashtags TEXT;
 
 	SELECT GROUP_CONCAT(H.hashTagText SEPARATOR ', ') INTO v_hashtags

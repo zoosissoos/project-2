@@ -6,6 +6,7 @@ DELIMITER //
 CREATE PROCEDURE `getAllRecipes`()
 BEGIN
 
+
 SELECT 
 	R.recipeId,
 	R.recipeDesc,
