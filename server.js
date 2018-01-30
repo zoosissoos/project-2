@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const routes = require('./controllers/beer_controller');
+const reciperoutes = require('./controllers/recipecontrol');
+const userroutes = require('./controllers/usercontrol');
 const session = require("express-session");
 
 const app = express();
@@ -22,7 +23,8 @@ app.use(express.static("public"));
 // const connection = require('./config/connection');
 
 
-app.use(routes)
+app.use(reciperoutes);
+app.use(userroutes);
 
 
 app.listen(port, function() {
