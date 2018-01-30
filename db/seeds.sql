@@ -11,6 +11,7 @@ state,
 zipCode
 )
 
+
 VALUES(
 "testuser",
 "test",
@@ -157,6 +158,7 @@ VALUES(
 "This is a cool recipe"
 );
 
+
 insert into recipe(
 
 recipeDesc,
@@ -232,6 +234,7 @@ VALUES(
 1,
 3
 );
+
 
 
 insert into hashtag(

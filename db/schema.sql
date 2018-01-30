@@ -25,9 +25,6 @@ PRIMARY KEY (userId)
 
 
 
-
-
-
 CREATE TABLE recipe_style
 (
 recipeStyleId int NOT NULL AUTO_INCREMENT,
@@ -110,6 +107,7 @@ FOREIGN KEY fk_recipe_hash_tag(recipeId)
 	REFERENCES recipe(recipeId)
 	ON DELETE RESTRICT    
 );
+
 
 CREATE TABLE user_recipes
 (
