@@ -1,10 +1,9 @@
 const express = require('express');
-const passport = require('passport'), 
-    LocalStrategy = require('passport-local').Strategy;
+const router = express.Router();
 
 const db = require('../config/connection.js');
 
-const router = express.Router(); 
+const beer = require('../models/beer.js'); 
 
 router.get('/', function(req, res) {
     res.render('greeting');
@@ -14,11 +13,6 @@ router.get('/login', function(req, res) {
     res.render('login');
 })
 
-router.post('/login',
-  passport.authenticate('local', { successRedirect: '/index',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
 
 router.get('/signup', function(req, res) {
     res.render('signup');
@@ -35,6 +29,13 @@ router.get('/add', function(req, res) {
     }
 
     res.render('add', hbsObject);
+})
+
+router.get('/api/recipes/all', function(req,res){
+    beer.getAllBeers(function(data){
+        console.log(data);
+        res.JSON(data);
+    })
 })
 
 router.get('/search', function(req, res) {
@@ -146,5 +147,8 @@ router.post("/api/user/create", function(req, res) {
     db.query("CALL insertUser(?,?,?,?,?,?,?,?,?)", [req.body.userName, req.body.firstName, req.body.lastName, req.body.password, req.body.address,req.body.email, req.body.city, req.body.state, req.body.zipCode
     ])
   });
+
+
+  
 
 module.exports = router;

@@ -1,8 +1,6 @@
 
 DROP PROCEDURE IF EXISTS insertUser;
 
-var query = connection.query("CALL insertUser(?, ?, ?, ?, ?, ?, ?, ?, ?)", [p_userName, p_firstName, p_lastName, p_userPassword, p_email, p_address, p_city, p_state, p_zipCode],
-
 DELIMITER //
 
 CREATE PROCEDURE `insertUser`(
