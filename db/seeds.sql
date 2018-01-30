@@ -12,7 +12,6 @@ zipCode
 )
 
 
-
 VALUES(
 "testuser",
 "test",
@@ -158,6 +157,85 @@ VALUES(
 "do some stuff",
 "This is a cool recipe"
 );
+
+
+insert into recipe(
+
+recipeDesc,
+recipeStyleId,
+alcoholByVolume,
+SG,
+OG,
+upvotes,
+recipeDirections,
+recipeComments
+)
+
+VALUES(
+"This is a test 2",
+2,
+40,
+2.095,
+1.2356,
+10,
+"do some stuff",
+"This is a cool recipe"
+);
+
+insert into recipe(
+
+recipeDesc,
+recipeStyleId,
+alcoholByVolume,
+SG,
+OG,
+upvotes,
+recipeDirections,
+recipeComments
+)
+
+VALUES(
+"This is a test",
+1,
+20,
+1.02,
+1.3,
+12,
+"do some stuff",
+"This is a cool recipe"
+);
+
+INSERT INTO user_recipes(
+userId,
+recipeId
+)
+
+VALUES(
+1,
+1
+);
+
+INSERT INTO user_recipes(
+userId,
+recipeId
+)
+
+VALUES(
+1,
+2
+);
+
+INSERT INTO user_recipes(
+userId,
+recipeId
+)
+
+VALUES(
+1,
+3
+);
+
+
 
 insert into hashtag(
 hashTagText,

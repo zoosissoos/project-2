@@ -25,11 +25,6 @@ PRIMARY KEY (userId)
 
 
 
-
-
-
-
-
 CREATE TABLE recipe_style
 (
 recipeStyleId int NOT NULL AUTO_INCREMENT,
@@ -111,6 +106,23 @@ FOREIGN KEY fk_hash_tag(hashTagId)
 FOREIGN KEY fk_recipe_hash_tag(recipeId)
 	REFERENCES recipe(recipeId)
 	ON DELETE RESTRICT    
+);
+
+
+CREATE TABLE user_recipes
+(
+userRecipeId int NOT NULL AUTO_INCREMENT,
+userId Int NOT NULL,
+recipeId Int NOT NULL,
+activeInd INT DEFAULT 1 NOT NULL,
+createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (userRecipeId),
+FOREIGN KEY fk_user_recipes_recipe(recipeId)
+	REFERENCES recipe(recipeId)
+	ON DELETE RESTRICT,
+FOREIGN KEY fk_user_recipes_user(userId)
+	REFERENCES user_info(userId)
+	ON DELETE RESTRICT     
 );
 
 
