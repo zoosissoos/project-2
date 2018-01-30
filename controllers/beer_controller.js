@@ -4,7 +4,8 @@ const passport = require('passport'),
 
 const db = require('../config/connection.js');
 
-const router = express.Router(); 
+const router = express.Router();
+const beer = require('../models/beer.js'); 
 
 router.get('/', function(req, res) {
     res.render('greeting');
@@ -35,6 +36,12 @@ router.get('/add', function(req, res) {
     }
 
     res.render('add', hbsObject);
+})
+
+router.get('/api/beers/all', function(req,res){
+    beer.selectAll(function(data){
+        res.JSON(data);
+    })
 })
 
 router.get('/search', function(req, res) {
@@ -146,5 +153,22 @@ router.post("/api/user/create", function(req, res) {
     db.query("CALL insertUser(?,?,?,?,?,?,?,?,?)", [req.body.userName, req.body.firstName, req.body.lastName, req.body.password, req.body.address,req.body.email, req.body.city, req.body.state, req.body.zipCode
     ])
   });
+
+router.get("/api/user_data", function(req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    }
+    else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+      });
+    }
+});
+
+  
 
 module.exports = router;
