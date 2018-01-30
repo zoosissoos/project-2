@@ -1,6 +1,4 @@
 var orm = require("../config/orm.js");
-var Sequelize = require('sequelize');
-
 
 var beer = {
   selectAll: function(cb) {
@@ -24,7 +22,13 @@ var beer = {
     orm.delete('beers', 'recipeId', conditionVal, function(res){
       cb(res);
     });
-  }
+  },
+  // The variables cols and vals are arrays.
+  getAllBeers: function(vals, cb) {
+    orm.callSP("getAllRecipes", vals, function(res) {
+      cb(res);
+    });
+  }  
 };
 
 

@@ -1,5 +1,5 @@
 var connection = require("./connection.js");
-// var Sequelize = require('sequelize');
+
 
 function printQuestionMarks(num) {
     var arr = [];
@@ -70,8 +70,8 @@ function printQuestionMarks(num) {
       var queryString = "UPDATE " + table;
   
       queryString += " SET ";
-      //queryString += objToSql(objColVals);
-      queryString += " devoured = 1 ";
+      queryString += objToSql(objColVals);
+
       queryString += " WHERE ";
       queryString += condition;
   
@@ -98,7 +98,25 @@ function printQuestionMarks(num) {
   
         cb(result);
       });
+    },   
+    callSP: function(spName, vals, cb) {
+        var queryString = "CALL " + spName;
+        queryString += " (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
+    
+        console.log(queryString);
+    
+        connection.query(queryString, vals, function(err, result) {
+          if (err) {
+            throw err;
+          }
+    
+          cb(result);
+        });
+      }     
     }    
+
   };
 
 module.exports = orm;
