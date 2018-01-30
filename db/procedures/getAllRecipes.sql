@@ -6,6 +6,7 @@ DELIMITER //
 CREATE PROCEDURE `getAllRecipes`()
 BEGIN
 
+
 SELECT 
 	R.recipeId,
 	R.recipeDesc,
@@ -17,14 +18,12 @@ SELECT
 	R.upvotes,
 	R.recipeDirections,
 	R.recipeComments,
-	R.otherComments,
-	R.userComments,
     f_GetRecipeHashtags(R.recipeId) AS hashtags
 
 
 
 FROM recipe R
-INNER JOIN recipeStyle RS
+INNER JOIN recipe_style RS
 ON R.recipeStyleId = RS.recipeStyleId
 ORDER BY R.recipeId;
 

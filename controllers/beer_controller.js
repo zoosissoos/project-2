@@ -34,7 +34,8 @@ router.get('/add', function(req, res) {
 router.get('/api/recipes/all', function(req,res){
     beer.getAllBeers(function(data){
         console.log(data);
-        res.JSON(data);
+        //res.JSON(data);
+        res.redirect("/");
     })
 })
 
