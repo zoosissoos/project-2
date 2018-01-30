@@ -1,10 +1,8 @@
 const express = require('express');
-const passport = require('passport'), 
-    LocalStrategy = require('passport-local').Strategy;
+const router = express.Router();
 
 const db = require('../config/connection.js');
 
-const router = express.Router();
 const beer = require('../models/beer.js'); 
 
 router.get('/', function(req, res) {
@@ -15,11 +13,6 @@ router.get('/login', function(req, res) {
     res.render('login');
 })
 
-router.post('/login',
-  passport.authenticate('local', { successRedirect: '/index',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
 
 router.get('/signup', function(req, res) {
     res.render('signup');
@@ -38,8 +31,9 @@ router.get('/add', function(req, res) {
     res.render('add', hbsObject);
 })
 
-router.get('/api/beers/all', function(req,res){
-    beer.selectAll(function(data){
+router.get('/api/recipes/all', function(req,res){
+    beer.getAllBeers(function(data){
+        console.log(data);
         res.JSON(data);
     })
 })
@@ -154,20 +148,6 @@ router.post("/api/user/create", function(req, res) {
     ])
   });
 
-router.get("/api/user_data", function(req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    }
-    else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
-    }
-});
 
   
 

@@ -101,9 +101,9 @@ function printQuestionMarks(num) {
     },   
     callSP: function(spName, vals, cb) {
         var queryString = "CALL " + spName;
-        queryString += " (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
+        // queryString += " (";
+        // queryString += printQuestionMarks(vals.length);
+        // queryString += ") ";
     
         console.log(queryString);
     
@@ -114,8 +114,7 @@ function printQuestionMarks(num) {
     
           cb(result);
         });
-      }     
-    }    
+      }         
 
   };
 
