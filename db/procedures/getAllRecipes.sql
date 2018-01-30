@@ -17,8 +17,6 @@ SELECT
 	R.upvotes,
 	R.recipeDirections,
 	R.recipeComments,
-	R.otherComments,
-	R.userComments,
     f_GetRecipeHashtags(R.recipeId) AS hashtags
 
 

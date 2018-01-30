@@ -5,9 +5,9 @@ BEGIN
 
 	DECLARE v_hashtags TEXT;
 
-	SELECT GROUP_CONCAT(hashtags SEPARATOR ', ') INTO v_hashtags
+	SELECT GROUP_CONCAT(H.hashTagText SEPARATOR ', ') INTO v_hashtags
 	FROM recipe R 
-    INNER JOIN recipe_hash_tag RH
+    INNER JOIN recipe_hashtag RH
 		ON RH.recipeId = R.recipeId
     INNER JOIN hashtag H
 		ON H.hashTagId = RH.hashTagID

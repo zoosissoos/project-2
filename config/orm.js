@@ -99,7 +99,7 @@ function printQuestionMarks(num) {
         cb(result);
       });
     },   
-    callSP: function(spName, vals, cb) {
+    callSP: function(spName, cb) {
         var queryString = "CALL " + spName;
         // queryString += " (";
         // queryString += printQuestionMarks(vals.length);
@@ -107,7 +107,7 @@ function printQuestionMarks(num) {
     
         console.log(queryString);
     
-        connection.query(queryString, vals, function(err, result) {
+        connection.query(queryString, function(err, result) {
           if (err) {
             throw err;
           }
