@@ -1,0 +1,97 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Sign Up Form</h2>
+        <form class="signup">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="username" class="form-control" id="username-input" placeholder="Username">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="email-input" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password-input" placeholder="Password">
+          </div>
+          <div class='row'>
+            <div class='col-md-6'>
+              <label for="exampleInputFirstName1">First Name</label>
+              <input type="first-name" class="form-control" id="firstName-input" placeholder="First Name">
+            </div>
+            <div class='col-md-6'>
+              <label for="exampleInputLastName1">Last Name</label>
+              <input type="last-name" class="form-control" id="lastName-input" placeholder="Last Name">
+            </div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>
+              <label for="exampleInputCity">City</label>
+              <input type="city" class="form-control" id="city-input" placeholder="City">              
+            </div>
+            <div class='col-md-4'>
+              <label for="exampleInputState">State</label>
+              <select class='form-control' id='state'>
+
+              </select>
+            </div>
+            <div class='col-md-4'>
+              <label for="exampleInputState">Zip Code</label>
+              <input type="zip" class="form-control" id="zip-input" placeholder="Zip Code">              
+            </div>
+          </div>
+          <div class='row'>
+            <div class='col-md-12'>
+              <label for="exampleInputState">Street Address</label>
+              <input type="address" class="form-control" id="address-input" placeholder="Address">
+            </div>
+          </div>
+          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span> <span class="msg"></span>
+          </div>
+          
+          <button type="submit" class="btn btn-default" id='submit'>Sign Up</button>
+        </form>
+        <br />
+        <p>Or log in <a href="/login">here</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    var states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
+
+    states.map(state => {
+      $('#state').append(`<option>${state}</option>`);
+    })
+
+    $("#submit").on('click', function(event) {
+      event.preventDefault();
+
+      var userName = $('#username-input').val();
+      var email = $('#email-input').val();
+      var password= $('#password-input').val();
+      var firstName = $('#firstName-input').val();
+      var lastName = $("#lastName-input").val();
+      var city = $("#city-input").val();
+      var state = $("#state-input").val();
+      var zipCode = $('#zip-input').val();
+      var address = $('#address-input').val();
+
+
+      var newUser = {
+        userName, email, password, firstName, lastName, city, state, zipCode, address
+      }
+      $.ajax('/api/user/create', {
+        type: "POST",
+        data: newUser
+      }).then(function(data) {
+        console.log('new user created', data);
+      })
+
+    })
+  </script>
