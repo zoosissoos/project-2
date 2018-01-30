@@ -1,3 +1,10 @@
+	<div class="modal fade" id="modal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id='modal-content'>
+            <div class="modal-header" id='modal-header'></div>  
+            </div>
+        </div>      
+    </div>
 	<div class='body-container'>
 		<div class='header-title text-center'>Beer Friends</div>
 		<div class='description text-center'>For friends and beers</div>
@@ -114,7 +121,7 @@
 					</div>
 				</div>
 			</div>
-			<button class='center-block' id='submit'>Button</button>
+			<button class='center-block' id='submit' data-toggle='modal' data-target='#modal'>Submit</button>
 		</div>
 	</div>
 <script>
@@ -125,6 +132,33 @@ $(document).ready(() => {
 	var yeasts = []
 	var adjuncts = []
 
+	// function showModal(beerObject) {
+	// 	$('#modal-header').empty();
+	// 	$('#modal-body').remove();
+
+	// 	$('#modal-header').append(`<div class='beerModalName'>${beerObject.name}</div>`)
+
+    //     var div = $('<div>');
+    //     div.addClass('bodydiv')
+
+    //     var bodyDiv = $("<div>");
+    //     bodyDiv.addClass('row');
+
+    //     var leftDiv = $("<div>")
+    //     leftDiv.addClass('col-xs-6');
+
+    //     var rightDiv = $("<div>")
+    //     rightDiv.addClass('col-xs-6');
+
+
+    //     // leftDiv.append(`<img class='wallpaperImage thumbnail center-block' src=${beerobject.sourceImage}>`)
+
+    //     div.append(leftDiv);
+    //     div.append(rightDiv);
+
+    //     $('#modal-header').append('<hr>')
+    //     $('#modal-header').append(div);
+	// }
 
 	$('#addIngredient').on('click', function() {
 		var ingredientName = $('#ingredientName').val();
@@ -166,7 +200,12 @@ $(document).ready(() => {
 			name, style, sg, eg, abv, fbu, grains, hops, yeasts, adjuncts		
 		}
 
-		
+		$.ajax('/api/user/create', {
+        type: "POST",
+        data: newUser
+		}).then(function(data) {
+        console.log('new user created', data);
+      })
 
 	})
 })
