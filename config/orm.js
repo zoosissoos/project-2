@@ -1,5 +1,6 @@
 var connection = require("./connection.js");
 
+
 function printQuestionMarks(num) {
     var arr = [];
   
@@ -70,6 +71,7 @@ function printQuestionMarks(num) {
   
       queryString += " SET ";
       queryString += objToSql(objColVals);
+
       queryString += " WHERE ";
       queryString += condition;
   
@@ -113,6 +115,8 @@ function printQuestionMarks(num) {
           cb(result);
         });
       }     
+    }    
+
   };
 
 module.exports = orm;

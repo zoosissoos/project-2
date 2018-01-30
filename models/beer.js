@@ -1,7 +1,5 @@
 var orm = require("../config/orm.js");
-//var Sequelize = require('sequelize');
 
- 
 var beer = {
   selectAll: function(cb) {
     orm.all("beers", function(res) {
