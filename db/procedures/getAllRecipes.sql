@@ -24,7 +24,7 @@ SELECT
 
 
 FROM recipe R
-INNER JOIN recipeStyle RS
+INNER JOIN recipe_style RS
 ON R.recipeStyleId = RS.recipeStyleId
 ORDER BY R.recipeId;
 
