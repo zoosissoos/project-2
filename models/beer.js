@@ -13,6 +13,12 @@ var beer = {
     });
   },
 
+  selectOneBeer: function(id, cb) {
+    orm.oneRecipe(id, function(res) {
+      cb(res);
+    });
+  }, 
+  
   selectAllStyle: function(cb) {
     orm.all("recipe_style", function(res) {
       cb(res);
