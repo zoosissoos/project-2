@@ -6,6 +6,24 @@ var beer = {
       cb(res);
     });
   },
+
+  selectAllIngredients: function(cb) {
+    orm.all("ingredients", function(res) {
+      cb(res);
+    });
+  },
+
+  selectAllStyle: function(cb) {
+    orm.all("recipe_style", function(res) {
+      cb(res);
+    });
+  },  
+
+  selectAllUsers: function(cb) {
+    orm.all("user_info", function(res) {
+      cb(res);
+    });
+  },  
   // The variables cols and vals are arrays.
   insertOne: function(cols, vals, cb) {
     orm.create("beers", cols, vals, function(res) {
