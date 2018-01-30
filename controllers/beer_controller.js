@@ -143,13 +143,8 @@ router.get('/user', function(req, res) {
 
 router.post("/api/user/create", function(req, res) {
     console.log(req.body);
-    db.query("CALL insertUser(?,?,?,?,?,?,?,?,?)", [req.body.userName, req.body.firstName, req.body.lastName, req.body.password,req.body.email, req.body.address, req.body.city, req.body.state, req.body.zipCode
-    ]).then(function() {
-      res.redirect(307, `/user/${p_userName}`);
-    }).catch(function(err) {
-      console.log(err);
-      res.json(err);
-    });
+    db.query("CALL insertUser(?,?,?,?,?,?,?,?,?)", [req.body.userName, req.body.firstName, req.body.lastName, req.body.password, req.body.address,req.body.email, req.body.city, req.body.state, req.body.zipCode
+    ])
   });
 
 module.exports = router;

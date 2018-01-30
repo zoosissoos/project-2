@@ -2,21 +2,21 @@
   "development": {
     "username": "root",
     "password": "honeybees",
-    "database": "animals_db",
+    "database": "beers",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "honeybees",
-    "database": "animals_db",
+    "database": "beers",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "honeybees",
-    "database": "animals_db",
+    "database": "beers",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
