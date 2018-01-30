@@ -3,10 +3,12 @@
 {{else}}
 {{> nav}}
 {{/if}}
-<div class="modal fade" id="modal" role="dialog">
+	<div class="modal fade" id="modal" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content" id='modal-content'>
             <div class="modal-header" id='modal-header'></div>  
+			</div>
+			<div class="modal-body" id='modal-body'></div>  
             </div>
         </div>      
     </div>
@@ -26,8 +28,11 @@
 				</div>
 				<div class='col-md-6'>
 					<div class="form-group">
-						<label for="usr">Beer Style</label>
-						<input type="text" class="form-control" id="beerStyle">
+							<label>Beer Style</label>
+							</br>
+							<input class='datalist-group' list="beerStyles" id='beerStyle'>
+							<datalist id="beerStyles">
+							</datalist>
 					</div>
 				</div>
 			</div>
@@ -37,7 +42,10 @@
 					<div class='col-md-6'>
 						<div class="form-group">
 							<label for="usr">Ingredient Name</label>
-							<input type="text" class="form-control" id="ingredientName">
+							<input list='ingredientList' class='datalist-group' id='ingredient'>
+							<datalist id='ingredientList'>
+
+							</datalist>
 						</div>
 					</div>
 					<div class='col-md-4'>
@@ -56,28 +64,28 @@
 					</div>
 				</div>
 				<div class='row'>
-					<div class='col-md-3'>
-						<div class='ingredient-header text-center'>Grains/Malt</div>
-						<ul class='list-group' id='grains-list'>
-							<li class='list-group-item' id='grainsList'>asdfasf</li>
+					<div class='col-md-3 text-center'>
+						<div class='ingredient-header'><strong>Grains/Malts</strong></div>
+						<ul class='list-group' id='grainsList'>
+							<li class='list-group-item' id='grain-example'>Add a grain/malt</li>
 						</ul>
 					</div>
-					<div class='col-md-3 ingredient-header text-center'>
-						<div>Hops</div>
-						<ul class='list-group'>
-							<li class='list-group-item' id='hopsList'>asdfasf</li>
+					<div class='col-md-3 text-center'>
+						<div class=' ingredient-header'><strong>Hops</strong></div>
+						<ul class='list-group' id='hopsList' >
+							<li class='list-group-item' id='hop-example'>Add a hop</li>
 						</ul>
 					</div>
-					<div class='col-md-3 ingredient-header text-center'>
-						<div>Yeast</div>
-						<ul class='list-group'>
-							<li class='list-group-item' id='yeastsList'>asdfasf</li>
+					<div class='col-md-3 text-center'>
+						<div class=' ingredient-header'><strong>Yeast</strong></div>
+						<ul class='list-group' id='yeastsList'>
+							<li class='list-group-item'  id='yeast-example'>Add a yeast</li>
 						</ul>
 					</div>
-					<div class='col-md-3 ingredient-header text-center'>
-						<div>Adjuncts</div>
-						<ul class='list-group'>
-							<li class='list-group-item' id='adjunctsList'>asdfasf</li>
+					<div class='col-md-3 text-center'>
+						<div class=' ingredient-header'><strong>Adjuncts</strong></div>
+						<ul class='list-group'  id='adjunctsList' >
+							<li class='list-group-item' id='adjunct-example'>Add an adjunct</li>
 						</ul>
 					</div>
 				</div>
@@ -87,14 +95,14 @@
 				
 				<div class='col-md-3'>
 					<div class="form-group">
-						<label for="usr">Specific Gravity</label>
-						<input type="text" class="form-control" id="sg">
+						<label for="usr">Original Gravity</label>
+						<input type="text" class="form-control" id="og">
 					</div>
 				</div>
 				<div class='col-md-3'>
 					<div class="form-group">
-						<label for="usr">Original Gravity</label>
-						<input type="text" class="form-control" id="og">
+						<label for="usr">Ending Gravity</label>
+						<input type="text" class="form-control" id="eg">
 					</div>
 				</div>
 				<div class='col-md-3'>
@@ -132,86 +140,255 @@
 <script>
 $(document).ready(() => {
 
-	var grains = []
-	var hops = []
-	var yeasts = []
-	var adjuncts = []
+	var grains = ['agrain', 'bgrain', 'cgrain']
+	var hops = ['afd', 'bz', 'zcv']
+	var yeasts = ['ewr', 'zv', 'afsd']
+	var adjuncts = ['vc', 'k;k', 'weo']
 
-	// function showModal(beerObject) {
-	// 	$('#modal-header').empty();
-	// 	$('#modal-body').remove();
+	var beerStyles = ["style1", "another", "third"]
 
-	// 	$('#modal-header').append(`<div class='beerModalName'>${beerObject.name}</div>`)
+	var beer = {
+		yeasts: [],
+		hops: [],
+		grains: [],
+		adjuncts: []
+	}
 
-    //     var div = $('<div>');
-    //     div.addClass('bodydiv')
+	function removeFromArray(string, array) {
+		var filtered = array.filter(item => {
+			return item !== string
+		})
+		console.log(filtered);
+		return filtered
+	}
 
-    //     var bodyDiv = $("<div>");
-    //     bodyDiv.addClass('row');
+	function ingredientAutocomplete(array) {
 
-    //     var leftDiv = $("<div>")
-    //     leftDiv.addClass('col-xs-6');
+		$("#ingredientList").empty();
 
-    //     var rightDiv = $("<div>")
-    //     rightDiv.addClass('col-xs-6');
+		array.map(ingredient => {
+			$("#ingredientList").append(`<option value='${ingredient}'>`)
+		})
+	}
+	
+	function showModal(beerObject) {
 
+		console.log("HI")
 
-    //     // leftDiv.append(`<img class='wallpaperImage thumbnail center-block' src=${beerobject.sourceImage}>`)
+		var name = beerObject.name;
+		var style = beerObject.style;
+		var og = beerObject.og;
+		var eg = beerObject.eg;
+		var abv = beerObject.abv;
+		var fbu = beerObject.fbu;
+		var grainsArray = beerObject.grains;
+		var hopsArray = beerObject.hops;
+		var yeastsArray = beerObject.yeasts;
+		var adjunctsArray = beerObject.adjuncts;
 
-    //     div.append(leftDiv);
-    //     div.append(rightDiv);
+		console.log(beerObject);
 
-    //     $('#modal-header').append('<hr>')
-    //     $('#modal-header').append(div);
-	// }
+		$('#modal-header').empty();
+		$('#modal-body').remove();
+
+		$('#modal-header').append(`<div class='beerModalName'>${name}</div>`);
+		$('#modal-header').append(`<div class='beerModalStyle'>${style}</div>`);
+		$("#modal-header").append('<hr>')
+
+		var div  = $('<div>');
+		
+		div.append(`<div>SG: ${og}</div>`)
+		div.append(`<div>EG: ${eg}</div>`)
+		div.append(`<div>ABV: ${abv}</div>`)
+		div.append(`<div>FBU: ${fbu}</div>`)
+
+		yeasts.map(yeast => {
+			$("#modal-header").append(`<div>Yeast: ${yeast}</div>`)
+		})
+
+		function appendIngredient(array, ingredientName) {
+			array.map(item => {
+				$("#modal-header").append(`<div>${ingredientName}: ${item}</div>`)				
+			})
+		}
+
+		appendIngredient(hopsArray, 'hop')
+		appendIngredient(yeastsArray, 'yeast')
+		appendIngredient(grainsArray, 'grain')
+		appendIngredient(adjunctsArray, 'adjunct')
+		
+			
+		$("#modal-header").append(div);
+	}
 
 	$('#addIngredient').on('click', function() {
-		var ingredientName = $('#ingredientName').val();
+
+		
+		var ingredientName = $('#ingredient').val();
 		var ingredientType = $("#ingredientType").val();
 	
-		console.log(ingredientType)
+		
+
+		if (!ingredientName) {
+			return;
+		}
+
 
 		switch (ingredientType) {
 			case 'Grains/Malt':
-				grains.push(ingredientName);
-				$('#grainsList').append(`<li>${ingredientName}</li>`)
-				break;
+				beer.grains.push(ingredientName);
+				$("#grain-example").remove();
+				var li = $('<li>');
+				li.attr('id', ingredientName)
+				li.addClass('list-group-item')
+				var div = $('<div>');
+				var button = $(`<button class='remove' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
+			
+
+				div.text(ingredientName);
+				div.append(button);
+				li.append(div);
+
+				$('#grainsList').append(li);
+				break; 
 			case 'Hops':
-				hops.push(ingredientName);
-				$('#hopsList').append(`<li>${ingredientName}</li>`)
+				beer.hops.push(ingredientName);
+				$("#hop-example").remove();
+				var li = $('<li>');
+				li.attr('id', ingredientName)
+				li.addClass('list-group-item')
+				var div = $('<div>');
+				var button = $(`<button class='remove' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
+			
+
+				div.text(ingredientName);
+				div.append(button);
+				li.append(div);
+
+				$('#hopsList').append(li);
 				break;
 			case 'Yeast':
-				yeasts.push(ingredientName);
-				$('#yeastList').append(`<li>${ingredientName}</li>`)
+				beer.yeasts.push(ingredientName);
+				$("#yeast-example").remove();
+				var li = $('<li>');
+				li.attr('id', ingredientName)
+				li.addClass('list-group-item')
+				var div = $('<div>');
+				var button = $(`<button class='remove' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
+			
+
+				div.text(ingredientName);
+				div.append(button);
+				li.append(div);
+
+				$('#yeastsList').append(li);
 				break;
 			case 'Adjuncts':
-				adjuncts.push(ingredientName);
-				$('#adjunctsList').append(`<li>${ingredientName}</li>`)
+				beer.adjuncts.push(ingredientName);
+				$("#adjunct-example").remove();
+				var li = $('<li>');
+				li.attr('id', ingredientName)
+				li.addClass('list-group-item')
+				var div = $('<div>');
+				var button = $(`<button class='remove' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
+			
+
+				div.text(ingredientName);
+				div.append(button);
+				li.append(div);
+
+				$('#adjunctsList').append(li);
 				break;
 		}
-		console.log(grains, hops, yeasts, adjuncts);
 	})
 
 	$("#submit").on('click', function() {
 		
 		var name = $("#beerName").val();
 		var style = $("#beerStyle").val();
-		var sg = $('#sg').val();
+		var og = $('#og').val();
 		var eg = $('#eg').val();
 		var abv = $('#abv').val();
 		var fbu = $('#fbu').val();
 
 		var newBeer = {
-			name, style, sg, eg, abv, fbu, grains, hops, yeasts, adjuncts		
+			name, style, og, eg, abv, fbu, grains, hops, yeasts, adjuncts		
 		}
 
-		$.ajax('/api/user/create', {
-        type: "POST",
-        data: newUser
-		}).then(function(data) {
-        console.log('new user created', data);
-      })
+	  console.log(newBeer);
+	  showModal(newBeer);
 
+	})
+
+	$("#ingredientType").on('change', function() {
+		var ingredientType = $("#ingredientType").val();
+		switch (ingredientType) {
+			case 'Hops':
+				ingredientAutocomplete(hops)
+				break;
+			case 'Yeast':
+				ingredientAutocomplete(yeasts)			
+				break;
+			case 'Grains/Malt':
+				ingredientAutocomplete(grains)				
+				break;
+			case 'Adjuncts':
+				ingredientAutocomplete(adjuncts)
+				break;
+		}
+	})
+
+	$(document).on('click', '.remove', function() {
+		var id = ($(this).attr('data'))
+		var type = ($(this).attr('data-type'))
+		
+		console.log(type);
+
+		$(`#${id}`).remove()
+
+		if (type === 'Grains/Malt') {
+			beer.grains = beer.grains.filter(item => {
+			return item != id
+			})
+
+			if (!beer.grains.length) {
+				$('#grainsList').append("<li class='list-group-item' id='grain-example'>Add a grain/malt</li>")
+			}
+		}
+
+		if (type === 'Hops') {
+			beer.hops = beer.hops.filter(item => {
+				return item != id
+				})
+	
+				if (!beer.hops.length) {
+					$('#hopsList').append("<li class='list-group-item' id='hop-example'>Add a hop</li>")
+				}
+		}
+		
+		if (type === 'Yeasts') {
+			beer.yeasts = beer.yeasts.filter(item => {
+				return item != id
+				})
+	
+				if (!beer.yeasts.length) {
+					$('#yeastsLength').append("<li class='list-group-item' id='yeast-example'>Add a yeast</li>")
+				}
+		}
+
+		if (type === 'Adjuncts') {
+			beer.adjuncts = beer.adjuncts.filter(item => {
+				return item != id
+				})
+	
+				if (!beer.adjuncts.length) {
+					$('#adjunctsList').append("<li class='list-group-item' id='adjunct-example'>Add an adjunct</li>")
+				}
+		}
+	})
+
+	beerStyles.map(style => {
+		$("#beerStyles").append(`<option value=${style}>`)
 	})
 })
 	
