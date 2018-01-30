@@ -3,22 +3,6 @@ CREATE DATABASE beers;
 
 USE beers;
 
-CREATE TABLE state
-(
-stateId int NOT NULL AUTO_INCREMENT,
-name VARCHAR(50) NOT NULL DEFAULT '',
-abv CHAR(2) NOT NULL DEFAULT '',
-country CHAR(2) NOT NULL,
-is_state CHAR(1) DEFAULT NULL,
-is_lower48 CHAR(1) DEFAULT NULL,
-slug VARCHAR(50) NOT NULL,
-latitude FLOAT(9,6) DEFAULT NULL,
-longitude FLOAT(9,6) DEFAULT NULL,
-population BIGINT(20) DEFAULT NULL,
-area FLOAT(8,2) DEFAULT NULL,
-createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (stateId)
-);
 
 
 CREATE TABLE user_info
@@ -28,57 +12,19 @@ userName VARCHAR(255) NOT NULL,
 firstName VARCHAR(255) NULL,
 lastName VARCHAR(255) NULL,
 userPassword VARCHAR(255) NOT NULL,
+email VARCHAR(255) NULL,
+address VARCHAR(255) NULL,
+city VARCHAR(255) NOT NULL,
+state VARCHAR(4) NULL,
+zipCode VARCHAR(10) NULL,
 createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 lockedInd INT DEFAULT 0,
-PRIMARY KEY (userId)
+PRIMARY KEY (userId) 
 );
 
 
-CREATE TABLE user_location
-(
-userLocationId int NOT NULL AUTO_INCREMENT,
-userId INT NOT NULL,
-city VARCHAR(255) NOT NULL,
-stateId INT NOT NULL,
-zipCode INT NULL,
-latitude DECIMAL(11,8) NULL,
-longitude DECIMAL(11,8) NULL,
-createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (userLocationId),
-FOREIGN KEY fk_user_state(userId)
-	REFERENCES user_info(userId)
-	ON DELETE RESTRICT,
-FOREIGN KEY fk_state(stateId)
-	REFERENCES state(stateId)
-	ON DELETE RESTRICT    
-);
 
 
-CREATE TABLE contact_type
-(
-contactTypeId int NOT NULL AUTO_INCREMENT,
-contactTypeDesc VARCHAR(255) NOT NULL,
-createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (contactTypeId)
-);
-
-
-CREATE TABLE user_contact
-(
-userContactId INT NOT NULL AUTO_INCREMENT,
-userId INT NOT NULL,
-contactTypeId INT NOT NULL,
-contactTypeValue VARCHAR(255),
-primaryInd INT NULL,
-createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (userContactId),
-FOREIGN KEY fk_contact_user(userId)
-	REFERENCES user_info(userId)
-	ON DELETE RESTRICT,
-FOREIGN KEY fk_contact_type(contactTypeId)
-	REFERENCES contact_type(contactTypeId)
-	ON DELETE RESTRICT    
-);
 
 
 
@@ -112,8 +58,6 @@ OG DECIMAL(8,4) NULL,
 upvotes INT DEFAULT 0,
 recipeDirections TEXT NULL,
 recipeComments TEXT NULL,
-otherComments TEXT NULL,
-userComments TEXT NULL,
 createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (recipeId),
 FOREIGN KEY fk_recipe_style(recipeStyleId)
@@ -152,7 +96,7 @@ createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (hashTagId)
 );
 
-CREATE TABLE recipe_hash_tag
+CREATE TABLE recipe_hashtag
 (
 recipeHashTagId int NOT NULL AUTO_INCREMENT,
 recipeId INT NOT NULL,
@@ -166,4 +110,21 @@ FOREIGN KEY fk_recipe_hash_tag(recipeId)
 	REFERENCES recipe(recipeId)
 	ON DELETE RESTRICT    
 );
+
+CREATE TABLE user_recipes
+(
+userRecipeId int NOT NULL AUTO_INCREMENT,
+userId Int NOT NULL,
+recipeId Int NOT NULL,
+activeInd INT DEFAULT 1 NOT NULL,
+createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (userRecipeId),
+FOREIGN KEY fk_user_recipes_recipe(recipeId)
+	REFERENCES recipe(recipeId)
+	ON DELETE RESTRICT,
+FOREIGN KEY fk_user_recipes_user(userId)
+	REFERENCES user_info(userId)
+	ON DELETE RESTRICT     
+);
+
 
