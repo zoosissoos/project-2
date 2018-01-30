@@ -29,11 +29,16 @@ router.get('/index', function(req, res) {
 })
 
 router.get('/add', function(req, res) {
-    console.log("Hi")    
-    res.render('add');
+
+    var hbsObject = {
+        loggedIn: true
+    }
+
+    res.render('add', hbsObject);
 })
 
 router.get('/search', function(req, res) {
+
     res.render('search');
 })
 
