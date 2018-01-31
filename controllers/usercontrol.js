@@ -32,5 +32,22 @@ router.post("/api/user/create", function(req, res) {
   ])
 });
 
+router.get('/profile/:userName',function(req,res){
+  beer.selectOneUser([req.params.userName], function(data){
+      var hbsObject = {
+        userId: data[0].userId,
+        userName: data[0].userName,
+        firstName: data[0].firstName,
+        lastName: data[0].lastName,
+        email: data[0].email,
+        city: data[0].city,
+        state: data[0].state,
+        zipCode: data[0].zipCode
+      };
+      console.log(hbsObject);
+      res.render('userprofile', hbsObject);
+  });
+});
+
 
 module.exports = router;

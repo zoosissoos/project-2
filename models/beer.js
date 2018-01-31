@@ -29,6 +29,11 @@ var beer = {
     orm.all("user_info", function(res) {
       cb(res);
     });
+  },
+  selectOneUser: function(userName, cb) {
+    orm.oneUser(userName, function(res) {
+      cb(res);
+    });
   },  
   // The variables cols and vals are arrays.
   insertOne: function(cols, vals, cb) {
