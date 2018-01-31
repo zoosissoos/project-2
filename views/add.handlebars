@@ -12,129 +12,154 @@
             </div>
         </div>      
     </div>
-	<div class='body-container'>
-		<div class='header-title text-center'>Beer Friends</div>
-		<div class='description text-center'>For friends and beers</div>
-	</div>
+
 	<div class='panel panel-default add-beer-panel'>
+		<div class='panel-heading'>
+			Add a Beer
+		</div>
 		<div class='panel-body'>
-			<div class='add-beer-form-header'>Basic Information</div>
-			<div class='row add-beer-first-row'>
-				<div class='col-md-6'>
-					<div class="form-group">
-						<label for="usr">Beer Name</label>
-						<input type="text" class="form-control" id="beerName">
-					</div>
-				</div>
-				<div class='col-md-6'>
-					<div class="form-group">
-							<label>Beer Style</label>
-							</br>
-							<input class='datalist-group' list="beerStyles" id='beerStyle'>
-							<datalist id="beerStyles">
-							</datalist>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class='add-beer-form-header'>Ingredients</div>
+			<div class='add-beer-form-container'>
+				<div class='add-beer-form-header'>Basic Information</div>
 				<div class='row add-beer-first-row'>
 					<div class='col-md-6'>
 						<div class="form-group">
-							<label for="usr">Ingredient Name</label>
-							<input list='ingredientList' class='datalist-group' id='ingredient'>
-							<datalist id='ingredientList'>
-
-							</datalist>
+							<label for="usr">Beer Name</label>
+							<div class='form-helper'>A unique name for your unique brew</div>
+							
+							<input type="text" class="form-control" id="beerName">
 						</div>
 					</div>
-					<div class='col-md-4'>
+					<div class='col-md-6'>
 						<div class="form-group">
-							<label for="sel1">Select list:</label>
-							<select class="form-control" id="ingredientType">
-								<option>Grains/Malt</option>
-								<option>Hops</option>
-								<option>Yeast</option>
-								<option>Adjuncts</option>
-							</select>
-						</div>
-					</div>
-					<div class='col-md-2'>
-						<button id='addIngredient' class='btn btn-primary'>Add Ingredient</button>
-					</div>
-				</div>
-				<div class='row'>
-					<div class='col-md-3 text-center'>
-						<div class='ingredient-header'><strong>Grains/Malts</strong></div>
-						<ul class='list-group' id='grainsList'>
-							<li class='list-group-item' id='grain-example'>Add a grain/malt</li>
-						</ul>
-					</div>
-					<div class='col-md-3 text-center'>
-						<div class=' ingredient-header'><strong>Hops</strong></div>
-						<ul class='list-group' id='hopsList' >
-							<li class='list-group-item' id='hop-example'>Add a hop</li>
-						</ul>
-					</div>
-					<div class='col-md-3 text-center'>
-						<div class=' ingredient-header'><strong>Yeast</strong></div>
-						<ul class='list-group' id='yeastsList'>
-							<li class='list-group-item'  id='yeast-example'>Add a yeast</li>
-						</ul>
-					</div>
-					<div class='col-md-3 text-center'>
-						<div class=' ingredient-header'><strong>Adjuncts</strong></div>
-						<ul class='list-group'  id='adjunctsList' >
-							<li class='list-group-item' id='adjunct-example'>Add an adjunct</li>
-						</ul>
-					</div>
-				</div>
-			<hr>
-			<div class='add-beer-form-header'>Detailed Information</div>
-			<div class='row add-beer-first-row'>
-				
-				<div class='col-md-3'>
-					<div class="form-group">
-						<label for="usr">Original Gravity</label>
-						<input type="text" class="form-control" id="og">
-					</div>
-				</div>
-				<div class='col-md-3'>
-					<div class="form-group">
-						<label for="usr">Ending Gravity</label>
-						<input type="text" class="form-control" id="eg">
-					</div>
-				</div>
-				<div class='col-md-3'>
-					<div class="form-group">
-						<label for="usr">ABV</label>
-						<input type="text" class="form-control" id="abv">
-					</div>
-				</div>
-				<div class='col-md-3'>
-					<div class="form-group">
-						<label for="usr">FBU</label>
-						<input type="text" class="form-control" id="fbu">
-					</div>
-				</div>
-				<div class='row'>
-					<div class='col-md-12'>
-						<div class="form-group add-beer-description">
-							<label for="comment">Directions:</label>
-							<textarea class="form-control" rows="5" id="description"></textarea>
+								<label>Beer Style </label>
+								<div class='form-helper'>e.g. Pale Ale, Pilsner, Lager, Etc.</div>
+								<input class='datalist-group' list="beerStyles" id='beerStyle'>
+								<datalist id="beerStyles">
+								</datalist>
 						</div>
 					</div>
 				</div>
-				<div class='row'>
-					<div class='col-md-12'>
-						<div class="form-group add-beer-description">
-							<label for="comment">Description:</label>
-							<textarea class="form-control" rows="5" id="description">Add a beer</textarea>
+				<hr>
+				<div class='add-beer-form-header'>Ingredients</div>
+					<div class='row add-beer-first-row'>
+						<div class='col-md-3'>
+							<div class="form-group">
+								<label class='ingredient-header'>Ingredient Name</label>
+								<div class='form-helper'>What's your ingredient called?</div>
+								<input list='ingredientList' class='datalist-group' id='ingredient'>
+								<datalist id='ingredientList'>
+								</datalist>
+							</div>
+						</div>
+						<div class='col-md-2'>
+							<div class='form-group'>
+								<label class='ingredient-header'>Quantity</label>
+								<div class='form-helper'>How much?</div>
+								<input class='form-control' id='quantity'>
+							</div>
+						</div>
+						<div class='col-md-2'>
+							<div class='form-group'>
+								<label class='ingredient-header'>Measurement</label>
+								<div class='form-helper'>of what?</div>
+								<select class='form-control' id='quantityType'>
+									<option>Tablespoon</option>
+									<option>Teaspoon</option>
+									<option>Gram</option>
+								</select>
+							</div>
+						</div>
+						<div class='col-md-3'>
+							<div class="form-group">
+								<label class='ingredient-header'>Type</label>
+								<div class='form-helper'>What are you adding?</div>
+								<select class="form-control" id="ingredientType">
+									<option>Grains/Malt</option>
+									<option>Hops</option>
+									<option>Yeast</option>
+									<option>Adjuncts</option>
+								</select>
+							</div>
+						</div>
+						<div class='col-md-2'>
+							<button id='addIngredient' class='btn btn-primary'>Add Ingredient</button>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='added-ingredients-container'>
+								<div class='panel panel-default ingredients-list-panel'>
+									<div class='panel-heading add-ingredients-panel-header'>
+										Added Ingredients
+									<div class='form-helper text-center small-top-margin'>Ingredients you add will appear below</div>
+										
+									</div>
+									<div class='panel-body added-ingredients-panel-body'>
+										<ul class='added-ingredients-list' id='addedIngredientsList'>
+
+										</ul>
+									</div>
+								</div>
+							
+						</div>
+					</div>
+				<hr>
+				<div class='add-beer-form-header'>Detailed Information</div>
+				<div class='row add-beer-first-row'>
+					
+					<div class='col-md-3'>
+						<div class="form-group">
+							<label for="usr">Original Gravity</label>
+							<input type="text" class="form-control" id="og">
+						</div>
+					</div>
+					<div class='col-md-3'>
+						<div class="form-group">
+							<label for="usr">Ending Gravity</label>
+							<input type="text" class="form-control" id="eg">
+						</div>
+					</div>
+					<div class='col-md-3'>
+						<div class="form-group">
+							<label for="usr">ABV</label>
+							<input type="text" class="form-control" id="abv">
+						</div>
+					</div>
+					<div class='col-md-3'>
+						<div class="form-group">
+							<label for="usr">FBU</label>
+							<input type="text" class="form-control" id="fbu">
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-md-12'>
+							<div class="form-group add-beer-description">
+								<label for="comment">Directions</label>
+								<div class='form-helper'>How's your beer made?</div>
+								<textarea class="form-control" rows="5" id="directions">Add directions</textarea>
+							</div>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-md-12'>
+							<div class="form-group add-beer-description">
+								<label for="comment">Description</label>
+								<div class='form-helper'>Tell us about your beer</div>
+								<textarea class="form-control" rows="5" id="description">Add a description</textarea>
+							</div>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-md-12'>
+							<div class="form-group add-beer-description">
+								<label for="comment">Hashtags</label>
+								<div class='form-helper'>To make your beer easier to search for.</div>
+								<textarea class="form-control" rows="5" id="hashtags">#add #some #hashtags #if #you'd #like</textarea>
+							</div>
 						</div>
 					</div>
 				</div>
+				<button class='center-block' id='submit' data-toggle='modal' data-target='#modal'>Submit</button>
 			</div>
-			<button class='center-block' id='submit' data-toggle='modal' data-target='#modal'>Submit</button>
 		</div>
 	</div>
 <script>
@@ -147,12 +172,14 @@ $(document).ready(() => {
 
 	var beerStyles = ["style1", "another", "third"]
 
-	var beer = {
-		yeasts: [],
-		hops: [],
-		grains: [],
-		adjuncts: []
-	}
+	// var beer = {
+	// 	yeasts: [],
+	// 	hops: [],
+	// 	grains: [],
+	// 	adjuncts: []
+	// }
+
+	var recipeIngred = []
 
 	function removeFromArray(string, array) {
 		var filtered = array.filter(item => {
@@ -170,63 +197,14 @@ $(document).ready(() => {
 			$("#ingredientList").append(`<option value='${ingredient}'>`)
 		})
 	}
-	
-	function showModal(beerObject) {
-
-		console.log("HI")
-
-		var name = beerObject.name;
-		var style = beerObject.style;
-		var og = beerObject.og;
-		var eg = beerObject.eg;
-		var abv = beerObject.abv;
-		var fbu = beerObject.fbu;
-		var grainsArray = beerObject.grains;
-		var hopsArray = beerObject.hops;
-		var yeastsArray = beerObject.yeasts;
-		var adjunctsArray = beerObject.adjuncts;
-
-		console.log(beerObject);
-
-		$('#modal-header').empty();
-		$('#modal-body').remove();
-
-		$('#modal-header').append(`<div class='beerModalName'>${name}</div>`);
-		$('#modal-header').append(`<div class='beerModalStyle'>${style}</div>`);
-		$("#modal-header").append('<hr>')
-
-		var div  = $('<div>');
-		
-		div.append(`<div>SG: ${og}</div>`)
-		div.append(`<div>EG: ${eg}</div>`)
-		div.append(`<div>ABV: ${abv}</div>`)
-		div.append(`<div>FBU: ${fbu}</div>`)
-
-		yeasts.map(yeast => {
-			$("#modal-header").append(`<div>Yeast: ${yeast}</div>`)
-		})
-
-		function appendIngredient(array, ingredientName) {
-			array.map(item => {
-				$("#modal-header").append(`<div>${ingredientName}: ${item}</div>`)				
-			})
-		}
-
-		appendIngredient(hopsArray, 'hop')
-		appendIngredient(yeastsArray, 'yeast')
-		appendIngredient(grainsArray, 'grain')
-		appendIngredient(adjunctsArray, 'adjunct')
-		
-			
-		$("#modal-header").append(div);
-	}
 
 	$('#addIngredient').on('click', function() {
 
 		
 		var ingredientName = $('#ingredient').val();
 		var ingredientType = $("#ingredientType").val();
-	
+		var ingredientQuantity = $("#quantity").val();
+		var ingredientQuantityType = $("#quantityType").val();
 		
 
 		if (!ingredientName) {
@@ -236,87 +214,136 @@ $(document).ready(() => {
 
 		switch (ingredientType) {
 			case 'Grains/Malt':
-				beer.grains.push(ingredientName);
-				$("#grain-example").remove();
-				var li = $('<li>');
-				li.attr('id', ingredientName)
-				li.addClass('list-group-item')
-				var div = $('<div>');
-				var button = $(`<button class='remove' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
-			
 
-				div.text(ingredientName);
-				div.append(button);
-				li.append(div);
+				var ingredientObject = {}
+				ingredientObject.iId = 1;
+				ingredientObject.specificName = ingredientName;
+				ingredientObject.iQty = ingredientQuantity;
+				ingredientObject.iDesc = ingredientQuantityType;
 
-				$('#grainsList').append(li);
+				recipeIngred.push(ingredientObject);
+
+				if (parseInt(ingredientQuantity) !== 1) {
+					ingredientQuantityType += 's'
+				}
+
+				var li = $("<li>");
+				li.addClass('added-ingredient-list-item')
+				li.attr('id', ingredientName)				
+				var string = `${ingredientQuantity} <strong>${ingredientQuantityType.toLowerCase()}</strong> of a <span class='grain-color'>grain/malt</span> called <strong>${ingredientName}</strong>`
+				li.append(`${string}`);
+
+				var button = $(`<button class='remove btn btn-danger' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
+				li.append(button);
+
+				$('#addedIngredientsList').append(li);
+				
+				
+				
 				break; 
 			case 'Hops':
-				beer.hops.push(ingredientName);
-				$("#hop-example").remove();
-				var li = $('<li>');
-				li.attr('id', ingredientName)
-				li.addClass('list-group-item')
-				var div = $('<div>');
-				var button = $(`<button class='remove' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
-			
+				
+				var ingredientObject = {}
+				ingredientObject.iId = 4;
+				ingredientObject.specificName = ingredientName;
+				ingredientObject.iQty = ingredientQuantity;
+				ingredientObject.iDesc = ingredientQuantityType;
 
-				div.text(ingredientName);
-				div.append(button);
-				li.append(div);
+				recipeIngred.push(ingredientObject);
+				
+				if (parseInt(ingredientQuantity) !== 1) {
+					ingredientQuantityType += 's'
+				}
 
-				$('#hopsList').append(li);
+				var li = $("<li>");
+				li.addClass('added-ingredient-list-item')
+				li.attr('id', ingredientName)				
+				var string = `${ingredientQuantity} <strong>${ingredientQuantityType.toLowerCase()}</strong> of a <span class='hop-color'>hop</span> called <strong>${ingredientName}</strong>`
+				li.append(`${string}`);
+
+				var button = $(`<button class='remove btn btn-danger' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
+				li.append(button);
+
+				$('#addedIngredientsList').append(li);
+				
 				break;
 			case 'Yeast':
-				beer.yeasts.push(ingredientName);
-				$("#yeast-example").remove();
-				var li = $('<li>');
-				li.attr('id', ingredientName)
-				li.addClass('list-group-item')
-				var div = $('<div>');
-				var button = $(`<button class='remove' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
 			
+				var ingredientObject = {}
+				ingredientObject.iId = 2;
+				ingredientObject.specificName = ingredientName;
+				ingredientObject.iQty = ingredientQuantity;
+				ingredientObject.iDesc = ingredientQuantityType;
 
-				div.text(ingredientName);
-				div.append(button);
-				li.append(div);
+				console.log(ingredientObject);
+				recipeIngred.push(ingredientObject);
+				console.log(recipeIngred);
+				
+				if (parseInt(ingredientQuantity) !== 1) {
+					ingredientQuantityType += 's'
+				}
 
-				$('#yeastsList').append(li);
+				var li = $("<li>");
+				li.addClass('added-ingredient-list-item')
+				li.attr('id', ingredientName)				
+				var string = `${ingredientQuantity} <strong>${ingredientQuantityType.toLowerCase()}</strong> of a <span class='yeast-color'>yeast</span> called <strong>${ingredientName}</strong>`
+				li.append(`${string}`);
+
+				var button = $(`<button class='remove btn btn-danger' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
+				li.append(button);
+				$('#addedIngredientsList').append(li);
 				break;
 			case 'Adjuncts':
-				beer.adjuncts.push(ingredientName);
-				$("#adjunct-example").remove();
-				var li = $('<li>');
-				li.attr('id', ingredientName)
-				li.addClass('list-group-item')
-				var div = $('<div>');
-				var button = $(`<button class='remove' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
-			
 
-				div.text(ingredientName);
-				div.append(button);
-				li.append(div);
+				var ingredientObject = {}
+				ingredientObject.iId = 3;
+				ingredientObject.specificName = ingredientName;
+				ingredientObject.iQty = ingredientQuantity;
+				ingredientObject.iDesc = ingredientQuantityType;
 
-				$('#adjunctsList').append(li);
+				console.log(ingredientObject);
+				recipeIngred.push(ingredientObject);
+				console.log(recipeIngred);			
+		
+				if (parseInt(ingredientQuantity) !== 1) {
+					ingredientQuantityType += 's'
+				}
+
+				var li = $("<li>");
+				li.addClass('added-ingredient-list-item')
+				li.attr('id', ingredientName)				
+				var string = `${ingredientQuantity}<strong> ${ingredientQuantityType.toLowerCase()}</strong> of an <span class='adjunct-color'>adjunct</span> called <strong>${ingredientName}</strong>`
+				li.append(`${string}`);
+
+				var button = $(`<button class='remove btn btn-danger' data-type=${ingredientType} data=${ingredientName}><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>`)
+				li.append(button);
+
+				$('#addedIngredientsList').append(li);
+
 				break;
 		}
 	})
 
 	$("#submit").on('click', function() {
 		
-		var name = $("#beerName").val();
-		var style = $("#beerStyle").val();
-		var og = $('#og').val();
-		var eg = $('#eg').val();
-		var abv = $('#abv').val();
-		var fbu = $('#fbu').val();
+
+		var recipeName = $("#beerName").val();
+		var recipeStyleDesc = $("#beerStyle").val();
+		var OG = $('#og').val();
+		var SG = $('#eg').val();
+		var alcoholByVolume = $('#abv').val();
+		var ibu = $('#fbu').val();
+		// var ingredients = beer;
+		var recipeDirections = $("#directions").val();
+		var recipeDesc = $('#description').val();
+		var hashtags = $("#hashtags").val();
 
 		var newBeer = {
-			name, style, og, eg, abv, fbu, grains, hops, yeasts, adjuncts		
+			recipeIngred, recipeName, recipeStyleDesc, OG, SG, alcoholByVolume, ibu, recipeDirections, recipeDesc, hashtags
 		}
 
-	  console.log(newBeer);
-	  showModal(newBeer);
+	  console.log('newbeer', newBeer);
+	//   showModal(newBeer);
 
 	})
 
@@ -346,45 +373,54 @@ $(document).ready(() => {
 
 		$(`#${id}`).remove()
 
-		if (type === 'Grains/Malt') {
-			beer.grains = beer.grains.filter(item => {
-			return item != id
-			})
+		console.log('unfilterd', recipeIngred)
 
-			if (!beer.grains.length) {
-				$('#grainsList').append("<li class='list-group-item' id='grain-example'>Add a grain/malt</li>")
-			}
-		}
+		recipeIngred = recipeIngred.filter(item => {
+			return item.specificName !== id
+		})
 
-		if (type === 'Hops') {
-			beer.hops = beer.hops.filter(item => {
-				return item != id
-				})
-	
-				if (!beer.hops.length) {
-					$('#hopsList').append("<li class='list-group-item' id='hop-example'>Add a hop</li>")
-				}
-		}
+		console.log('filtered', recipeIngred)
 		
-		if (type === 'Yeasts') {
-			beer.yeasts = beer.yeasts.filter(item => {
-				return item != id
-				})
-	
-				if (!beer.yeasts.length) {
-					$('#yeastsLength').append("<li class='list-group-item' id='yeast-example'>Add a yeast</li>")
-				}
-		}
 
-		if (type === 'Adjuncts') {
-			beer.adjuncts = beer.adjuncts.filter(item => {
-				return item != id
-				})
+		// if (type === 'Grains/Malt') {
+		// 	beer.grains = beer.grains.filter(item => {
+		// 	return item != id
+		// 	})
+
+		// 	if (beer.grains === 0) {
+		// 		$('#grainsList').append("<li class='list-group-item' id='grain-example'>Add a grain/malt</li>")
+		// 	}
+		// }
+
+		// if (type === 'Hops') {
+		// 	beer.hops = beer.hops.filter(item => {
+		// 		return item != id
+		// 		})
 	
-				if (!beer.adjuncts.length) {
-					$('#adjunctsList').append("<li class='list-group-item' id='adjunct-example'>Add an adjunct</li>")
-				}
-		}
+		// 		if (beer.hops.length === 0) {
+		// 			$('#hopsList').append("<li class='list-group-item' id='hop-example'>Add a hop</li>")
+		// 		}
+		// }
+		
+		// if (type === 'Yeasts') {
+		// 	beer.yeasts = beer.yeasts.filter(item => {
+		// 		return item != id
+		// 		})
+	
+		// 		if (beer.yeasts.length === 0) {
+		// 			$('#yeastsLength').append("<li class='list-group-item' id='yeast-example'>Add a yeast</li>")
+		// 		}
+		// }
+
+		// if (type === 'Adjuncts') {
+		// 	beer.adjuncts = beer.adjuncts.filter(item => {
+		// 		return item != id
+		// 		})
+	
+		// 		if (beer.adjuncts.length === 0) {
+		// 			$('#adjunctsList').append("<li class='list-group-item' id='adjunct-example'>Add an adjunct</li>")
+		// 		}
+		// }
 	})
 
 	beerStyles.map(style => {
