@@ -36,8 +36,29 @@ function printQuestionMarks(num) {
   
   // Object for all our SQL statement functions.
   var orm = {
+    upVote: function(whereId, cb) {
+      var queryString = `UPDATE recipe SET upvotes = upvotes + 1 WHERE recipeId = "${whereId}";`;
+      console.log(queryString);
+      connection.query(queryString, function(err, result) {
+        if (err) {
+          throw err;
+        }
+        cb(result);
+      });
+    },   
     oneRecipe: function(whereId, cb) {
-      var queryString = `SELECT * FROM recipe WHERE recipeId = "${whereId}";`;
+      var queryString = `SELECT R.*, RI.recipeIngredientsId, RI.ingredientsId, RI.ingredientsQty, RI.ingredientsQtyDesc FROM recipe R INNER JOIN recipe_ingredients RI ON R.recipeId = RI.recipeId WHERE R.recipeId = "${whereId}";`;
+      console.log(queryString);
+      connection.query(queryString, function(err, result) {
+        if (err) {
+          throw err;
+        }
+        console.log(`This is result: ${result}`);
+        cb(result);
+      });
+    },
+    oneUser: function(userN, cb) {
+      var queryString = `SELECT * FROM user_info WHERE user_info.userName = "${userN}";`;
       console.log(queryString);
       connection.query(queryString, function(err, result) {
         if (err) {
