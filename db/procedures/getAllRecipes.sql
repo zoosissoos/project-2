@@ -29,5 +29,3 @@ ON R.recipeStyleId = RS.recipeStyleId
 ORDER BY R.recipeId;
 
 END//
-
-
