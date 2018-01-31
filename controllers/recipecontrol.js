@@ -84,7 +84,7 @@ router.get('/user', function(req, res) {
   // demonstration beers retrieved from get request
   var beer1 = {
       name: 'Beer1',
-      route: 'beer 1',
+      id: '1',
       username: 'username',
       description: 'a beer',
       type: 'IPA',
@@ -105,7 +105,7 @@ router.get('/user', function(req, res) {
 
   var beer2 = {
       name: 'Beer2',
-      route: 'beer 2',
+      id: '2',
       username: 'username',
       description: 'a beer',
       type: 'IPA2',

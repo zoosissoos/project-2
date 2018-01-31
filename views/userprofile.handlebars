@@ -14,7 +14,23 @@
         <div class='col-md-6'>
             <div class='user-beer-list'>
                 <ul class='list-group' id='user-beer-list'>
-                                                 
+                    {{#each beers}}
+                        <li class='list-group-item'>
+                            <div class='row'>
+                                <div class='col-xs-10'>
+                                    <div class='user-beer-list-name'>
+                                        <a href='/recipe/{{this.id}}'>{{this.name}}</a>
+                                    </div>
+                                </div>
+                                <div class='col-xs-2 text-right'>
+                                    {{upvotes}}<span class="glyphicon glyphicon glyphicon-arrow-up" aria-hidden="true" id='upvoteArrow'></span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class='user-beer-list-description'>{{description}}</div>
+                            
+                        </li>
+                    {{/each}}               
                 </ul>
             </div>
         </div>

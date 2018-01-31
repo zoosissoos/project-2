@@ -67,9 +67,10 @@ $(document).ready(function() {
 			var style = beer.recipeStyleDesc;
 			var description = beer.recipeDesc;
 			var hashtags = renderHashtags(beer.hashtags)
+			var id = beer.recipeId;
 
 
-			$('#searchResults').append(`<li class='list-group-item'><div class='row'><div class='col-xs-8'><div class='list-beer-name'>${name}</div></div><div class='col-xs-2'><div class='list-beer-style text-right'>${style}</div></div><div class='col-xs-2 text-right' id='listBeerUpvotes'><span class='glyphicon glyphicon glyphicon-arrow-up' aria-hidden='true' class='upvoteArrow'></span>${upvotes}</div></div><hr><div class='search-list-hashtags text-center'>${hashtags}</div><div class='search-list-description'>${description}</div></li>`)
+			$('#searchResults').append(`<li class='list-group-item'><div class='row'><div class='col-xs-10'><div class='list-beer-name'><a class='list-beer-name-link' href='/recipe/${id}' target='_blank'>${name}</a></div><div class='list-beer-style text-left'>${style}</div></div><div class='col-xs-2 text-right' id='listBeerUpvotes'><span class='glyphicon glyphicon glyphicon-arrow-up' aria-hidden='true' class='upvoteArrow'></span>${upvotes}</div></div><hr><div class='search-list-hashtags text-center'>${hashtags}</div><div class='search-list-description'>${description}</div></li>`)
 		})
 	}
 	
@@ -121,6 +122,7 @@ $(document).ready(function() {
 		method: "GET",
 		url: '/api/recipes/all'
 		}).then(function(data) {
+			console.log(data);
 			var allBeers = data[0];
 			
 			var matches = []
@@ -148,9 +150,11 @@ $(document).ready(function() {
 
 			if (searchOption === 'Style') {
 				var result = allBeers.filter(beer => {
+					console.log(beer.recipeStyleDesc);
 					return beer.recipeStyleDesc.toLowerCase() == searchTerm
 				})
-
+				console.log('style', result);
+				renderList(result);
 			}
 			renderList(matches);
 		})
