@@ -7,7 +7,7 @@
             <img src='' class='user-image'>
             <div class='user-info-container'>
                 <div class='panel panel-default'>
-                    <div class='user-info-container-name'>Name: Guy</div>
+                    <div class='user-info-container-name'>{{userName}}</div>
                 </div>
             </div>
         </div>
@@ -19,6 +19,26 @@
             </div>
         </div>
         <div class='col-md-3'>
+            <div class='user-stats panel panel-default'>
+                <div class='panel-heading user-stats-heading'>User Info</div>
+                <div class='panel-body user-stats-body'>
+                    <div class='user-stats-beers-made'>
+                        Name: <span id='user-name'>{{firstName}}</span>
+                    </div>
+                    <div class='user-stats-beers-made'>
+                        City: <span id='user-name'>{{city}}</span>
+                    </div>
+                    <div class='user-stats-beers-made'>
+                        State: <span id='user-name'>{{state}}</span>
+                    </div>
+                    <div class='user-stats-beers-made'>
+                        Zip: <span id='user-name'>{{zipCode}}</span>
+                    </div>
+                    <div class='user-stats-beers-made'>
+                        E-mail: <span id='user-name'>{{email}}</span>
+                    </div>
+                </div>
+            </div>
             <div class='user-stats panel panel-default'>
                 <div class='panel-heading user-stats-heading'>User Stats</div>
                 <div class='panel-body user-stats-body'>

@@ -7,20 +7,20 @@ const beer = require('../models/beer.js');
 
 
 router.get('/search', function(req, res) {
-
   res.render('search');
-})
+});
 
 router.get('/api/recipes/all', function(req,res){
   beer.getAllBeers(function(data){
       res.json(data);
   })
-})
+});
 
 router.get('/recipe/:id',function(req,res){
     beer.selectOneBeer([req.params.id], function(data){
         var hbsObject = {
             recipeId: data[0].recipeId,
+            recipeName: data[0].recipeName,
             recipeDesc: data[0].recipeDesc,
             recipeStyleId: data[0].recipeStyleId,
             alcoholByVolume: data[0].alcoholByVolume,

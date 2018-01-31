@@ -47,7 +47,17 @@ function printQuestionMarks(num) {
       });
     },   
     oneRecipe: function(whereId, cb) {
-      var queryString = `SELECT * FROM recipe WHERE recipeId = "${whereId}";`;
+      var queryString = `SELECT * FROM recipe WHERE recipe.recipeId = "${whereId}";`;
+      console.log(queryString);
+      connection.query(queryString, function(err, result) {
+        if (err) {
+          throw err;
+        }
+        cb(result);
+      });
+    },
+    oneUser: function(userN, cb) {
+      var queryString = `SELECT * FROM user_info WHERE user_info.userName = "${userN}";`;
       console.log(queryString);
       connection.query(queryString, function(err, result) {
         if (err) {
