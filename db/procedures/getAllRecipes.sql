@@ -27,5 +27,3 @@ FROM recipe R
 ORDER BY R.recipeId;
 
 END//
-
-
