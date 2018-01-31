@@ -1,4 +1,4 @@
-
+USE beers;
 DROP PROCEDURE IF EXISTS insertUser;
 
 DELIMITER //

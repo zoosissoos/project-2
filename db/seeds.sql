@@ -136,7 +136,7 @@ VALUES(
 );
 
 insert into recipe(
-
+recipeName,
 recipeDesc,
 recipeStyleId,
 alcoholByVolume,
@@ -148,6 +148,7 @@ recipeComments
 )
 
 VALUES(
+"Beer1",
 "This is a test",
 1,
 40,
@@ -160,7 +161,7 @@ VALUES(
 
 
 insert into recipe(
-
+recipeName,
 recipeDesc,
 recipeStyleId,
 alcoholByVolume,
@@ -172,6 +173,7 @@ recipeComments
 )
 
 VALUES(
+"Beer2",
 "This is a test 2",
 2,
 40,
@@ -183,7 +185,7 @@ VALUES(
 );
 
 insert into recipe(
-
+recipeName,
 recipeDesc,
 recipeStyleId,
 alcoholByVolume,
@@ -195,6 +197,7 @@ recipeComments
 )
 
 VALUES(
+"Beer3",
 "This is a test",
 1,
 20,

@@ -1,4 +1,4 @@
-
+USE beers;
 DROP PROCEDURE IF EXISTS getAllRecipes;
 
 DELIMITER //
@@ -9,6 +9,7 @@ BEGIN
 
 SELECT 
 	R.recipeId,
+	R.recipeName,
 	R.recipeDesc,
 	R.recipeStyleId,
 	RS.recipeStyleDesc,

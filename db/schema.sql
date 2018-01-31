@@ -47,6 +47,7 @@ PRIMARY KEY (ingredientsId)
 CREATE TABLE recipe
 (
 recipeId int NOT NULL AUTO_INCREMENT,
+recipeName VARCHAR(255) NULL,
 recipeDesc VARCHAR(255) NOT NULL,
 recipeStyleId INT NOT NULL,
 alcoholByVolume DECIMAL(10,2) NULL,
