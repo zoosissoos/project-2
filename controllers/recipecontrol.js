@@ -22,8 +22,8 @@ router.get('/api/recipes/all', function(req,res){
 router.get('/recipe/:id',function(req,res){
     beer.selectOneBeer([req.params.id], function(data){
         console.log(data);
-        res.render('singlebeer',data);
-    })
+        res.render('singlebeer', data);
+    });
 });
 
 router.get('/beer', function(req, res) {

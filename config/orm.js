@@ -37,8 +37,7 @@ function printQuestionMarks(num) {
   // Object for all our SQL statement functions.
   var orm = {
     oneRecipe: function(whereId, cb) {
-      var queryString = "SELECT * FROM recipe ";
-      queryString += "WHERE recipeId = "+ whereId + ";";
+      var queryString = `SELECT * FROM recipe WHERE recipeId = "${whereId}";`;
       console.log(queryString);
       connection.query(queryString, function(err, result) {
         if (err) {

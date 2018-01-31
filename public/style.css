@@ -1,0 +1,139 @@
+body {
+	background-image: url(images/witewall_3.png);
+	background-repeat: repeat;
+	margin: 0;
+	overflow-x: hidden;
+}
+
+.body-container {
+	margin: 20px;
+}
+
+.header-title {
+	font-size: 64px;
+	color: white;
+}
+
+.description {
+	font-size: 20px;
+	color: white;
+	font-style: italic;
+}
+
+.top-beers-panel {
+	margin: 20px 100px;
+	opacity: .8;
+}
+
+.add-beer-panel {
+	padding: 20px;
+	margin: 0 80px;
+	opacity: .7;
+}
+
+.add-beer-form-header {
+	font-size: 24px;
+}
+
+.add-beer-description {
+	margin-top: 20px;
+}
+
+.add-beer-first-row {
+	margin-top: 20px;
+}
+
+#addIngredient {
+	margin-top: 24px;
+}
+
+/* Single Beer Style */
+
+.single-beer-image {
+	width: 100px;
+	
+}
+
+.singlebeer {
+	padding: 100px 200px;
+}
+
+.beer-image-panel {
+	padding-top: 20px
+}
+
+.hashtags {
+	font-family: 'Kalam', cursive;
+	text-align: center;
+}
+
+.beer-name {
+	font-size: 48px;
+}
+
+.beer-detailed-stats-container {
+	padding: 0 0 10px 20px;
+}
+
+.ingredients-header, .directions-header {
+	font-size: 24px;
+}
+
+.ingredient-container {
+	margin: 20px;
+}
+
+.description-container {
+	margin-top: 10px;
+}
+
+/* User Profile Style */
+
+.userprofile {
+	margin: 0 100px;
+}
+
+.single-beer-user-name {
+	text-align: center;
+}
+
+.user-comments-header {
+	font-size: 24px;
+}
+
+.username-header {
+	text-align: center;
+	font-size: 48px;
+}
+
+#upvoteArrow {
+	cursor: pointer;
+}
+
+.red {
+	color: red
+}
+
+.username-nav {
+	margin-left: 5%;
+}
+
+.datalist-group {
+
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
