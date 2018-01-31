@@ -19,8 +19,19 @@ router.get('/api/recipes/all', function(req,res){
 
 router.get('/recipe/:id',function(req,res){
     beer.selectOneBeer([req.params.id], function(data){
-        console.log(data);
-        res.render('singlebeer', data);
+        var hbsObject = {
+            recipeId: data[0].recipeId,
+            recipeDesc: data[0].recipeDesc,
+            recipeStyleId: data[0].recipeStyleId,
+            alcoholByVolume: data[0].alcoholByVolume,
+            SG: data[0].SG,
+            OG: data[0].OG,
+            upvotes: data[0].upvotes,
+            recipeDirections: data[0].recipeDirections,
+            recipeComments: data[0].recipeComments
+          };
+        console.log(hbsObject);
+        res.render('singlebeer', hbsObject);
     });
 });
 

@@ -13,13 +13,13 @@
                 </div>
                 <div class='beer-detailed-stats-container'>
                     <div>
-                        <div><strong>Starting Gravity: </strong><span id='sg'>{{ sg }}</span></div>
+                        <div><strong>Starting Gravity: </strong><span id='sg'>{{ SG }}</span></div>
                     </div>
                     <div>
-                        <div><strong>Ending Gravity: </strong><span id='eg'>{{ eg }}</span></div>
+                        <div><strong>Ending Gravity: </strong><span id='eg'>{{ OG }}</span></div>
                     </div>
                     <div>
-                        <div><strong>ABV: </strong><span id='abv'>{{ abv }}</span></div>
+                        <div><strong>ABV: </strong><span id='abv'>{{ alcoholByVolume }}</span></div>
                     </div>
                     <div>
                         <div><strong>IBU: </strong><span id='ibu'>{{ ibu }}</span></div>
@@ -100,7 +100,7 @@
                         <div class='directions-container'>
                             <div class='directions-header'>Directions</div>
                             <div class='directions' id='directions'>
-                                {{directions}}
+                                {{recipeDirections}}
                             </div>
                         </div>
                     </div>                   
