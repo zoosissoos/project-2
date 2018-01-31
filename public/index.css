@@ -145,3 +145,14 @@ body {
 .search-results-container {
 	margin: 20px 300px;
 }
+
+.hashtag-list-item {
+	display: inline-block;
+	margin: 3px;
+	cursor: pointer;
+}
+
+.hashtag-list-item:hover {
+	color: blue
+}
+
