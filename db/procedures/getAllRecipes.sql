@@ -6,26 +6,24 @@ DELIMITER //
 CREATE PROCEDURE `getAllRecipes`()
 BEGIN
 
-
 SELECT 
 	R.recipeId,
 	R.recipeName,
 	R.recipeDesc,
-	R.recipeStyleId,
-	RS.recipeStyleDesc,
+	R.styleName,
 	R.alcoholByVolume,
 	R.SG,
-	R.OG,
+	R.FG,
+    R.IBU,
 	R.upvotes,
+    R.hashtags,
 	R.recipeDirections,
 	R.recipeComments,
-    f_GetRecipeHashtags(R.recipeId) AS hashtags
+    R.pictureURL
 
 
 
 FROM recipe R
-INNER JOIN recipe_style RS
-ON R.recipeStyleId = RS.recipeStyleId
 ORDER BY R.recipeId;
 
 END//

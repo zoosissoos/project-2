@@ -24,16 +24,6 @@ PRIMARY KEY (userId)
 
 
 
-
-CREATE TABLE recipe_style
-(
-recipeStyleId int NOT NULL AUTO_INCREMENT,
-recipeStyleDesc VARCHAR(255) NOT NULL,
-createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (recipeStyleId)
-);
-
-
 CREATE TABLE ingredients
 (
 ingredientsId int NOT NULL AUTO_INCREMENT,
@@ -49,18 +39,18 @@ CREATE TABLE recipe
 recipeId int NOT NULL AUTO_INCREMENT,
 recipeName VARCHAR(255) NULL,
 recipeDesc VARCHAR(255) NOT NULL,
-recipeStyleId INT NOT NULL,
+styleName VARCHAR(255) NULL,
 alcoholByVolume DECIMAL(10,2) NULL,
 SG DECIMAL(8,4) NULL,
-OG DECIMAL(8,4) NULL,
+FG DECIMAL(8,4) NULL,
+IBU INTEGER NULL,
 upvotes INT DEFAULT 0,
+hashtags TEXT,
 recipeDirections TEXT NULL,
 recipeComments TEXT NULL,
+pictureUrl VARCHAR(1000),
 createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (recipeId),
-FOREIGN KEY fk_recipe_style(recipeStyleId)
-	REFERENCES recipe_style(recipeStyleId)
-	ON DELETE RESTRICT
+PRIMARY KEY (recipeId)
 );
 
 CREATE TABLE recipe_ingredients
@@ -84,30 +74,6 @@ FOREIGN KEY fk_recipe_ingredients(ingredientsId)
 
 
 
-CREATE TABLE hashtag
-(
-hashTagId int NOT NULL AUTO_INCREMENT,
-hashTagText VARCHAR(255) NOT NULL,
-hashTagDesc VARCHAR(255) NOT NULL,
-activeInd INT DEFAULT 1 NOT NULL,
-createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (hashTagId)
-);
-
-CREATE TABLE recipe_hashtag
-(
-recipeHashTagId int NOT NULL AUTO_INCREMENT,
-recipeId INT NOT NULL,
-hashTagID INT NOT NULL,
-createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (recipeHashTagId),
-FOREIGN KEY fk_hash_tag(hashTagId)
-	REFERENCES hashtag(hashTagId)
-	ON DELETE RESTRICT,
-FOREIGN KEY fk_recipe_hash_tag(recipeId)
-	REFERENCES recipe(recipeId)
-	ON DELETE RESTRICT    
-);
 
 
 CREATE TABLE user_recipes
