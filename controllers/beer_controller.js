@@ -67,11 +67,6 @@ router.get('/beer', function(req, res) {
         hashtags: ['hashtag1', 'hashtag2', 'hashtag3']
     }
 
-    hbsObject = {
-        beerObject,
-        userObject
-    }
-
     res.render('singlebeer', beerObject);
 })
 

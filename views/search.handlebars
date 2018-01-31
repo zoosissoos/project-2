@@ -1,7 +1,95 @@
 {{> logged-in-nav name='dave'}}
 <div class='body-container'>
-	<form id='search' class='center-block'>
-		<input type='text' class='center-block'>
-		<button id='submit' class='btn btn-primary center-block'>Submit</button>
+	<form id='search' class='form-group'>
+		<div class='row search-row'>
+			<div class='col-xs-offset-4 col-xs-3'>
+				<label for="searchTerm">Search</label>
+				<input type='text' class='form-control' id='searchTerm'>
+			</div>
+			<div class='col-xs-1'>
+				<label for="searchOptions">By</label>				
+				<select class='form-control' id='searchOptions'>
+					<option></option>
+					<option>Style</option>
+					<option>Hashtag</option>
+					<option>Ingredients</option>			
+				</select>
+			</div>
+			<div class='col-xs-1'>
+				<button id='submit' class='btn btn-primary search-btn'> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>				
+			</div>
+		</div>
 	</form>
+	<div class='search-results-container'>
+		<!-- <div class='searcr-results-header text-center'>Search Results</div> -->
+		<ul class='search-results-list list-group' id='searchResultsList'>
+			<li class='list-group-item'>
+				<div class='list-beer-name'>
+					Beer Name
+				</div>
+
+			</li>
+		</ul>
+	</div>
 </div>
+<script>
+
+
+	$.ajax({
+		method: "GET",
+		url: '/api/recipes/all'
+	}).then(function(data) {
+		console.log(data[0])	
+	})
+
+	
+
+	$("#submit").on('click', function(event) {
+		
+		event.preventDefault();
+		var searchTerm = $('#searchTerm').val().toLowerCase();
+		var searchOption = $('#searchOptions').val();
+
+		$.ajax({
+		method: "GET",
+		url: '/api/recipes/all'
+		}).then(function(data) {
+			var allBeers = data[0];
+			
+			var matches = []
+			
+			if (searchOption === 'Hashtag') {
+				for (let i=0; i<allBeers.length; i++) {
+					if (allBeers[i].hashtags) {
+						var hashtags = allBeers[i].hashtags.split(',');
+						
+						hashtags = hashtags.map(hashtag => {
+							var trimmed = hashtag.trim()
+							var sliced = trimmed.slice(1, trimmed.length)
+							return sliced.toLowerCase();
+						})
+
+						console.log(hashtags);
+						
+						for (let j=0; j<hashtags.length; j++) {
+							if (hashtags[j] === searchTerm) {
+								matches.push(allBeers[i])
+							}
+						}
+					}
+				}
+			}
+
+			if (searchOption === 'Style') {
+				var result = allBeers.filter(beer => {
+					console.log(beer.recipeStyleDesc.toLowerCase())
+					console.log(searchTerm);
+					return beer.recipeStyleDesc.toLowerCase() == searchTerm
+				})
+
+			}
+			
+		})
+	})
+
+</script>

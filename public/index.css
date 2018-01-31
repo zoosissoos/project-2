@@ -137,3 +137,11 @@ body {
 	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
+
+.search-btn {
+	margin-top: 24px;
+}
+
+.search-results-container {
+	margin: 20px 300px;
+}
