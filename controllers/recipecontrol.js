@@ -34,32 +34,44 @@ router.get('/api/recipes/all', function(req,res){
 router.get('/recipe/:id',function(req,res){
     beer.selectOneBeer([req.params.id], function(data){
         let recipeIngred = [];
+
+        //checks to see if ingredients are present
         for (let i = 0; i <data.length; i ++){
-            let ingred = {
-            iId: data[i].recipeIngredientsId,
-            iQty: data[i].ingredientsQty,
-            iDesc: data[i].ingredientsQtyDesc
+            if(data[i].recipeIngredientsId !== null){
+                let ingred = {
+                    iId: data[i].recipeIngredientsId,
+                    iQty: data[i].ingredientsQty,
+                    iDesc: data[i].ingredientsQtyDesc
+                }
+                recipeIngred.push(ingred);
+            }
         }
-            recipeIngred.push(ingred);
-        }
-    
+        
+        //handlebars object creation
         var hbsObject = {
             recipeId: data[0].recipeId,
             recipeName: data[0].recipeName,
+            styleName: data[0].styleName,
             recipeDesc: data[0].recipeDesc,
+            recipeHashtags: data[0].hashtags,
+            picUrl: data[0].pictureUrl,
             recipeStyleId: data[0].recipeStyleId,
             alcoholByVolume: data[0].alcoholByVolume,
             SG: data[0].SG,
-            OG: data[0].OG,
+            FG: data[0].FG,
+            IBU: data[0].IBU,
             upvotes: data[0].upvotes,
             recipeDirections: data[0].recipeDirections,
             recipeComments: data[0].recipeComments,
             recipeIngred: recipeIngred
           };
         
+        //renders singlebeer page
         console.log(hbsObject);
         res.render('singlebeer', hbsObject);
     });
 });
+
+
 
 module.exports = router;
