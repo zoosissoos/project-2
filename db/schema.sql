@@ -61,6 +61,7 @@ recipeId INT NOT NULL,
 ingredientsId INT NOT NULL,
 ingredientsQty DECIMAL(8,4) NOT NULL,
 ingredientsQtyDesc VarCHar(255) NULL,
+ingredientName VarCHar(255) NULL,
 createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (recipeIngredientsId),
 FOREIGN KEY fk_recipe(recipeId)
