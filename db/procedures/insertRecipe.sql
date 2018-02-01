@@ -2,7 +2,7 @@ USE beers;
 DROP PROCEDURE IF EXISTS insertRecipe;
 
 DELIMITER //
-
+ 
 CREATE PROCEDURE `insertRecipe`(
 								IN p_recipeName VarChar(255), 
 								IN p_recipeDesc VarChar(255), 
@@ -35,7 +35,8 @@ BEGIN
     hashtags,
 	recipeDirections,
 	recipeComments,
-    pictureUrl
+    pictureUrl,
+    userId
 	)
 
 	VALUES(
@@ -49,26 +50,12 @@ BEGIN
     p_hashtags,
 	p_recipeDirections,
 	p_recipeComments,
-    p_pictureURL
+    p_pictureURL,
+    p_userId
 	);
 
 	SET v_recipeId = LAST_INSERT_ID();
 
-
-
-
-	INSERT INTO user_recipes(
-	userId,
-	recipeId
-	)
-	VALUES(
-	p_userId,
-	v_recipeId
-	);
-    
-
-
-
-
+	SELECT v_recipeId as recipeId;
 
 END//

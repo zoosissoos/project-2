@@ -3,7 +3,7 @@ CREATE DATABASE beers;
 
 USE beers;
 
-
+ 
 
 CREATE TABLE user_info
 (
@@ -49,6 +49,7 @@ hashtags TEXT,
 recipeDirections TEXT NULL,
 recipeComments TEXT NULL,
 pictureUrl VARCHAR(1000),
+userId INT NOT NULL,
 createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (recipeId)
 );
@@ -76,20 +77,5 @@ FOREIGN KEY fk_recipe_ingredients(ingredientsId)
 
 
 
-CREATE TABLE user_recipes
-(
-userRecipeId int NOT NULL AUTO_INCREMENT,
-userId Int NOT NULL,
-recipeId Int NOT NULL,
-activeInd INT DEFAULT 1 NOT NULL,
-createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (userRecipeId),
-FOREIGN KEY fk_user_recipes_recipe(recipeId)
-	REFERENCES recipe(recipeId)
-	ON DELETE RESTRICT,
-FOREIGN KEY fk_user_recipes_user(userId)
-	REFERENCES user_info(userId)
-	ON DELETE RESTRICT     
-);
 
 

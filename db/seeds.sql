@@ -65,7 +65,7 @@ VALUES(
 "hops",
 "hops"
 );
-
+ 
 
 insert into recipe(
 recipeName,
@@ -79,22 +79,24 @@ upvotes,
 hashtags,
 recipeDirections,
 recipeComments,
-pictureURL
+pictureURL,
+userId
 )
 
 VALUES(
 "Beer1",
 "This is a test - 1",
-"ipa",
+"one",
 40,
 2.089,
 1.3456,
 111,
-50,
+10,
 "#cool,#awesome,#tasty",
 "do some stuff - 1",
 "This is a cool recipe - 1",
-"https://i.imgur.com/whKgsmE.jpg"
+"https://i.imgur.com/whKgsmE.jpg",
+1
 );
 
 insert into recipe(
@@ -109,22 +111,24 @@ upvotes,
 hashtags,
 recipeDirections,
 recipeComments,
-pictureURL
+pictureURL,
+userId
 )
 
 VALUES(
 "Beer2",
 "This is a test - 2",
-"ipa",
+"two",
 40,
 3.089,
 2.3456,
 222,
-124,
+10,
 "#cool,#awesome,#tasty",
 "do some stuff - 2",
 "This is a cool recipe - 2",
-"https://i.imgur.com/whKgsmE.jpg"
+"https://i.imgur.com/whKgsmE.jpg",
+1
 );
 
 
@@ -140,22 +144,24 @@ upvotes,
 hashtags,
 recipeDirections,
 recipeComments,
-pictureURL
+pictureURL,
+userId
 )
 
 VALUES(
-"Beer3",
+"Beer1",
 "This is a test - 3",
-"ipa",
+"three",
 40,
 5.089,
 4.3456,
 123,
-99,
+10,
 "#cool,#awesome,#tasty",
 "do some stuff - 3",
 "This is a cool recipe - 3",
-"https://i.imgur.com/whKgsmE.jpg"
+"https://i.imgur.com/whKgsmE.jpg",
+1
 );
 
 insert into recipe(
@@ -170,22 +176,24 @@ upvotes,
 hashtags,
 recipeDirections,
 recipeComments,
-pictureURL
+pictureURL,
+userId
 )
 
 VALUES(
-"Beer4",
+"Beer1",
 "This is a test - 4",
-"pilsner",
+"four",
 40,
 2.089,
 1.3456,
 111,
-32,
+10,
 "#cool,#awesome,#tasty",
 "do some stuff - 4",
 "This is a cool recipe - 4",
-"https://i.imgur.com/whKgsmE.jpg"
+"https://i.imgur.com/whKgsmE.jpg",
+1
 );
 
 insert into recipe(
@@ -200,281 +208,187 @@ upvotes,
 hashtags,
 recipeDirections,
 recipeComments,
-pictureURL
+pictureURL,
+userId
 )
-
+ 
 VALUES(
-"Beer5",
+"Beer1",
 "This is a test - 5",
-"pilsner",
+"five",
 40,
 2.089,
 1.3456,
 331,
-54,
+10,
 "#cool,#awesome,#tasty",
 "do some stuff - 5",
 "This is a cool recipe - 5",
-"https://i.imgur.com/whKgsmE.jpg"
-);
-
-
-insert into recipe(
-recipeName,
-recipeDesc,
-styleName,
-alcoholByVolume,
-SG,
-FG,
-IBU,
-upvotes,
-hashtags,
-recipeDirections,
-recipeComments,
-pictureURL
-)
-
-VALUES(
-"Beer6",
-"This is a test - 6",
-"pilsner",
-40,
-2.089,
-1.3456,
-111,
-76,
-"#wow,#tasty,#stout",
-"do some stuff - 6",
-"This is a cool recipe - 6",
-"https://i.imgur.com/whKgsmE.jpg"
-);
-
-insert into recipe(
-recipeName,
-recipeDesc,
-styleName,
-alcoholByVolume,
-SG,
-FG,
-IBU,
-upvotes,
-hashtags,
-recipeDirections,
-recipeComments,
-pictureURL
-)
-
-VALUES(
-"Beer7",
-"This is a test - 7",
-"stout",
-40,
-2.089,
-1.3456,
-111,
-12,
-"#Ilovesummer, cool, #yummy",
-"do some stuff - 7",
-"This is a cool recipe - 7",
-"https://i.imgur.com/whKgsmE.jpg"
-);
-
-
-insert into recipe(
-recipeName,
-recipeDesc,
-styleName,
-alcoholByVolume,
-SG,
-FG,
-IBU,
-upvotes,
-hashtags,
-recipeDirections,
-recipeComments,
-pictureURL
-)
-
-VALUES(
-"Beer8",
-"This is a test - 8",
-"stout",
-40,
-2.089,
-1.3456,
-111,
-53,
-"#yummy",
-"do some stuff - 8",
-"This is a cool recipe - 8",
-"https://i.imgur.com/whKgsmE.jpg"
-);
-
-insert into recipe(
-recipeName,
-recipeDesc,
-styleName,
-alcoholByVolume,
-SG,
-FG,
-IBU,
-upvotes,
-hashtags,
-recipeDirections,
-recipeComments,
-pictureURL
-)
-
-VALUES(
-"Beer9",
-"This is a test - 9",
-"stout",
-40,
-2.089,
-1.3456,
-111,
-11,
-"#cool,#awesome,#tasty",
-"do some stuff - 9",
-"This is a cool recipe - 9",
-"https://i.imgur.com/whKgsmE.jpg"
-);
-
-insert into recipe(
-recipeName,
-recipeDesc,
-styleName,
-alcoholByVolume,
-SG,
-FG,
-IBU,
-upvotes,
-hashtags,
-recipeDirections,
-recipeComments,
-pictureURL
-)
-
-VALUES(
-"Beer10",
-"This is a test - 10",
-"stout",
-40,
-2.089,
-1.3456,
-111,
-24,
-"#Ilovewinter, #ilovesummer, #cool",
-"do some stuff - 10",
-"This is a cool recipe - 10",
-"https://i.imgur.com/whKgsmE.jpg"
-);
-
-
-
-
-INSERT INTO user_recipes(
-userId,
-recipeId
-)
-
-VALUES(
-1,
+"https://i.imgur.com/whKgsmE.jpg",
 1
 );
 
-INSERT INTO user_recipes(
-userId,
-recipeId
+
+insert into recipe(
+recipeName,
+recipeDesc,
+styleName,
+alcoholByVolume,
+SG,
+FG,
+IBU,
+upvotes,
+hashtags,
+recipeDirections,
+recipeComments,
+pictureURL,
+userId
 )
 
 VALUES(
-1,
-2
+"Beer1",
+"This is a test - 6",
+"six",
+40,
+2.089,
+1.3456,
+111,
+10,
+"#wow,#tasty,#stout",
+"do some stuff - 6",
+"This is a cool recipe - 6",
+"https://i.imgur.com/whKgsmE.jpg",
+1
 );
 
-INSERT INTO user_recipes(
-userId,
-recipeId
+insert into recipe(
+recipeName,
+recipeDesc,
+styleName,
+alcoholByVolume,
+SG,
+FG,
+IBU,
+upvotes,
+hashtags,
+recipeDirections,
+recipeComments,
+pictureURL,
+userId
 )
 
 VALUES(
-1,
-3
+"Beer1",
+"This is a test - 7",
+"seven",
+40,
+2.089,
+1.3456,
+111,
+10,
+"#I love summer",
+"do some stuff - 7",
+"This is a cool recipe - 7",
+"https://i.imgur.com/whKgsmE.jpg",
+1
 );
 
-INSERT INTO user_recipes(
-userId,
-recipeId
+
+insert into recipe(
+recipeName,
+recipeDesc,
+styleName,
+alcoholByVolume,
+SG,
+FG,
+IBU,
+upvotes,
+hashtags,
+recipeDirections,
+recipeComments,
+pictureURL,
+userId
 )
 
 VALUES(
-1,
-4
+"Beer1",
+"This is a test - 8",
+"eight",
+40,
+2.089,
+1.3456,
+111,
+10,
+"#yummy",
+"do some stuff - 8",
+"This is a cool recipe - 8",
+"https://i.imgur.com/whKgsmE.jpg",
+1
 );
 
-INSERT INTO user_recipes(
-userId,
-recipeId
+insert into recipe(
+recipeName,
+recipeDesc,
+styleName,
+alcoholByVolume,
+SG,
+FG,
+IBU,
+upvotes,
+hashtags,
+recipeDirections,
+recipeComments,
+pictureURL,
+userId
 )
 
 VALUES(
-1,
-5
+"Beer1",
+"This is a test - 9",
+"nine",
+40,
+2.089,
+1.3456,
+111,
+10,
+"#cool,#awesome,#tasty",
+"do some stuff - 9",
+"This is a cool recipe - 9",
+"https://i.imgur.com/whKgsmE.jpg",
+1
 );
 
-INSERT INTO user_recipes(
-userId,
-recipeId
+insert into recipe(
+recipeName,
+recipeDesc,
+styleName,
+alcoholByVolume,
+SG,
+FG,
+IBU,
+upvotes,
+hashtags,
+recipeDirections,
+recipeComments,
+pictureURL,
+userId
 )
 
 VALUES(
-1,
-6
+"Beer1",
+"This is a test - 10",
+"ten",
+40,
+2.089,
+1.3456,
+111,
+10,
+"#I love winter",
+"do some stuff - 10",
+"This is a cool recipe - 10",
+"https://i.imgur.com/whKgsmE.jpg",
+1
 );
-
-INSERT INTO user_recipes(
-userId,
-recipeId
-)
-
-VALUES(
-1,
-7
-);
-
-INSERT INTO user_recipes(
-userId,
-recipeId
-)
-
-VALUES(
-1,
-8
-);
-
-INSERT INTO user_recipes(
-userId,
-recipeId
-)
-
-VALUES(
-1,
-9
-);
-
-INSERT INTO user_recipes(
-userId,
-recipeId
-)
-
-VALUES(
-1,
-10
-);
-
-
-
 
 
 

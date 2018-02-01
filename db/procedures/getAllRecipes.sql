@@ -19,11 +19,17 @@ SELECT
     R.hashtags,
 	R.recipeDirections,
 	R.recipeComments,
-    R.pictureURL
+    R.pictureURL,
+    R.userId,
+    U.username
 
-
+ 
 
 FROM recipe R
+LEFT JOIN user_info U 
+ON R.userId = U.userId
 ORDER BY R.recipeId;
 
 END//
+
+
