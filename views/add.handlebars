@@ -13,7 +13,7 @@
 			<div class='add-beer-form-container'>
 				<div class='add-beer-form-header'>Basic Information</div>
 				<div class='row add-beer-first-row'>
-					<div class='col-md-6'>
+					<div class='col-md-4'>
 						<div class="form-group">
 							<label for="usr">Beer Name</label>
 							<div class='form-helper'>A unique name for your unique brew</div>
@@ -21,15 +21,24 @@
 							<input type="text" class="form-control" id="beerName">
 						</div>
 					</div>
-					<div class='col-md-6'>
+					<div class='col-md-4'>
 						<div class="form-group">
-								<label>Beer Style </label>
+								<label>Beer Style</label>
 								<div class='form-helper'>e.g. Pale Ale, Pilsner, Lager, Etc.</div>
 								<input class='datalist-group' list="beerStyles" id='beerStyle'>
 								<datalist id="beerStyles">
 								</datalist>
 						</div>
 					</div>
+					<div class='col-md-4'>
+							<div class="form-group">
+								<label>Image URL</label>
+								<div class='form-helper'>An optional image of your beer to be dislayed on its page</div>
+								<input class='datalist-group' list="beerStyles" id='imageUrl'>
+								<datalist id="beerStyles">
+								</datalist>
+							</div>
+						</div>
 				</div>
 				<hr>
 				<div class='add-beer-form-header'>Ingredients</div>
@@ -336,7 +345,12 @@ $(document).ready(() => {
 		var recipeDesc = $('#description').val();
 		var hashtags = $("#hashtags").val();
 		var userId = 5;
-		var picUrl = 'https://i.imgur.com/OHlu1.jpg'
+		var picUrl = $("#imageUrl").val();
+
+		if (!picUrl) {
+			picUrl = 'http://cdn.shopify.com/s/files/1/1493/0474/products/Red_horse_500ml_d0db516c-6cb6-4ed2-8a16-399421d26c39_1024x1024.jpg?v=1509688944'
+		}
+
 
 		hashtags = hashtags.split(' ');
 
@@ -345,7 +359,7 @@ $(document).ready(() => {
 		})
 
 	
-		hashtags = hashtags.join(' ')
+		hashtags = hashtags.join('')
 
 		hashtags = hashtags.substr(0, hashtags.length-1);		
 		
