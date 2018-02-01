@@ -66,10 +66,7 @@ createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (recipeIngredientsId),
 FOREIGN KEY fk_recipe(recipeId)
 	REFERENCES recipe(recipeId)
-	ON DELETE RESTRICT,
-FOREIGN KEY fk_recipe_ingredients(ingredientsId)
-	REFERENCES ingredients(ingredientsId)
-	ON DELETE RESTRICT    
+	ON DELETE RESTRICT   
 );
 
 
