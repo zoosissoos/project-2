@@ -71,7 +71,23 @@ router.post('/api/beer/ingredient/add/:id',function(req,res){
         }
     }
     res.redirect(`/recipe/1`)
-})
+});
+
+router.put('/recipe/upvote/',function(req,res){
+    let newVote = parseInt(req.body.currentUp);
+    newVote++;
+
+    //sets query params
+    let q1 = {upvotes : `${newVote}`}
+    let q2 = `recipeId = ${req.body.id}`
+
+    //updates response
+    beer.updateOne(q1,q2,function(data){
+        console.log(`upvote response: ${data}`);
+        res.json(data);
+        res.end();
+    })
+});
 
 //returns all beers as a json object
 router.get('/api/recipes/all', function(req,res){

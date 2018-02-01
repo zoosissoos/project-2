@@ -42,8 +42,9 @@ var beer = {
     });
   },
   
+  //used for updating upvotes
   updateOne: function(objColVals, condition, cb) {
-    orm.update("beers", objColVals, condition, function(res) {
+    orm.update("recipe", objColVals, condition, function(res) {
       cb(res);
     });
   },
