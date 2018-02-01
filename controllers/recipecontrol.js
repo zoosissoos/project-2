@@ -67,19 +67,36 @@ router.get('/api/recipes/all', function(req,res){
 //returns a single beer and its ingredients
 router.get('/recipe/:id',function(req,res){
     beer.selectOneBeer([req.params.id], function(data){
-        let recipeIngred = [];
+        let grains = [];
+        let hops = [];
+        let yeasts = [];
+        let adjuncts = [];
 
         //checks to see if ingredients are present
         for (let i = 0; i <data.length; i ++){
             if(data[i].recipeIngredientsId !== null){
                 let ingred = {
-                    iId: data[i].recipeIngredientsId,
+                    iId: data[i].ingredientsId,
+                    iName: data[i].ingredientName,
                     iQty: data[i].ingredientsQty,
                     iDesc: data[i].ingredientsQtyDesc
                 }
-                recipeIngred.push(ingred);
+                //delegates ingredient to approp class
+                if(ingred.iId === 1){
+                    grains.push(ingred);
+                }else if(ingred.iId === 2){
+                    yeasts.push(ingred);
+                }else if(ingred.iId === 3){
+                    adjuncts.push(ingred);
+                }else if(ingred.iId === 4){
+                    hops.push(ingred);
+                }
             }
         }
+
+        let hashArray = (data[0].hashtags).split(",");
+
+        
         
         //handlebars object creation
         var hbsObject = {
@@ -87,17 +104,19 @@ router.get('/recipe/:id',function(req,res){
             recipeName: data[0].recipeName,
             styleName: data[0].styleName,
             recipeDesc: data[0].recipeDesc,
-            recipeHashtags: data[0].hashtags,
+            recipeHashtags: hashArray,
             picUrl: data[0].pictureUrl,
-            recipeStyleId: data[0].recipeStyleId,
-            alcoholByVolume: data[0].alcoholByVolume,
+            ABV: data[0].alcoholByVolume,
             SG: data[0].SG,
             FG: data[0].FG,
             IBU: data[0].IBU,
             upvotes: data[0].upvotes,
             recipeDirections: data[0].recipeDirections,
             recipeComments: data[0].recipeComments,
-            recipeIngred: recipeIngred
+            grains: grains,
+            hops: hops,
+            yeasts: yeasts,
+            adjuncts: adjuncts
           };
         
         //renders singlebeer page

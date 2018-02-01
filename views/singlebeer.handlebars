@@ -4,12 +4,12 @@
     <div class='row'>
         <div class='col-xs-3'>
             <div class='panel panel-default beer-image-panel'>
-                <img class='single-beer-image center-block thumbnail' src='https://dydza6t6xitx6.cloudfront.net/ci_2822.jpg' />
+                <img class='single-beer-image center-block thumbnail' src='{{picUrl}}' />
                 <div class='hashtags-container'>
                     <div class='hashtags' id='hashtags'>
-                            {{#each hashtags}}
-                                {{this}}
-                            {{/each}}
+                            {{#each recipeHashtags}}
+                            {{this}}
+                            {{/each }}
                     </div>
                     <hr>
                 </div>
@@ -18,13 +18,13 @@
                         <div><strong>Starting Gravity: </strong><span id='sg'>{{ SG }}</span></div>
                     </div>
                     <div>
-                        <div><strong>Ending Gravity: </strong><span id='eg'>{{ OG }}</span></div>
+                        <div><strong>Final Gravity: </strong><span id='eg'>{{ FG }}</span></div>
                     </div>
                     <div>
-                        <div><strong>ABV: </strong><span id='abv'>{{ alcoholByVolume }}</span></div>
+                        <div><strong>ABV: </strong><span id='abv'>{{ ABV }}</span></div>
                     </div>
                     <div>
-                        <div><strong>IBU: </strong><span id='ibu'>{{ ibu }}</span></div>
+                        <div><strong>IBU: </strong><span id='ibu'>{{ IBU }}</span></div>
                     </div>
                     
                 </div>
@@ -49,7 +49,7 @@
                                 <span class='upvotes'>{{ upvotes }}</span>
                         </div>
                     <div class='description-container'>
-                        {{description}}
+                        {{recipeDesc}}
                     </div>
                     <hr>
                     <div class='ingredients-container'>
@@ -57,10 +57,12 @@
                         </div>
                     <div>
                         <div class='ingredient-container'>
-                            <strong>Yeasts: </strong>
+                            <strong>Grains: </strong>
                             <span class='ingredients' id='yeasts'>
-                                {{#each ingredients.yeasts}}
-                                    {{this}}
+                                {{#each grains}}
+                                {{iName}}
+                                {{iQty}}
+                                {{iDesc}}
                                 {{/each}}
                             </span>
                         </div>
@@ -69,8 +71,10 @@
                         <div class='ingredient-container'>
                             <strong>Hops: </strong>
                             <span class='ingredients' id='hops'>
-                                {{#each ingredients.hops}}
-                                    {{this}}
+                                {{#each hops}}
+                                {{iName}}
+                                {{iQty}}
+                                {{iDesc}}
                                 {{/each}}
                             </span>
                         </div>
@@ -79,8 +83,10 @@
                         <div class='ingredient-container'>
                             <strong>Yeasts: </strong>
                             <span class='ingredients' id='grains'>
-                                {{#each ingredients.grains}}
-                                    {{this}}
+                                {{#each yeasts}}
+                                {{iName}}
+                                {{iQty}}
+                                {{iDesc}}
                                 {{/each}}
                             </span>
                         </div>
@@ -89,8 +95,10 @@
                         <div class='ingredient-container'>
                             <strong>Adjuncts: </strong>
                             <span class='ingredients' id='adjuncts'>
-                                {{#each ingredients.adjuncts}}
-                                    {{this}}
+                                {{#each adjuncts}}
+                                {{iName}}
+                                {{iQty}}
+                                {{iDesc}}
                                 {{/each}}
                             </span>
                         </div>
@@ -108,12 +116,12 @@
             </div>
             <div class='panel panel-default'>
                 <div class='panel-heading user-comments-header'>
-                    User Comments - for each comment, need user comment and user name
+                    <h5>Community Comments</h5>
                 </div>
                 <div class='panel-body'>
                     <div class='comments-container'>
                         <ul class='list-group comments' id='comments'>
-                            
+                            - {{recipeComments}}
                         </ul>
                     </div>
                 </div>
