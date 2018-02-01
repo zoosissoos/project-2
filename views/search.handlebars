@@ -66,10 +66,53 @@ $(document).ready(function() {
 	$(function(){ 
 		$(window).scroll(function(){
            if($(document).height()<=$(window).scrollTop()+$(window).height()+100){
-               alert('end of page');
+				renderTen(renderArray);
            }
 			});
 	});
+
+	function renderTen(array) {
+		var toBeRendered = array.slice(0, 9)
+		var futureRendered = array.slice(10, array.length);
+
+		renderArray = futureRendered;
+
+		console.log('original', array.length);
+		console.log('future', futureRendered.length);
+
+		toBeRendered.map(beer => {
+			var name = beer.recipeName;
+			var upvotes = beer.upvotes;
+			var style = beer.styleName;
+			var description = beer.recipeDesc;
+			var hashtags = renderHashtags(beer.hashtags)
+			var id = beer.recipeId;
+
+
+			$('#searchResults').append(`<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-xs-10'>
+						<div class='list-beer-name'>
+							<a class='list-beer-name-link' href='/recipe/${id}' target='_blank'>${name}</a>
+							<span class='list-beer-style' data=${style}>(${style})</span>
+							<span class='search-list-description'>${description}</span>
+						</div>
+						<div class='style-and-hashtags-conterin'>
+							<span class='search-list-hashtags'>${hashtags}</span>
+						</div>
+						
+					</div>
+					<div class='col-xs-2 text-right' id='listBeerUpvotes'>
+						<span isUpvoted='false' class='glyphicon glyphicon glyphicon-arrow-up upvoteArrow' aria-hidden='true' data=${id}>
+							${upvotes}							
+						</span>
+					</div>
+				</div>
+				</li>`)
+		})
+		
+	}
+
 
 	function renderHashtags(string) {
 		var array = string.split(',')
@@ -106,21 +149,59 @@ $(document).ready(function() {
 						
 					</div>
 					<div class='col-xs-2 text-right' id='listBeerUpvotes'>
-						<span class='glyphicon glyphicon glyphicon-arrow-up' aria-hidden='true' class='upvoteArrow'></span>
-						${upvotes}
+						<span isUpvoted='false' class='glyphicon glyphicon glyphicon-arrow-up upvoteArrow' aria-hidden='true' data=${id}>
+							${upvotes}							
+						</span>
 					</div>
 				</div>
 				</li>`)
 		})
 	}
 	
+	$(document).on('click', '.upvoteArrow', function() {
+		console.log("click")
+
+		var upvotes = $(this).text();
+
+		if ($(this).attr('isUpvoted') === 'false') {
+
+			upvotes++;
+
+
+
+			$(this).text(upvotes);
+			$(this).attr('isUpvoted', 'true');
+			$(this).addClass('red');
+			return
+		}
+
+		if ($(this).attr('isUpvoted') === 'true') {
+
+			upvotes--;
+
+			$(this).text(upvotes);			
+			$(this).attr('isUpvoted', 'false');
+			$(this).removeClass('red');
+			return
+		}
+	})
+
 	$(document).on('click', '.list-beer-style', function() {
+		$("#searchResults").empty();
+		$('html,body').scrollTop(0);
+
+		var text = $(this).text().trim();
+
+		text = text.substr(1, text.length - 2)
+
+		$("#searchTerm").val(text)
+		$("#searchOptions").val("Style");
+
 		renderArray = []
 		var searchTerm = $(this).attr('data').toLowerCase();
 		var trimmed = searchTerm.trim()
 		var term = trimmed.slice(1, trimmed.length);
 
-		console.log('clicked', term)
 
 		$.ajax({
 		method: "GET",
@@ -130,22 +211,31 @@ $(document).ready(function() {
 			var allBeers = data
 
 			var result = allBeers.filter(beer => {
-					console.log(beer.styleName);
 					return beer.styleName.toLowerCase() == searchTerm
 				})
-				console.log('style', result);
-				renderList(result);
+
+				renderArray = result;
+				renderTen(renderArray);
 			
 		})	
 	});
 
 	$(document).on('click', '.hashtag-list-item', function() {
+
+		$("#searchResults").empty();
+
+		var text = $(this).text();
+		text = text.slice(1, text.length);
+
+		$("#searchTerm").val(text)
+		$("#searchOptions").val("Hashtag");
+
+		$('html,body').scrollTop(0);
 		renderArray = []
 		var searchTerm = $(this).text().toLowerCase();
 		var trimmed = searchTerm.trim()
 		var term = trimmed.slice(1, trimmed.length);
 
-		console.log('clicked', term)
 
 		$.ajax({
 		method: "GET",
@@ -177,12 +267,17 @@ $(document).ready(function() {
 				}
 			}
 
-
-			renderList(matches)
+			renderArray = matches
+			console.log(renderArray);
+			renderTen(renderArray)
 		})	
 	});
 
 	$("#submit").on('click', function(event) {
+
+		$("#searchResults").empty();
+
+		$('html,body').scrollTop(0);
 		renderArray = []
 		event.preventDefault();
 		var searchTerm = $('#searchTerm').val().toLowerCase();
@@ -192,7 +287,6 @@ $(document).ready(function() {
 		method: "GET",
 		url: '/api/recipes/all'
 		}).then(function(data) {
-			console.log(data);
 			var allBeers = data
 			
 			var matches = []
@@ -216,16 +310,16 @@ $(document).ready(function() {
 						}
 					}
 				}
-				renderList(matches);
+				renderArray = matches
+				renderTen(renderArray);
 			}
 
 			if (searchOption === 'Style') {
 				var result = allBeers.filter(beer => {
-					console.log(beer.styleName);
 					return beer.styleName.toLowerCase() == searchTerm
 				})
-				console.log('style', result);
-				renderList(result);
+				renderArray = result
+				renderTen(renderArray);
 			}
 		})
 	})
