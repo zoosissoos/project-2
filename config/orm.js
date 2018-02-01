@@ -146,7 +146,24 @@ function printQuestionMarks(num) {
     
           cb(result);
         });
-      }         
+      },
+      callInsertSP: function(spName, vals, cb) {
+        var queryString = "CALL " + spName;
+        queryString += " (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
+    
+        console.log(queryString);
+    
+        
+        connection.query(queryString, vals,function(err, result) {
+          if (err) {
+            throw err;
+          }
+    
+          cb(result);
+        });
+      }                
 
   };
 

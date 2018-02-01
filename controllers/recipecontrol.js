@@ -19,9 +19,37 @@ router.get('/beer/add',function(req,res){
 });
 
 //adds beer to database
-router.post('api/beer/add',function(req,res){
-    beer.insertOne()
-})
+router.post('/api/beer/add',function(req,res){
+    beer.callInsertSP([req.body.recipeName, 
+                        req.body.recipeDesc,
+                        req.body.styleName,
+                        req.body.alcoholByVolume,
+                        req.body.SG,
+                        req.body.FG,
+                        req.body.IBU,
+                        req.body.recipeHashtags,
+                        req.body.recipeDirections,
+                        req.body.recipeComments,
+                        req.body.picUrl,
+                        req.body.userId,], function(result) {
+    console.log(result[0][0].recipeId);
+    //res.end();
+    res.redirect(`/recipe/${result[0][0].recipeId}`);
+    //res.send(result[0][0].recipeId);
+    })
+});
+// IN p_recipeName VarChar(255), 
+// IN p_recipeDesc VarChar(255), 
+// IN p_styleName VarChar(255), 
+// IN p_alcoholByVolume DECIMAL(10,2),
+// IN p_SG DECIMAL(8,4),
+// IN p_FG DECIMAL(8,4),
+// IN p_IBU INT,
+// IN p_hashtags VarChar(1000),
+// IN p_recipeDirections TEXT,
+// IN p_recipeComments TEXT,
+// IN p_pictureURL VarChar(1000),
+// IN p_userId INT
 
 
 //reurns all beers as a json object
