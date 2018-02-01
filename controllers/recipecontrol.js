@@ -39,54 +39,34 @@ router.post('/api/beer/add',function(req,res){
     //res.end();
     //res.redirect(`/recipe/${insertedId}`);
     //res.send(result[0][0].recipeId);
-
-    
-
-
-    // for (let i = 0; i <req.body.recipeIngred.length; i ++){
-    //     if(req.body.recipeIngred[i].iId !== null){
-
-    //         beer.create([
-    //             "recipeId", 
-    //             "ingredientsId",
-    //             "ingredientsQty",
-    //             "ingredientsQtyDesc",
-    //             "ingredientName"
-    //         ], 
-    //         [
-    //             insertedId,
-    //             req.body.recipeIngred[i].iQty, 
-    //             req.body.recipeIngred[i].iDesc, 
-    //             req.body.recipeIngred[i].specificName
-    //             //req.body.recipeIngred[i].iId, 
-    //         ], function(result) {
-
-    //             res.end();
-
-    //         });
-
-    //     }
-    // }
+        })
+    });
 
 
-    res.redirect(`/rasdfsadf`);
-});
-});
-// IN p_recipeName VarChar(255), 
-// IN p_recipeDesc VarChar(255), 
-// IN p_styleName VarChar(255), 
-// IN p_alcoholByVolume DECIMAL(10,2),
-// IN p_SG DECIMAL(8,4),
-// IN p_FG DECIMAL(8,4),
-// IN p_IBU INT,
-// IN p_hashtags VarChar(1000),
-// IN p_recipeDirections TEXT,
-// IN p_recipeComments TEXT,
-// IN p_pictureURL VarChar(1000),
-// IN p_userId INT
+router.post('/api/beer/ingredient/add/:id',function(req,res){
+    let insertId = req.params.id;
+    for(let i = 0; i <req.body.recipeIngred.length; i ++){
+        if(req.body.recipeIngred[i].iId !== null){
+            beer.create([
+                "recipeId", 
+                "ingredientsId",
+                "ingredientsQty",
+                "ingredientsQtyDesc",
+                "ingredientName"
+            ], 
+            [
+                insertId,
+                req.body.recipeIngred[i].iQty, 
+                req.body.recipeIngred[i].iDesc, 
+                req.body.recipeIngred[i].specificName
+                //req.body.recipeIngred[i].iId, 
+            ]);    
+        }
+    }
+    res.redirect(`/recipes/${insertId}`)
+})
 
-
-//reurns all beers as a json object
+//returns all beers as a json object
 router.get('/api/recipes/all', function(req,res){
   beer.getAllBeers(function(data){
       console.log(data[0]);
