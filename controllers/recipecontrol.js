@@ -33,21 +33,26 @@ router.post('/api/beer/add',function(req,res){
                         req.body.picUrl,
                         req.body.userId,], function(result) {
     //console.log(result[0][0].recipeId);
-    console.log("result");
+    // console.log("result");
+    // console.log(result[0][0].recipeId);
     console.log(result);
+    res.send(result[0]);
     //var insertedId = result[0][0].recipeId;
     //res.end();
     //res.redirect(`/recipe/${insertedId}`);
-    //res.send(result[0][0].recipeId);
+    // res.send(result[0][0].recipeId);
         })
     });
 
 
 router.post('/api/beer/ingredient/add/:id',function(req,res){
     let insertId = req.params.id;
+
+    console.log(req.body.recipeIngred);
+
     for(let i = 0; i <req.body.recipeIngred.length; i ++){
         if(req.body.recipeIngred[i].iId !== null){
-            beer.create([
+            beer.insertOne([
                 "recipeId", 
                 "ingredientsId",
                 "ingredientsQty",
@@ -56,14 +61,16 @@ router.post('/api/beer/ingredient/add/:id',function(req,res){
             ], 
             [
                 insertId,
+                req.body.recipeIngred[i].iId,                
                 req.body.recipeIngred[i].iQty, 
                 req.body.recipeIngred[i].iDesc, 
-                req.body.recipeIngred[i].specificName
-                //req.body.recipeIngred[i].iId, 
-            ]);    
+                req.body.recipeIngred[i].specificName,
+            ], function(data) {
+                console.log(data);
+            })
         }
     }
-    res.redirect(`/recipes/${insertId}`)
+    res.redirect(`/recipe/1`)
 })
 
 //returns all beers as a json object

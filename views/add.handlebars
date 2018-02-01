@@ -349,7 +349,6 @@ $(document).ready(() => {
 
 		hashtags = hashtags.substr(0, hashtags.length-1);		
 		
-		console.log(newBeer);
 
 		var newBeer = {
 			recipeIngred,
@@ -364,17 +363,31 @@ $(document).ready(() => {
 			picUrl,
 			userId,
 			recipeHashtags: hashtags,
-			recipeIngred
 		}
 
-		console.log(newBeer);
-		
+		var ingredientBodyObject = {
+			recipeIngred
+		}
 
 		  $.ajax("/api/beer/add", {
 			type: "POST",
 			data: newBeer
-			}).then(function(data) {
-				console.log(data);
+			}).then(function(data1) {
+				console.log("HE")
+				console.log(data1[0].recipeId);
+
+				recipeIngred.map(recipe => {
+					recipe.recipeId = data1[0].recipeId;
+				})
+
+				console.log(recipeIngred);
+
+				$.ajax(`/api/beer/ingredient/add/${(data1[0].recipeId)}`, {
+				type: "POST",
+				data: ingredientBodyObject
+				}).then(function(data2) {
+					window.location.href = `/recipe/${data1[0].recipeId}`;
+				})
 			})
 	})
 	
