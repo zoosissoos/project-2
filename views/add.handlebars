@@ -3,15 +3,7 @@
 {{else}}
 {{> nav}}
 {{/if}}
-	<div class="modal fade" id="modal" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content" id='modal-content'>
-            <div class="modal-header" id='modal-header'></div>  
-			</div>
-			<div class="modal-body" id='modal-body'></div>  
-            </div>
-        </div>      
-    </div>
+
 
 	<div class='panel panel-default add-beer-panel'>
 		<div class='panel-heading'>
@@ -163,7 +155,7 @@
 						</div>
 					</div>
 				</div>
-				<button class='center-block btn btn-danger' id='submit' data-toggle='modal' data-target='#modal'>Submit</button>
+				<button class='center-block btn btn-danger' id='submit'>Submit</button>
 			</div>
 		</div>
 	</div>
@@ -331,33 +323,61 @@ $(document).ready(() => {
 
 	$("#submit").on('click', function() {
 		
+		console.log(recipeIngred)
 
 		var recipeName = $("#beerName").val();
-		var recipeStyleDesc = $("#beerStyle").val();
+		var styleName = $("#beerStyle").val();
 		var OG = $('#og').val();
 		var SG = $('#eg').val();
 		var alcoholByVolume = $('#abv').val();
-		var ibu = $('#fbu').val();
+		var IBU = $('#fbu').val();
 		// var ingredients = beer;
 		var recipeDirections = $("#directions").val();
 		var recipeDesc = $('#description').val();
 		var hashtags = $("#hashtags").val();
+		var userId = 5;
+		var picUrl = 'google.com'
+
+		hashtags = hashtags.split(' ');
+
+		hashtags = hashtags.map(hashtag => {
+			return hashtag + ','
+		})
+
+	
+		hashtags = hashtags.join(' ')
+
+		hashtags = hashtags.substr(0, hashtags.length-1);		
+		
+		console.log(newBeer);
 
 		var newBeer = {
-			recipeIngred, recipeName, recipeStyleDesc, OG, SG, alcoholByVolume, ibu, recipeDirections, recipeDesc, hashtags
+			recipeIngred,
+			recipeName, 
+			styleName,
+			OG, 
+			SG, 
+			alcoholByVolume, 
+			IBU, 
+			recipeDirections, 
+			recipeDesc,
+			picUrl,
+			userId,
+			recipeHashtags: hashtags,
+			recipeIngred
 		}
 
-		//   $.ajax("/api/newbeer", {
-    //   type: "POST",
-    //   data: newBeer
-    // }).then(function(data) {
-	// 	console.log(data);
-	// })
-	  console.log('newbeer', newBeer);
-	//   showModal(newBeer);
+		console.log(newBeer);
+		
 
+		  $.ajax("/api/beer/add", {
+			type: "POST",
+			data: newBeer
+			}).then(function(data) {
+				console.log(data);
+			})
 	})
-
+	
 	$("#ingredientType").on('change', function() {
 		var ingredientType = $("#ingredientType").val();
 		switch (ingredientType) {

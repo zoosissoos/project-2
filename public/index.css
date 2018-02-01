@@ -106,9 +106,10 @@ body {
 	font-size: 48px;
 }
 
-#upvoteArrow {
+#upvoteArrow, .upvoteArrow {
 	cursor: pointer;
 }
+
 
 .red {
 	color: red
@@ -157,7 +158,7 @@ body {
 }
 
 .hashtag-list-item:hover {
-	color: blue
+	color: blue;
 }
 
 .list-beer-name-link {
@@ -177,7 +178,7 @@ body {
 	font-family: 'Lato', sans-serif;
 	font-size: 18px;
 	margin-left: 10px;
-	color: #bdd4f9
+	color: #bdd4f9;
 }
 
 
@@ -274,4 +275,8 @@ body {
 .list-beer-style:hover {
 	color: black;
 	cursor: pointer;
+}
+
+.navbar {
+	margin-top: -20px;
 }
