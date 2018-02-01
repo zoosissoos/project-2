@@ -46,7 +46,7 @@
                 <div class='panel-body ingredients-panel'>
                         <div class='text-right'>
                                 <span class="glyphicon glyphicon glyphicon-arrow-up" aria-hidden="true" id='upvoteArrow'></span>
-                                <span class='upvotes'>{{ upvotes }}</span>
+                                <span class='upvotes' id = "upvotecount">{{ upvotes }}</span>
                         </div>
                     <div class='description-container'>
                         {{recipeDesc}}
@@ -185,7 +185,19 @@ var isUpvoted = true;
 
 
     $("#upvoteArrow").on('click', function() {
+        console.log(`click registered`);
+        let recId = {{recipeId}};
+        let curUp = {{upvotes}};
+        $.ajax('/recipe/upvote', {
+        type: "PUT",
+        data: {
+            currentUp: curUp,
+            id: recId
+        }
+      }).then(function(data) {
+        console.log('recipe Upvoted');
         changeUpvoteColor('#upvoteArrow');
+      })
     })
 
 
