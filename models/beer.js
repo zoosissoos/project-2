@@ -37,7 +37,7 @@ var beer = {
   },  
   // The variables cols and vals are arrays.
   insertOne: function(cols, vals, cb) {
-    orm.create("beers", cols, vals, function(res) {
+    orm.create("recipe_ingredients", cols, vals, function(res) {
       cb(res);
     });
   },
