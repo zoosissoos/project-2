@@ -145,70 +145,41 @@
 
 // $(document).ready(function() {
 
-//     var isUpvoted = true;
+var isUpvoted = true;
 
-//     var username = 'username';
-//     var beerName = 'beername';
-
-//     var grain = 'a grain';
-//     var yeast = 'a yeast';
-//     var hop = 'a hop';
-//     var adjunct = 'an adjunct';
-//     var somenumber = '3.2'
-
-//     var hashtags = '#beer #ipa #whatever #another #more #hash #tags #summer';
-
-//     var comment1 = {
-//         body: 'This beer is good',
-//         username: 'Guy1'
-//     }
-
-//     var comment2 = {
-//         body: 'This beer is bad',
-//         username: 'Guy2'
-//     }
-
-//     var comments = [comment1, comment2]
 
     function changeUpvoteColor(id) {
+
+        var numberOfVotes = $(".upvotes").text()
+
         if (isUpvoted) {
             $(id).addClass('red');
             isUpvoted = false;
+
+            numberOfVotes = parseInt(numberOfVotes) + 1;
+            $(".upvotes").text(numberOfVotes);
             return;
         } 
         
         if (!isUpvoted) {
             $(id).removeClass('red');
             isUpvoted = true;
+
+            numberOfVotes = parseInt(numberOfVotes) - 1;
+            $(".upvotes").text(numberOfVotes);
+
             return;
         }
+
+        ;
+
     }
 
-//     function renderComments(commentArrayOfObjects) {
-//         commentArrayOfObjects.map(comment => {
-//             $("#comments").append(`<li class='list-group-item'><div>${comment.username}</div><hr><div>${comment.body}</div></li>`);
-//         })
-//     }
 
     $("#upvoteArrow").on('click', function() {
         changeUpvoteColor('#upvoteArrow');
     })
 
-//     $('#usernameLink').append(`<a href='/user/${username}'>${username}</a>`);
-//     $("#beerName").text(beerName);
-//     $('#grains').text(grain);
-//     $('#yeasts').text(yeast);
-//     $('#hops').text(hop);
-//     $('#adjuncts').text(adjunct);
-//     $('#hashtags').text(hashtags);
-
-//     $('#eg').text(somenumber)
-//     $('#sg').text(somenumber)
-//     $('#abv').text(somenumber)
-//     $('#ibu').text(somenumber)
-
-//     renderComments(comments)
-// })
 
 
     

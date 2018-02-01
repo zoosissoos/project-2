@@ -152,6 +152,8 @@ body {
 	cursor: pointer;
 	font-family: 'Kalam', cursive;
 	text-align: center;
+	font-weight: 400;
+	font-size: 12px;
 }
 
 .hashtag-list-item:hover {
@@ -173,6 +175,9 @@ body {
 .list-beer-style {
 	font-weight: 700;
 	font-family: 'Lato', sans-serif;
+	font-size: 18px;
+	margin-left: 10px;
+	color: #bdd4f9
 }
 
 
@@ -180,6 +185,7 @@ body {
 	font-family: 'Slabo 27px', serif;
 	text-align: center;
 	font-size: 16px;
+	margin-left: 10px;
 }
 
 .added-ingredients-panel-body {
@@ -247,4 +253,25 @@ body {
 
 .small-top-margin {
 	margin-top: 5px;
+}
+
+.search-container {
+	margin-left: 300px;
+	margin-right: 300px;
+}
+
+.search-panel-body {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.search-panel-header {
+	font-size: 32px;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.list-beer-style:hover {
+	color: black;
+	cursor: pointer;
 }
