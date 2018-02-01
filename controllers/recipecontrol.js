@@ -32,11 +32,42 @@ router.post('/api/beer/add',function(req,res){
                         req.body.recipeComments,
                         req.body.picUrl,
                         req.body.userId,], function(result) {
-    console.log(result[0][0].recipeId);
+    //console.log(result[0][0].recipeId);
+
+    var insertedId = result[0][0].recipeId;
     //res.end();
-    res.redirect(`/recipe/${result[0][0].recipeId}`);
+    //res.redirect(`/recipe/${insertedId}`);
     //res.send(result[0][0].recipeId);
-    })
+    });
+
+    for (let i = 0; i <req.body.recipeIngred.length; i ++){
+        if(req.body.recipeIngred[i].iId !== null){
+
+            beer.create([
+                "recipeId", 
+                "ingredientsId",
+                "ingredientsQty",
+                "ingredientsQtyDesc",
+                "ingredientName"
+            ], 
+            [
+                insertedId,
+                req.body.recipeIngred[i].iQty, 
+                req.body.recipeIngred[i].iDesc, 
+                "test"
+                //req.body.recipeIngred[i].iId, 
+            ], function(result) {
+
+                res.end();
+
+            });
+
+        }
+    }
+
+
+    res.redirect(`/recipe/${insertedId}`);
+
 });
 // IN p_recipeName VarChar(255), 
 // IN p_recipeDesc VarChar(255), 
