@@ -47,7 +47,7 @@ function printQuestionMarks(num) {
       });
     },   
     oneRecipe: function(whereId, cb) {
-      var queryString = `SELECT R.*, RI.recipeIngredientsId, RI.ingredientsId, RI.ingredientsQty, RI.ingredientsQtyDesc FROM recipe R LEFT JOIN recipe_ingredients RI ON R.recipeId = RI.recipeId WHERE R.recipeId = "${whereId}";`;
+      var queryString = `SELECT R.*, RI.recipeIngredientsId, RI.ingredientsId, RI.ingredientsQty, RI.ingredientsQtyDesc, RI.ingredientName FROM recipe R LEFT JOIN recipe_ingredients RI ON R.recipeId = RI.recipeId WHERE R.recipeId = "${whereId}";`;
       console.log(queryString);
       connection.query(queryString, function(err, result) {
         if (err) {
