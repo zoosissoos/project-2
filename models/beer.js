@@ -58,7 +58,14 @@ var beer = {
     orm.callSP("getAllRecipes", vals, function(res) {
       cb(res);
     });
-  }  
+  },
+
+  // The variables cols and vals are arrays.
+  callInsertSP: function(vals, cb) {
+    orm.callInsertSP("insertRecipe", vals, function(res) {
+      cb(res);
+    });
+  }    
 };
 
 
