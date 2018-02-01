@@ -66,6 +66,11 @@
 									<option>Tablespoon</option>
 									<option>Teaspoon</option>
 									<option>Gram</option>
+									<option>Gallon</option>
+									<option>Cup</option>
+									<option>Ounce</option>
+									<option>Pound</option>
+									<option>Liter</option>
 								</select>
 							</div>
 						</div>
@@ -342,6 +347,12 @@ $(document).ready(() => {
 			recipeIngred, recipeName, recipeStyleDesc, OG, SG, alcoholByVolume, ibu, recipeDirections, recipeDesc, hashtags
 		}
 
+		//   $.ajax("/api/newbeer", {
+    //   type: "POST",
+    //   data: newBeer
+    // }).then(function(data) {
+	// 	console.log(data);
+	// })
 	  console.log('newbeer', newBeer);
 	//   showModal(newBeer);
 
@@ -381,51 +392,9 @@ $(document).ready(() => {
 
 		console.log('filtered', recipeIngred)
 		
-
-		// if (type === 'Grains/Malt') {
-		// 	beer.grains = beer.grains.filter(item => {
-		// 	return item != id
-		// 	})
-
-		// 	if (beer.grains === 0) {
-		// 		$('#grainsList').append("<li class='list-group-item' id='grain-example'>Add a grain/malt</li>")
-		// 	}
-		// }
-
-		// if (type === 'Hops') {
-		// 	beer.hops = beer.hops.filter(item => {
-		// 		return item != id
-		// 		})
-	
-		// 		if (beer.hops.length === 0) {
-		// 			$('#hopsList').append("<li class='list-group-item' id='hop-example'>Add a hop</li>")
-		// 		}
-		// }
-		
-		// if (type === 'Yeasts') {
-		// 	beer.yeasts = beer.yeasts.filter(item => {
-		// 		return item != id
-		// 		})
-	
-		// 		if (beer.yeasts.length === 0) {
-		// 			$('#yeastsLength').append("<li class='list-group-item' id='yeast-example'>Add a yeast</li>")
-		// 		}
-		// }
-
-		// if (type === 'Adjuncts') {
-		// 	beer.adjuncts = beer.adjuncts.filter(item => {
-		// 		return item != id
-		// 		})
-	
-		// 		if (beer.adjuncts.length === 0) {
-		// 			$('#adjunctsList').append("<li class='list-group-item' id='adjunct-example'>Add an adjunct</li>")
-		// 		}
-		// }
-	})
-
-	beerStyles.map(style => {
+		beerStyles.map(style => {
 		$("#beerStyles").append(`<option value=${style}>`)
+		})
 	})
-})
-	
+});
 </script>
