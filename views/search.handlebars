@@ -1,25 +1,33 @@
 {{> logged-in-nav name='dave'}}
 <div class='body-container'>
-	<form id='search' class='form-group'>
-		<div class='row search-row'>
-			<div class='col-xs-offset-3 col-xs-3'>
-				<label for="searchTerm">Search</label>
-				<input type='text' class='form-control' id='searchTerm'>
-			</div>
-			<div class='col-xs-2'>
-				<label for="searchOptions">By</label>				
-				<select class='form-control' id='searchOptions'>
-					<option></option>
-					<option class='text-left'>Style</option>
-					<option>Hashtag</option>
-					<option>Ingredients</option>			
-				</select>
-			</div>
-			<div class='col-xs-1'>
-				<button id='submit' class='btn btn-primary search-btn'> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>				
-			</div>
+	<div class='search-container panel panel-default'>
+		<div class='panel-heading'>
+			<div class='search-panel-header'>Search for beers</div>
 		</div>
-	</form>
+		<div class='panel-body search-panel-body'>
+			<form id='search' class='form-group'>
+				<div class='row search-row'>
+					<div class='col-xs-5'>
+						<label for="searchTerm">Search for</label>
+						<input type='text' class='form-control' id='searchTerm'>
+					</div>
+					<div class='col-xs-5'>
+						<label for="searchOptions">By</label>				
+						<select class='form-control' id='searchOptions'>
+							<option></option>
+							<option class='text-left'>Style</option>
+							<option>Hashtag</option>
+							<option>Ingredients</option>			
+						</select>
+					</div>
+					<div class='col-xs-2'>
+						<button id='submit' class='btn btn-primary search-btn'> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>				
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	
 	<div class='search-results-container'>
 		<!-- <div class='searcr-results-header text-center'>Search Results</div> -->
 		<ul class='search-results-list list-group' id='searchResults'>
@@ -52,6 +60,17 @@
 </div>
 <script>
 $(document).ready(function() {
+
+	var renderArray = []
+
+	$(function(){ 
+		$(window).scroll(function(){
+           if($(document).height()<=$(window).scrollTop()+$(window).height()+100){
+               alert('end of page');
+           }
+			});
+	});
+
 	function renderHashtags(string) {
 		var array = string.split(',')
 		var result = array.map(hashtag => {
@@ -61,35 +80,85 @@ $(document).ready(function() {
 	}
 
 	function renderList(array) {
+		var allMatches = array;
+		$('#searchResults').empty();
+
 		array.map(beer => {
-			var name = "Name"
+			var name = beer.recipeName;
 			var upvotes = beer.upvotes;
-			var style = beer.recipeStyleDesc;
+			var style = beer.styleName;
 			var description = beer.recipeDesc;
 			var hashtags = renderHashtags(beer.hashtags)
 			var id = beer.recipeId;
 
 
-			$('#searchResults').append(`<li class='list-group-item'><div class='row'><div class='col-xs-10'><div class='list-beer-name'><a class='list-beer-name-link' href='/recipe/${id}' target='_blank'>${name}</a></div><div class='list-beer-style text-left'>${style}</div></div><div class='col-xs-2 text-right' id='listBeerUpvotes'><span class='glyphicon glyphicon glyphicon-arrow-up' aria-hidden='true' class='upvoteArrow'></span>${upvotes}</div></div><hr><div class='search-list-hashtags text-center'>${hashtags}</div><div class='search-list-description'>${description}</div></li>`)
+			$('#searchResults').append(`<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-xs-10'>
+						<div class='list-beer-name'>
+							<a class='list-beer-name-link' href='/recipe/${id}' target='_blank'>${name}</a>
+							<span class='list-beer-style' data=${style}>(${style})</span>
+							<span class='search-list-description'>${description}</span>
+						</div>
+						<div class='style-and-hashtags-conterin'>
+							<span class='search-list-hashtags'>${hashtags}</span>
+						</div>
+						
+					</div>
+					<div class='col-xs-2 text-right' id='listBeerUpvotes'>
+						<span class='glyphicon glyphicon glyphicon-arrow-up' aria-hidden='true' class='upvoteArrow'></span>
+						${upvotes}
+					</div>
+				</div>
+				</li>`)
 		})
 	}
 	
-	$(document).on('click', '.hashtag-list-item', function() {
-		var searchTerm = $(this).text().toLowerCase();
+	$(document).on('click', '.list-beer-style', function() {
+		renderArray = []
+		var searchTerm = $(this).attr('data').toLowerCase();
 		var trimmed = searchTerm.trim()
 		var term = trimmed.slice(1, trimmed.length);
-	
+
+		console.log('clicked', term)
+
 		$.ajax({
 		method: "GET",
 		url: '/api/recipes/all'
 		}).then(function(data) {
 			
-			var allBeers = data[0]
+			var allBeers = data
+
+			var result = allBeers.filter(beer => {
+					console.log(beer.styleName);
+					return beer.styleName.toLowerCase() == searchTerm
+				})
+				console.log('style', result);
+				renderList(result);
+			
+		})	
+	});
+
+	$(document).on('click', '.hashtag-list-item', function() {
+		renderArray = []
+		var searchTerm = $(this).text().toLowerCase();
+		var trimmed = searchTerm.trim()
+		var term = trimmed.slice(1, trimmed.length);
+
+		console.log('clicked', term)
+
+		$.ajax({
+		method: "GET",
+		url: '/api/recipes/all'
+		}).then(function(data) {
+			
+
+			var allBeers = data
 
 			var matches = []
 			
 
-			for (let i=0; i<data.length; i++) {
+			for (let i=0; i<allBeers.length; i++) {
 				if (allBeers[i].hashtags) {
 					var hashtags = allBeers[i].hashtags.split(',');
 					
@@ -107,13 +176,14 @@ $(document).ready(function() {
 					}
 				}
 			}
-			$('#searchResults').empty();
+
+
 			renderList(matches)
 		})	
 	});
 
 	$("#submit").on('click', function(event) {
-
+		renderArray = []
 		event.preventDefault();
 		var searchTerm = $('#searchTerm').val().toLowerCase();
 		var searchOption = $('#searchOptions').val();
@@ -123,7 +193,7 @@ $(document).ready(function() {
 		url: '/api/recipes/all'
 		}).then(function(data) {
 			console.log(data);
-			var allBeers = data[0];
+			var allBeers = data
 			
 			var matches = []
 			
@@ -146,17 +216,17 @@ $(document).ready(function() {
 						}
 					}
 				}
+				renderList(matches);
 			}
 
 			if (searchOption === 'Style') {
 				var result = allBeers.filter(beer => {
-					console.log(beer.recipeStyleDesc);
-					return beer.recipeStyleDesc.toLowerCase() == searchTerm
+					console.log(beer.styleName);
+					return beer.styleName.toLowerCase() == searchTerm
 				})
 				console.log('style', result);
 				renderList(result);
 			}
-			renderList(matches);
 		})
 	})
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const _ = require('lodash');
 
 const db = require('../config/connection.js');
 
@@ -26,7 +27,12 @@ router.post('api/beer/add',function(req,res){
 //reurns all beers as a json object
 router.get('/api/recipes/all', function(req,res){
   beer.getAllBeers(function(data){
-      res.json(data);
+      console.log(data[0]);
+
+        var sorted = _.orderBy(data[0], ['upvotes'], ['desc']);
+        console.log(sorted)
+
+      res.json(sorted);
   })
 });
 

@@ -85,12 +85,12 @@ pictureURL
 VALUES(
 "Beer1",
 "This is a test - 1",
-"one",
+"ipa",
 40,
 2.089,
 1.3456,
 111,
-10,
+50,
 "#cool,#awesome,#tasty",
 "do some stuff - 1",
 "This is a cool recipe - 1",
@@ -115,12 +115,12 @@ pictureURL
 VALUES(
 "Beer2",
 "This is a test - 2",
-"two",
+"ipa",
 40,
 3.089,
 2.3456,
 222,
-10,
+124,
 "#cool,#awesome,#tasty",
 "do some stuff - 2",
 "This is a cool recipe - 2",
@@ -144,14 +144,14 @@ pictureURL
 )
 
 VALUES(
-"Beer1",
+"Beer3",
 "This is a test - 3",
-"three",
+"ipa",
 40,
 5.089,
 4.3456,
 123,
-10,
+99,
 "#cool,#awesome,#tasty",
 "do some stuff - 3",
 "This is a cool recipe - 3",
@@ -174,14 +174,14 @@ pictureURL
 )
 
 VALUES(
-"Beer1",
+"Beer4",
 "This is a test - 4",
-"four",
+"pilsner",
 40,
 2.089,
 1.3456,
 111,
-10,
+32,
 "#cool,#awesome,#tasty",
 "do some stuff - 4",
 "This is a cool recipe - 4",
@@ -204,14 +204,14 @@ pictureURL
 )
 
 VALUES(
-"Beer1",
+"Beer5",
 "This is a test - 5",
-"five",
+"pilsner",
 40,
 2.089,
 1.3456,
 331,
-10,
+54,
 "#cool,#awesome,#tasty",
 "do some stuff - 5",
 "This is a cool recipe - 5",
@@ -235,14 +235,14 @@ pictureURL
 )
 
 VALUES(
-"Beer1",
+"Beer6",
 "This is a test - 6",
-"six",
+"pilsner",
 40,
 2.089,
 1.3456,
 111,
-10,
+76,
 "#wow,#tasty,#stout",
 "do some stuff - 6",
 "This is a cool recipe - 6",
@@ -265,15 +265,15 @@ pictureURL
 )
 
 VALUES(
-"Beer1",
+"Beer7",
 "This is a test - 7",
-"seven",
+"stout",
 40,
 2.089,
 1.3456,
 111,
-10,
-"#I love summer",
+12,
+"#Ilovesummer, cool, #yummy",
 "do some stuff - 7",
 "This is a cool recipe - 7",
 "https://i.imgur.com/whKgsmE.jpg"
@@ -296,14 +296,14 @@ pictureURL
 )
 
 VALUES(
-"Beer1",
+"Beer8",
 "This is a test - 8",
-"eight",
+"stout",
 40,
 2.089,
 1.3456,
 111,
-10,
+53,
 "#yummy",
 "do some stuff - 8",
 "This is a cool recipe - 8",
@@ -326,14 +326,14 @@ pictureURL
 )
 
 VALUES(
-"Beer1",
+"Beer9",
 "This is a test - 9",
-"nine",
+"stout",
 40,
 2.089,
 1.3456,
 111,
-10,
+11,
 "#cool,#awesome,#tasty",
 "do some stuff - 9",
 "This is a cool recipe - 9",
@@ -356,15 +356,15 @@ pictureURL
 )
 
 VALUES(
-"Beer1",
+"Beer10",
 "This is a test - 10",
-"ten",
+"stout",
 40,
 2.089,
 1.3456,
 111,
-10,
-"#I love winter",
+24,
+"#Ilovewinter, #ilovesummer, #cool",
 "do some stuff - 10",
 "This is a cool recipe - 10",
 "https://i.imgur.com/whKgsmE.jpg"
