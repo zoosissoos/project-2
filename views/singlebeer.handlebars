@@ -4,7 +4,7 @@
     <div class='row'>
         <div class='col-xs-3'>
             <div class='panel panel-default beer-image-panel'>
-                <img class='single-beer-image center-block thumbnail' src='{{picUrl}}' />
+                <img class='single-beer-image center-block thumbnail' src='{{picUrl}}' data-failover="http://snlonlinegrocery.com/wp-content/uploads/2016/10/san-mig-light-in-can.jpg"/>
                 <div class='hashtags-container'>
                     <div class='hashtags' id='hashtags'>
                             {{#each recipeHashtags}}
@@ -189,6 +189,12 @@ var isUpvoted = true;
     })
 
 
-
     
+$('.single-beer-image').on('error', function() {
+     var failover = $(this).data('failover');
+    if (this.src != failover){
+      this.src = failover;
+    }
+});
+
 </script>
