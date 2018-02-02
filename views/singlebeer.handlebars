@@ -70,12 +70,12 @@
                         <div class='ingredient-container'>
                             <strong>Grains: </strong>
                             <ul class='ingredients' id='yeasts'>
-                                {{#if yeasts}}    
-                                {{#each yeasts}}
+                                {{#if grains}}    
+                                {{#each grains}}
                                     <li>{{iQty}} {{iDesc}} of <span class='ingredient-name'>{{iName}}</span></li>
                                 {{/each}}
                                 {{else}}
-                                    <li class='red single-beer-empty-ingredient'>No hops</li>
+                                    <li class='red single-beer-empty-ingredient'>No Grains</li>
                                 {{/if}}
                             </ul>
                         </div>
@@ -96,28 +96,28 @@
                     </div>
                     <div>
                         <div class='ingredient-container'>
-                            <strong>Yeasts: </strong>
+                            <strong>Adjuncts: </strong>
                             <ul class='ingredients' id='grains'>
-                                {{#if grains}}    
-                                {{#each grains}}
+                                {{#if adjuncts}}    
+                                {{#each adjucnts}}
                                     <li>{{iQty}} {{iDesc}} of <span class='ingredient-name'>{{iName}}</span></li>
                                 {{/each}}
                                 {{else}}
-                                    <li class='red single-beer-empty-ingredient'>No grains</li>
+                                    <li class='red single-beer-empty-ingredient'>No Adjuncts</li>
                                 {{/if}}
                             </ul>
                         </div>
                     </div>
                     <div>
                         <div class='ingredient-container'>
-                            <strong>Adjuncts: </strong>
+                            <strong>Yeasts: </strong>
                             <ul class='ingredients' id='adjuncts'>
-                                {{#if adjuncts}}    
-                                {{#each adjuncts}}
+                                {{#if yeasts}}    
+                                {{#each yeasts}}
                                     <li>{{iQty}} {{iDesc}} of <span class='ingredient-name'>{{iName}}</span></li>
                                 {{/each}}
                                 {{else}}
-                                    <li class='red single-beer-empty-ingredient'>No adjuncts</li>
+                                    <li class='red single-beer-empty-ingredient'>No Yeasts</li>
                                 {{/if}} 
                             </ul>
                         </div>

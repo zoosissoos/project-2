@@ -485,9 +485,8 @@ $(document).ready(() => {
 		
 		console.log(type);
 
-		$(`#${id}`).remove()
+		$(`#${id}`).remove();
 
-		console.log('unfilterd', recipeIngred)
 
 		recipeIngred = recipeIngred.filter(item => {
 			return item.specificName !== id
