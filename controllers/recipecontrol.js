@@ -169,7 +169,7 @@ router.get('/random-beer', function(req, res) {
         var sorted = _.orderBy(data[0], ['upvotes'], ['desc']);
         console.log(sorted)
   
-        var randomNumber = Math.floor(Math.random() * sorted.length)
+        var randomNumber = Math.floor(Math.random() * sorted.length) + 1
 
         res.redirect(`recipe/${randomNumber}`);
     })

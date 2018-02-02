@@ -34,7 +34,12 @@ var beer = {
     orm.oneUser(userName, function(res) {
       cb(res);
     });
-  },  
+  },
+  oneUserAllRecipes: function(userId, cb) {
+    orm.oneUserAllRecipes(userId, function(res) {
+      cb(res);
+    });
+  },
   // The variables cols and vals are arrays.
   insertOne: function(cols, vals, cb) {
     orm.create("recipe_ingredients", cols, vals, function(res) {
