@@ -45,7 +45,8 @@ function printQuestionMarks(num) {
         }
         cb(result);
       });
-    },   
+    },  
+    //finds recipes and ingredients by recipe id 
     oneRecipe: function(whereId, cb) {
       var queryString = `SELECT R.*, RI.recipeIngredientsId, RI.ingredientsId, RI.ingredientsQty, RI.ingredientsQtyDesc, RI.ingredientName FROM recipe R LEFT JOIN recipe_ingredients RI ON R.recipeId = RI.recipeId WHERE R.recipeId = "${whereId}";`;
       console.log(queryString);
@@ -57,6 +58,7 @@ function printQuestionMarks(num) {
         cb(result);
       });
     },
+    //query to find user by username
     oneUser: function(userN, cb) {
       var queryString = `SELECT * FROM user_info WHERE user_info.userName = "${userN}";`;
       console.log(queryString);
@@ -66,7 +68,8 @@ function printQuestionMarks(num) {
         }
         cb(result);
       });
-    },   
+    },
+    //future development grabbing all user's recipes by userID   
     oneUserAllRecipes: function(userId, cb) {
       var queryString = `SELECT * FROM recipe WHERE recipe.userId = "${userId}";`;
       console.log(queryString);
@@ -77,6 +80,7 @@ function printQuestionMarks(num) {
         cb(result);
       });
     }, 
+    //general grabber
     all: function(tableInput, cb) {
       var queryString = "SELECT * FROM " + tableInput + ";";
       connection.query(queryString, function(err, result) {
@@ -86,6 +90,7 @@ function printQuestionMarks(num) {
         cb(result);
       });
     },
+    //general create function
     create: function(table, cols, vals, cb) {
       var queryString = "INSERT INTO " + table;
   

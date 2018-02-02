@@ -1,6 +1,8 @@
 var orm = require("../config/orm.js");
 
 var beer = {
+
+  //selects all recipes
   selectAll: function(cb) {
     orm.all("beers", function(res) {
       cb(res);
@@ -13,6 +15,7 @@ var beer = {
     });
   },
 
+  //selects one beer by recipe id
   selectOneBeer: function(id, cb) {
     orm.oneRecipe(id, function(res) {
       cb(res);
@@ -25,11 +28,14 @@ var beer = {
     });
   },  
 
+  //selects all users
   selectAllUsers: function(cb) {
     orm.all("user_info", function(res) {
       cb(res);
     });
   },
+
+  // selects one user by username
   selectOneUser: function(userName, cb) {
     orm.oneUser(userName, function(res) {
       cb(res);
@@ -73,8 +79,6 @@ var beer = {
     });
   }    
 };
-
-
   
 // Export 
 module.exports = beer;
