@@ -304,6 +304,28 @@ body {
 	font-size: 36px;
 }
 
+.single-beer-user-name {
+	margin-top: 15px;
+}
+
+.beer-style {
+	font-size: 18px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.beer-style:hover {
+	color: powderblue;
+}
+
+.hashtag, .ingredient-name {
+	cursor: pointer;
+}
+
+.hashtag:hover, .ingredient-name:hover {
+	color: powderblue;
+}
+
 .error {
 	font-size: 16px;
 	color: red;

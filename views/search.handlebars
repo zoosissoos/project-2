@@ -9,12 +9,11 @@
 				<div class='row search-row'>
 					<div class='col-xs-5'>
 						<label for="searchTerm">Search for</label>
-						<input type='text' class='form-control' id='searchTerm'>
-					</div>
+						<input type='text' class='form-control' id='searchTerm' value='{{term}}'>
+					</div> 
 					<div class='col-xs-5'>
-						<label for="searchOptions">By</label>				
+						<label for="searchOptions">By</label>	
 						<select class='form-control' id='searchOptions'>
-							<option></option>
 							<option class='text-left'>Style</option>
 							<option>Hashtag</option>
 							<option>Ingredients</option>			
@@ -27,39 +26,17 @@
 			</form>
 		</div>
 	</div>
-	
 	<div class='search-results-container'>
-		<!-- <div class='searcr-results-header text-center'>Search Results</div> -->
 		<ul class='search-results-list list-group' id='searchResults'>
-			<!-- <li class='list-group-item'>
-				<div class='row'>
-					<div class='col-xs-8'>
-						<div class='list-beer-name'>
-							Beer Name
-						</div>
-					</div>
-					<div class='col-xs-2'>
-						<div class='list-beer-style text-right'>
-							Style
-						</div>
-					</div>
-					<div class='col-xs-2 text-right' id='listBeerUpvotes'>
-						<span class="glyphicon glyphicon glyphicon-arrow-up" aria-hidden="true" id='upvoteArrow'></span> 10
-					</div>
-				</div>
-				<hr>
-				<div class='search-list-hashtags text-center'>
-					<div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div><div class='hashtag-list-item'>#hashtag</div>
-				</div>
-				<div class='search-list-description'>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. At, accusantium consequuntur? Dolore accusamus sed delectus deserunt architecto numquam id autem debitis amet porro, libero quo nihil facilis distinctio? Sunt, blanditiis.
-				</div>
-			</li> -->
+			
 		</ul>
+
 	</div>
 </div>
-<script>
+<script> 
 $(document).ready(function() {
+ 
+	$("#searchOptions").val("Hashtag");
 
 	var renderArray = []
 
@@ -298,6 +275,42 @@ $(document).ready(function() {
 			}
 		})
 	})
+
+	if ($("#searchTerm")) {
+		$.ajax({
+		method: "GET",
+		url: '/api/recipes/all'
+		}).then(function(data) {
+			var allBeers = data
+			var matches = []
+			var searchTerm = $("#searchTerm").val();
+
+			console.log(allBeers);
+			console.log(searchTerm);
+
+			for (let i=0; i<allBeers.length; i++) {
+					if (allBeers[i].hashtags) {
+						var hashtags = allBeers[i].hashtags.split(',');
+						
+						hashtags = hashtags.map(hashtag => {
+							var trimmed = hashtag.trim()
+							var sliced = trimmed.slice(1, trimmed.length)
+							return sliced.toLowerCase();
+						})
+
+						
+						for (let j=0; j<hashtags.length; j++) {
+							if (hashtags[j] === searchTerm) {
+								matches.push(allBeers[i])
+							}
+						}
+					}
+				}
+				renderArray = matches
+				renderTen(renderArray);
+			
+		})
+	}
 
 })
 

@@ -8,7 +8,7 @@
                 <div class='hashtags-container'>
                     <div class='hashtags' id='hashtags'>
                             {{#each recipeHashtags}}
-                            {{this}}
+                            <span class='hashtag'>{{this}}</span>
                             {{/each }}
                     </div>
                     <hr>
@@ -39,15 +39,26 @@
                               {{recipeName }}
                             </div>
                             <div class='single-beer-user-name' id='usernameLink'>
+                                <a href='#'>Username here</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class='panel-body ingredients-panel'>
-                        <div class='text-right'>
-                                <span class="glyphicon glyphicon glyphicon-arrow-up" aria-hidden="true" id='upvoteArrow'></span>
-                                <span class='upvotes' id = "upvotecount">{{ upvotes }}</span>
+                        <div class='row'>
+                            <div class='col-xs-10'>
+                                <div class='beer-style'>
+                                    {{styleName}}
+                                </div>
+                            </div>
+                            <div class='col-xs-2'>
+                                <div class='text-right'>
+                                    <span class="glyphicon glyphicon glyphicon-arrow-up" aria-hidden="true" id='upvoteArrow'></span>
+                                    <span class='upvotes' id = "upvotecount">{{ upvotes }}</span>
+                                </div>        
+                            </div>
                         </div>
+                        
                     <div class='description-container'>
                         <div class='single-recipe-description'>{{recipeDesc}}</div>
                     </div>
@@ -61,7 +72,7 @@
                             <ul class='ingredients' id='yeasts'>
                                 {{#if yeasts}}    
                                 {{#each yeasts}}
-                                    <li>{{iQty}} {{iDesc}} of {{iName}}</li>
+                                    <li>{{iQty}} {{iDesc}} of <span class='ingredient-name'>{{iName}}</span></li>
                                 {{/each}}
                                 {{else}}
                                     <li class='red single-beer-empty-ingredient'>No hops</li>
@@ -75,7 +86,7 @@
                             <ul class='ingredients' id='hops'>
                                 {{#if hops}}    
                                 {{#each hops}}
-                                    <li>{{iQty}} {{iDesc}} of {{iName}}</li>
+                                    <li>{{iQty}} {{iDesc}} of <span class='ingredient-name'>{{iName}}</span></li>
                                 {{/each}}
                                 {{else}}
                                     <li class='red single-beer-empty-ingredient'>No hops</li>
@@ -89,7 +100,7 @@
                             <ul class='ingredients' id='grains'>
                                 {{#if grains}}    
                                 {{#each grains}}
-                                    <li>{{iQty}} {{iDesc}} of {{iName}}</li>
+                                    <li>{{iQty}} {{iDesc}} of <span class='ingredient-name'>{{iName}}</span></li>
                                 {{/each}}
                                 {{else}}
                                     <li class='red single-beer-empty-ingredient'>No grains</li>
@@ -103,7 +114,7 @@
                             <ul class='ingredients' id='adjuncts'>
                                 {{#if adjuncts}}    
                                 {{#each adjuncts}}
-                                    <li>{{iQty}} {{iDesc}} of {{iName}}</li>
+                                    <li>{{iQty}} {{iDesc}} of <span class='ingredient-name'>{{iName}}</span></li>
                                 {{/each}}
                                 {{else}}
                                     <li class='red single-beer-empty-ingredient'>No adjuncts</li>
@@ -238,7 +249,15 @@ var isUpvoted = true;
         
     })
 
+$('.hashtag').on('click', function() {
 
+    var tag = $(this).text()
+    tag = tag.substr(1, tag.length);
+    var link = `/searchby/${tag}/Hashtag`
+    console.log(link);
+
+    window.location.href = link
+})
     
 $('.single-beer-image').on('error', function() {
      var failover = $(this).data('failover');

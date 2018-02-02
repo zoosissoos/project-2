@@ -13,6 +13,16 @@ router.get('/search', function(req, res) {
   res.render('search');
 });
 
+router.get('/searchby/:term/:category', function(req, res) {
+
+    var hbsObject = {
+        term: req.params.term,
+        category: req.params.category
+    }
+
+    res.render('search', hbsObject);
+  });
+
 //route for add page
 router.get('/beer/add',function(req,res){
     res.render('add');
