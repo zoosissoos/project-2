@@ -253,7 +253,7 @@ $('.hashtag').on('click', function() {
 
     var tag = $(this).text()
     tag = tag.substr(1, tag.length);
-    var link = `/searchby/${tag}/Hashtag`
+    var link = `/searchby/Hashtag/${tag}`
     console.log(link);
 
     window.location.href = link

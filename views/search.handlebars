@@ -35,10 +35,12 @@
 </div>
 <script> 
 $(document).ready(function() {
- 
+	
 	$("#searchOptions").val("Hashtag");
 
 	var renderArray = []
+
+		
 
 	$(function(){ 
 		$(window).scroll(function(){
@@ -312,6 +314,12 @@ $(document).ready(function() {
 		})
 	}
 
+	$.ajax({
+		method: "GET",
+		url: '/api/recipes/all'
+		}).then(function(data) {
+			renderTen(data);
+		})
 })
 
 
