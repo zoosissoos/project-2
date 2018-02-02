@@ -164,7 +164,7 @@ router.get('/recipe/:id',function(req,res){
             hops: hops,
             yeasts: yeasts,
             adjuncts: adjuncts
-          };
+        };
         
         //renders singlebeer page
         console.log(hbsObject);
@@ -184,6 +184,5 @@ router.get('/random-beer', function(req, res) {
         res.redirect(`recipe/${randomNumber}`);
     })
 })
-
 
 module.exports = router;

@@ -322,6 +322,10 @@ body {
 	cursor: pointer;
 }
 
+.greetings-row {
+	margin: 20px 400px;
+}
+
 .beer-style:hover {
 	color: powderblue;
 }
@@ -339,4 +343,8 @@ body {
 	color: red;
 	text-align: center;
 	margin-top: 20px;
+}
+
+.greetings-container {
+	color: black
 }
