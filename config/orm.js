@@ -66,7 +66,17 @@ function printQuestionMarks(num) {
         }
         cb(result);
       });
-    },    
+    },   
+    oneUserAllRecipes: function(userId, cb) {
+      var queryString = `SELECT * FROM recipe WHERE recipe.userId = "${userId}";`;
+      console.log(queryString);
+      connection.query(queryString, function(err, result) {
+        if (err) {
+          throw err;
+        }
+        cb(result);
+      });
+    }, 
     all: function(tableInput, cb) {
       var queryString = "SELECT * FROM " + tableInput + ";";
       connection.query(queryString, function(err, result) {

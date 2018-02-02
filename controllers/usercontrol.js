@@ -49,5 +49,10 @@ router.get('/profile/:userName',function(req,res){
   });
 });
 
+router.get('/api/profile/:userId', function(req, res) {
+  beer.oneUserAllRecipes(req.params.userId, function(data) {
+    res.json(data);
+  })
+})
 
 module.exports = router;

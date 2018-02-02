@@ -9,6 +9,7 @@
 		<div class='panel-heading add-beer-header'>
 			Add a Beer
 		</div>
+		<div id="error" class='error'></div>
 		<div class='panel-body'>
 			<div class='add-beer-form-container'>
 				<div class='add-beer-form-header'>Basic Information</div>
@@ -56,7 +57,7 @@
 							<div class='form-group'>
 								<label class='ingredient-header'>Quantity</label>
 								<div class='form-helper'>How much?</div>
-								<input class='form-control' id='quantity'>
+								<input class='form-control' id='quantity' type='number'>
 							</div>
 						</div>
 						<div class='col-md-2'>
@@ -115,25 +116,25 @@
 					<div class='col-md-3'>
 						<div class="form-group">
 							<label for="usr">Original Gravity</label>
-							<input type="text" class="form-control" id="og">
+							<input type="number" class="form-control" id="og">
 						</div>
 					</div>
 					<div class='col-md-3'>
 						<div class="form-group">
 							<label for="usr">Ending Gravity</label>
-							<input type="text" class="form-control" id="eg">
+							<input type="number" class="form-control" id="eg">
 						</div>
 					</div>
 					<div class='col-md-3'>
 						<div class="form-group">
 							<label for="usr">ABV</label>
-							<input type="text" class="form-control" id="abv">
+							<input type="number" class="form-control" id="abv">
 						</div>
 					</div>
 					<div class='col-md-3'>
 						<div class="form-group">
 							<label for="usr">IBU</label>
-							<input type="text" class="form-control" id="ibu">
+							<input type="number" class="form-control" id="ibu">
 						</div>
 					</div>
 					<div class='row'>
@@ -334,6 +335,7 @@ $(document).ready(() => {
 		
 		console.log(recipeIngred)
 
+		var userId = 4;
 		var recipeName = $("#beerName").val();
 		var styleName = $("#beerStyle").val();
 		var OG = $('#og').val();
@@ -344,8 +346,62 @@ $(document).ready(() => {
 		var recipeDirections = $("#directions").val();
 		var recipeDesc = $('#description').val();
 		var hashtags = $("#hashtags").val();
-		var userId = 5;
 		var picUrl = $("#imageUrl").val();
+
+		if (!recipeIngred.length) {
+			$("#error").text('Must add ingredients');
+			$('html, body').animate({ scrollTop: 0 }, 'fast');
+			return;
+		}
+
+		if (!recipeName) {
+			$("#error").text('Must fill out recipe name');
+			$('html, body').animate({ scrollTop: 0 }, 'fast');
+			return;
+		}
+
+		if (!styleName) {
+			$("#error").text('Must fill out beer style');
+			$('html, body').animate({ scrollTop: 0 }, 'fast');
+			return;
+		}
+
+		if (!OG) {
+			$("#error").text('Must fill out OG');
+			$('html, body').animate({ scrollTop: 0 }, 'fast');
+			return;
+		}
+
+		if (!SG) {
+			$("#error").text('Must fill out SG');
+			$('html, body').animate({ scrollTop: 0 }, 'fast');
+			return;
+		}
+
+		if (!alcoholByVolume) {
+			$("#error").text('Must fill out ABV');
+			$('html, body').animate({ scrollTop: 0 }, 'fast');
+			return;
+		}
+
+		if (!IBU) {
+			$("#error").text('Must fill out IBU');
+			$('html, body').animate({ scrollTop: 0 }, 'fast');
+			return;
+		}
+
+		if (!recipeDirections) {
+			$("#error").text('Must fill out recipe directions');
+			$('html, body').animate({ scrollTop: 0 }, 'fast');
+			return;
+		}
+		if (!recipeDesc) {
+			$("#error").text('Must fill out description');
+			$('html, body').animate({ scrollTop: 0 }, 'fast');
+			return;
+		}
+
+		
 
 		if (!picUrl) {
 			picUrl = 'http://cdn.shopify.com/s/files/1/1493/0474/products/Red_horse_500ml_d0db516c-6cb6-4ed2-8a16-399421d26c39_1024x1024.jpg?v=1509688944'

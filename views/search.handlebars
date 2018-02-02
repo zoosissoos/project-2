@@ -77,8 +77,6 @@ $(document).ready(function() {
 
 		renderArray = futureRendered;
 
-		console.log('original', array.length);
-		console.log('future', futureRendered.length);
 
 		toBeRendered.map(beer => {
 			var name = beer.recipeName;
@@ -94,10 +92,10 @@ $(document).ready(function() {
 					<div class='col-xs-10'>
 						<div class='list-beer-name'>
 							<a class='list-beer-name-link' href='/recipe/${id}' target='_blank'>${name}</a>
-							<span class='list-beer-style' data=${style}>(${style})</span>
+							<span class='list-beer-style' data='${style}'>(${style})</span>
 							<span class='search-list-description'>${description}</span>
 						</div>
-						<div class='style-and-hashtags-conterin'>
+						<div class='style-and-hashtags-container'>
 							<span class='search-list-hashtags'>${hashtags}</span>
 						</div>
 					</div>
@@ -120,7 +118,6 @@ $(document).ready(function() {
 	}
 	
 	$(document).on('click', '.upvoteArrow', function() {
-		console.log("click")
 
 		var currentUp = $(this).attr('data-upvotes');
 		var id = $(this).attr('data');
@@ -128,8 +125,6 @@ $(document).ready(function() {
 		currentUp = parseInt(currentUp);
 		id = parseInt(id);
 
-		console.log(currentUp, typeof currentUp);
-		console.log(id, typeof id);
 
 		$.ajax('/recipe/upvote', {
         type: "PUT",
@@ -138,7 +133,6 @@ $(document).ready(function() {
             id
         }
       }).then(function(data) {
-        console.log('recipe Upvoted');
       })
 
 
@@ -188,8 +182,9 @@ $(document).ready(function() {
 		method: "GET",
 		url: '/api/recipes/all'
 		}).then(function(data) {
-			
 			var allBeers = data
+
+			console.log(searchTerm);
 
 			var result = allBeers.filter(beer => {
 					return beer.styleName.toLowerCase() == searchTerm
@@ -249,7 +244,6 @@ $(document).ready(function() {
 			}
 
 			renderArray = matches
-			console.log(renderArray);
 			renderTen(renderArray)
 		})	
 	});

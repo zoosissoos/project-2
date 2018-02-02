@@ -1,82 +1,53 @@
 {{> nav}}
 
 <div class='userprofile'>
-    <div class='username-header'>
-        <span id='username'>{{username}}</span>
-    </div> 
     <div class='row'>
-        <div class='col-md-3'>
-            <img src='' class='user-image'>
-            <div class='user-info-container'>
-                <div class='panel panel-default'>
-                    <div class='user-info-container-name'>{{userName}}</div>
-                </div>
-            </div>
-        </div>
-        <div class='col-md-6'>
+        <div class='col-md-9'>
             <div class='user-beer-list'>
-                <ul class='list-group' id='user-beer-list'>
-                    {{#each beers}}
-                        <li class='list-group-item'>
-                            <div class='row'>
-                                <div class='col-xs-10'>
-                                    <div class='user-beer-list-name'>
-                                        <a href='/recipe/{{this.id}}'>{{this.name}}</a>
-                                    </div>
-                                </div>
-                                <div class='col-xs-2 text-right'>
-                                    {{upvotes}}<span class="glyphicon glyphicon glyphicon-arrow-up" aria-hidden="true" id='upvoteArrow'></span>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class='user-beer-list-description'>{{description}}</div>
-                            
-                        </li>
-                    {{/each}}               
+                    
+                <ul class='list-group' id='beerList'>
+                    <li class='list-group-item'>
+                        <div class='username-header'>
+                            <span id='username'>{{userName}}</span>
+                        </div> 
+                    </li>     
                 </ul>
             </div>
         </div>
         <div class='col-md-3'>
             <div class='user-stats panel panel-default'>
-                <div class='panel-heading user-stats-heading'>User Info</div>
+                <div class='panel-heading user-stats-heading'><strong>{{userName}}</strong> Info</div>
                 <div class='panel-body user-stats-body'>
                     <div class='user-stats-beers-made'>
-                        Name: <span id='user-name'>{{firstName}}</span>
+                        <strong>Name: </strong><span id='user-name'>{{firstName}}</span>
                     </div>
                     <div class='user-stats-beers-made'>
-                        City: <span id='user-name'>{{city}}</span>
+                        <strong>City: </strong><span id='user-name'>{{city}}</span>
                     </div>
                     <div class='user-stats-beers-made'>
-                        State: <span id='user-name'>{{state}}</span>
+                        <strong>State: </strong><span id='user-name'>{{state}}</span>
                     </div>
                     <div class='user-stats-beers-made'>
-                        Zip: <span id='user-name'>{{zipCode}}</span>
+                       <strong>Zip: </strong> <span id='user-name'>{{zipCode}}</span>
                     </div>
                     <div class='user-stats-beers-made'>
-                        E-mail: <span id='user-name'>{{email}}</span>
+                        <strong>E-mail: </strong><span id='user-name'>{{email}}</span>
                     </div>
                 </div>
             </div>
             <div class='user-stats panel panel-default'>
-                <div class='panel-heading user-stats-heading'>User Stats</div>
+                <div class='panel-heading user-stats-heading'><strong>{{userName}}</strong> Stats</div>
                 <div class='panel-body user-stats-body'>
                     <div class='user-stats-beers-made'>
-                    Beers Submitted: <span id='beersSubmitted'>{{beers.length}}</span>
+                    <strong>Beers Submitted: </strong><span id='beersSubmitted'></span>
                     </div>
                     <div class='user-stats-total-upvotes'>
-                        Upvotes: 
+                        <strong>Upvotes: </strong>
                         <span id='upvotes'>
-                            {{ totalUpvotes }}
+                           
                         </span>
                     </div>
-                    <div class='user-stats-favorite-beers-container'>
-                        <div class='user-stats-favorite-beers'>
-                            <div class='user-stats-favorite-beers-header'>Favorites</div>
-                            <ul class='list group user-stats-favorite-beers-list' id='favoriteBeersList'>
-                                                                                
-                            </ul>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -86,102 +57,105 @@
 <script>
 $(document).ready(function() {
     
-    // demonstration user object retrieved from get request
-    // var user = {
-    //     username: 'username',
-    //     favorites: [
-    //         {
-    //             name: 'favorite beer 1',
-    //             route: '/beers/favoritebeer1'
-    //         },
-    //         {
-    //             name: 'favorite beer 2',
-    //             route: '/beers/favoritebeer2'
-    //         }
-    //     ]
-    // }
+    $.ajax({
+		method: "GET",
+		url: '/api/profile/' + {{userId}}
+		}).then(function(data) {
+            console.log(data);
+            renderBeers(data);
 
-    // // demonstration beers retrieved from get request
-    // var beer1 = {
-    //     name: 'Beer1',
-    //     route: 'beer 1',
-    //     username: 'username',
-    //     description: 'a beer',
-    //     type: 'IPA',
-    //     ingredients: {
-    //         yeasts: ['yeast'],
-    //         hops: ['hops'],
-    //         grains: ['grain'],
-    //         adjuncts: ['adjunct']
-    //     },
-    //     directions: "some directions",
-    //     sg: '5%',
-    //     eg: '4%',
-    //     abv: '3%',
-    //     fbu: '2%',
-    //     upvotes: 10,
-    //     hashtags: ['hashtag1', 'hashtag2', 'hashtag3']
-    // }
+            var totalUpvotes = data.reduce((upvotes, beer) => {
+                return upvotes + beer.upvotes
+            }, 0)
 
-    // var beer2 = {
-    //     name: 'Beer2',
-    //     route: 'beer 2',
-    //     username: 'username',
-    //     description: 'a beer',
-    //     type: 'IPA2',
-    //     ingredients: {
-    //         yeasts: ['yeast'],
-    //         hops: ['hops'],
-    //         grains: ['grain'],
-    //         adjuncts: ['adjunct']
-    //     },
-    //     directions: "some directions",
-    //     sg: '5%',
-    //     eg: '4%',
-    //     abv: '3%',
-    //     fbu: '2%',
-    //     upvotes: 10,
-    //     hashtags: ['hashtag1', 'hashtag2', 'hashtag3']
-    // }
-
-    // var beers = [beer1, beer2];
-
+            $("#upvotes").text(totalUpvotes);
+            $("#beersSubmitted").text(data.length);
+        })
     
-    // var totalUpvotes = beers.reduce((upvotes, beer) => {
-    //         console.log(upvotes, beer.upvotes)
-    //         return upvotes + beer.upvotes
-    //         }, 0)
+    function renderHashtags(string) {
+		var array = string.split(',')
+		var result = array.map(hashtag => {
+			return `<div class='hashtag-list-item'>${hashtag}</div>`
+		})
+		return result.join('');
+	}
+
+    function renderBeers(array) {
+	
+		array.map(beer => {
+			var name = beer.recipeName;
+			var upvotes = beer.upvotes;
+			var style = beer.styleName;
+			var description = beer.recipeDesc;
+			var hashtags = renderHashtags(beer.hashtags)
+			var id = beer.recipeId;
+
+
+			$('#beerList').append(`<li class='list-group-item'>
+				<div class='row'>
+					<div class='col-xs-10'>
+						<div class='list-beer-name'>
+							<a class='list-beer-name-link' href='/recipe/${id}' target='_blank'>${name}</a>
+							<span class='list-beer-style' data='${style}'>(${style})</span>
+							<span class='search-list-description'>${description}</span>
+						</div>
+						<div class='style-and-hashtags-container'>
+							<span class='search-list-hashtags'>${hashtags}</span>
+						</div>
+					</div>
+					<div class='col-xs-2 text-right' id='listBeerUpvotes'>
+						<span isUpvoted='false' class='glyphicon glyphicon glyphicon-arrow-up upvoteArrow' aria-hidden='true' data-upvotes=${upvotes} data=${id}>${upvotes}</span>
+					</div>
+				</div>
+				</li>`)
+		})
+		
+    }
     
+    $(document).on('click', '.upvoteArrow', function() {
 
-    // function renderBeers(array) {
+        var currentUp = $(this).attr('data-upvotes');
+        var id = $(this).attr('data');
 
-    //     array.map(beer => {
+        currentUp = parseInt(currentUp);
+        id = parseInt(id);
 
-    //         let name = beer.name
-    //         let type = beer.type
-    //         let upvotes = beer.upvotes
-    //         let description = beer.description
 
-    //         var beerli = `<li class='list-group-item'><div class='row'><div class='col-md-4 beer-list-name'>${name}</div><div class='col-md-4 beer-list-type text-center'>${type}</div><div class='col-md-4 beer-list-upvotes text-right'>${upvotes}</div></div><hr><div class='list-beer-description'>${description}</div></li>`
+        $.ajax('/recipe/upvote', {
+        type: "PUT",
+        data: {
+            currentUp,
+            id
+        }
+        }).then(function(data) {
+        })
 
-    //         $('#user-beer-list').append(beerli);
-    //     })
-    // }
 
-    // function renderFavorites(array) {
-    //     array.map(beer => {
-    //         var beerli = `<li class='list-group-item'><a href=${beer.route}>${beer.name}</a></li>`
 
-    //         $('#favoriteBeersList').append(beerli);
-    //     })
-    // }
 
-    // $("#username").text(user.username);
-    // $("#beersSubmitted").text(beers.length);
-    // $("#upvotes").text(totalUpvotes);
+        var upvotes = $(this).text();
 
-    // renderBeers(beers);
-    // renderFavorites(user.favorites);
+        if ($(this).attr('isUpvoted') === 'false') {
+
+            upvotes++;
+
+            $(this).text(upvotes);
+            $(this).attr('isUpvoted', 'true');
+            $(this).addClass('red');
+            return
+        }
+
+        // if ($(this).attr('isUpvoted') === 'true') {
+
+        // 	upvotes--;
+
+        // 	$(this).text(upvotes);			
+        // 	$(this).attr('isUpvoted', 'false');
+        // 	$(this).removeClass('red');
+        // 	return
+        // }
+        })
+    
 
 })   
 </script>

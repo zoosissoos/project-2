@@ -303,3 +303,10 @@ body {
 	text-align: center;
 	font-size: 36px;
 }
+
+.error {
+	font-size: 16px;
+	color: red;
+	text-align: center;
+	margin-top: 20px;
+}
