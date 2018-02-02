@@ -1,4 +1,4 @@
-{{> logged-in-nav name='dave'}}
+{{> nav}}
 <div class='body-container'>
 	<div class='search-container panel panel-default'>
 		<div class='panel-heading'>
@@ -100,12 +100,9 @@ $(document).ready(function() {
 						<div class='style-and-hashtags-conterin'>
 							<span class='search-list-hashtags'>${hashtags}</span>
 						</div>
-						
 					</div>
 					<div class='col-xs-2 text-right' id='listBeerUpvotes'>
-						<span isUpvoted='false' class='glyphicon glyphicon glyphicon-arrow-up upvoteArrow' aria-hidden='true' data=${id}>
-							${upvotes}							
-						</span>
+						<span isUpvoted='false' class='glyphicon glyphicon glyphicon-arrow-up upvoteArrow' aria-hidden='true' data-upvotes=${upvotes} data=${id}>${upvotes}</span>
 					</div>
 				</div>
 				</li>`)
@@ -121,45 +118,31 @@ $(document).ready(function() {
 		})
 		return result.join('');
 	}
-
-	function renderList(array) {
-		var allMatches = array;
-		$('#searchResults').empty();
-
-		array.map(beer => {
-			var name = beer.recipeName;
-			var upvotes = beer.upvotes;
-			var style = beer.styleName;
-			var description = beer.recipeDesc;
-			var hashtags = renderHashtags(beer.hashtags)
-			var id = beer.recipeId;
-
-
-			$('#searchResults').append(`<li class='list-group-item'>
-				<div class='row'>
-					<div class='col-xs-10'>
-						<div class='list-beer-name'>
-							<a class='list-beer-name-link' href='/recipe/${id}' target='_blank'>${name}</a>
-							<span class='list-beer-style' data=${style}>(${style})</span>
-							<span class='search-list-description'>${description}</span>
-						</div>
-						<div class='style-and-hashtags-conterin'>
-							<span class='search-list-hashtags'>${hashtags}</span>
-						</div>
-						
-					</div>
-					<div class='col-xs-2 text-right' id='listBeerUpvotes'>
-						<span isUpvoted='false' class='glyphicon glyphicon glyphicon-arrow-up upvoteArrow' aria-hidden='true' data=${id}>
-							${upvotes}							
-						</span>
-					</div>
-				</div>
-				</li>`)
-		})
-	}
 	
 	$(document).on('click', '.upvoteArrow', function() {
 		console.log("click")
+
+		var currentUp = $(this).attr('data-upvotes');
+		var id = $(this).attr('data');
+
+		currentUp = parseInt(currentUp);
+		id = parseInt(id);
+
+		console.log(currentUp, typeof currentUp);
+		console.log(id, typeof id);
+
+		$.ajax('/recipe/upvote', {
+        type: "PUT",
+        data: {
+            currentUp,
+            id
+        }
+      }).then(function(data) {
+        console.log('recipe Upvoted');
+      })
+
+
+		
 
 		var upvotes = $(this).text();
 
@@ -167,23 +150,21 @@ $(document).ready(function() {
 
 			upvotes++;
 
-
-
 			$(this).text(upvotes);
 			$(this).attr('isUpvoted', 'true');
 			$(this).addClass('red');
 			return
 		}
 
-		if ($(this).attr('isUpvoted') === 'true') {
+		// if ($(this).attr('isUpvoted') === 'true') {
 
-			upvotes--;
+		// 	upvotes--;
 
-			$(this).text(upvotes);			
-			$(this).attr('isUpvoted', 'false');
-			$(this).removeClass('red');
-			return
-		}
+		// 	$(this).text(upvotes);			
+		// 	$(this).attr('isUpvoted', 'false');
+		// 	$(this).removeClass('red');
+		// 	return
+		// }
 	})
 
 	$(document).on('click', '.list-beer-style', function() {

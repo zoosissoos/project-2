@@ -55,7 +55,7 @@ body {
 }
 
 .singlebeer {
-	padding: 100px 100px;
+	padding: 20px 100px;
 }
 
 .beer-image-panel {
@@ -189,9 +189,7 @@ body {
 	margin-left: 10px;
 }
 
-.added-ingredients-panel-body {
-	height: 350px !important;
-}
+
 
 .glyphicon-remove {
 	font-size: 12px !important;
@@ -277,6 +275,31 @@ body {
 	cursor: pointer;
 }
 
-.navbar {
-	margin-top: -20px;
+.single-recipe-description {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 24px;
+	text-align: center;
+	font-style: italic;
+}
+
+.single-beer-comment-name {
+	font-size: 24px;
+}
+
+.comments-header {
+	font-size: 32px;
+}
+
+.directions {
+	margin: 10px 0 0 21px;
+	font-size: 16px;
+}
+
+body {
+	font-family: 'Lora', serif;
+}
+
+.add-beer-header {
+	text-align: center;
+	font-size: 36px;
 }

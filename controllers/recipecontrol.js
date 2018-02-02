@@ -162,6 +162,18 @@ router.get('/recipe/:id',function(req,res){
     });
 });
 
+router.get('/random-beer', function(req, res) {
+    beer.getAllBeers(function(data){
+        console.log(data[0]);
+  
+        var sorted = _.orderBy(data[0], ['upvotes'], ['desc']);
+        console.log(sorted)
+  
+        var randomNumber = Math.floor(Math.random() * sorted.length)
+
+        res.redirect(`recipe/${randomNumber}`);
+    })
+})
 
 
 module.exports = router;

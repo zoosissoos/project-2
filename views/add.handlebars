@@ -1,12 +1,12 @@
 {{#if loggedIn}}
-{{> logged-in-nav}}
+{{> nav}}
 {{else}}
 {{> nav}}
 {{/if}}
 
 
 	<div class='panel panel-default add-beer-panel'>
-		<div class='panel-heading'>
+		<div class='panel-heading add-beer-header'>
 			Add a Beer
 		</div>
 		<div class='panel-body'>
@@ -16,7 +16,7 @@
 					<div class='col-md-4'>
 						<div class="form-group">
 							<label for="usr">Beer Name</label>
-							<div class='form-helper'>A unique name for your unique brew</div>
+							<div class='form-helper'>A unique name for your unique brew.</div>
 							
 							<input type="text" class="form-control" id="beerName">
 						</div>
@@ -33,7 +33,7 @@
 					<div class='col-md-4'>
 							<div class="form-group">
 								<label>Image URL</label>
-								<div class='form-helper'>An optional image of your beer to be dislayed on its page</div>
+								<div class='form-helper'>An optional image of your beer.</div>
 								<input class='datalist-group' list="beerStyles" id='imageUrl'>
 								<datalist id="beerStyles">
 								</datalist>
