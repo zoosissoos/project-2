@@ -13,7 +13,7 @@ router.get('/search', function(req, res) {
   res.render('search');
 });
 
-router.get('/searchby/:term/:category', function(req, res) {
+router.get('/searchby/hashtag/:term/', function(req, res) {
 
     var hbsObject = {
         term: req.params.term,
